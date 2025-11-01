@@ -587,14 +587,14 @@
             }
         }
 
-        /* Rochers gris style dessin simple (comme dans l'image) */
+        /* Rochers gris style dessin simple - TRÈS GRANDS pour entourer le cercle */
         .rock {
             position: absolute;
-            width: 120px;
-            height: 120px;
+            width: 400px;
+            height: 400px;
             background: #808080;
             border-radius: 50% 30% 50% 30%;
-            border: 6px solid #000000;
+            border: 8px solid #000000;
             box-shadow: none;
             filter: none;
         }
@@ -604,20 +604,56 @@
             display: none;
         }
 
-        /* Rochers positionnés HORS de l'eau, autour du cercle d'eau */
-        /* Positionnement à 55-60% du centre pour être clairement hors de l'eau */
-        .rock:nth-child(1) { top: -5%; left: 50%; transform: translate(-50%, -50%); }
-        /* Haut, hors de l'eau */
-        .rock:nth-child(2) { top: 50%; left: -5%; transform: translate(-50%, -50%); }
-        /* Gauche, hors de l'eau */
-        .rock:nth-child(3) { top: 105%; left: 50%; transform: translate(-50%, -50%); }
-        /* Bas, hors de l'eau */
-        .rock:nth-child(4) { top: 50%; right: -5%; transform: translate(50%, -50%); }
-        /* Droite, hors de l'eau */
-        .rock:nth-child(5) { top: 10%; left: 10%; transform: translate(-50%, -50%); }
-        /* Angle supérieur gauche, hors de l'eau */
-        .rock:nth-child(6) { top: 90%; right: 10%; transform: translate(50%, -50%); }
-        /* Angle inférieur droit, hors de l'eau */
+        /* Rochers TRÈS GRANDS positionnés pour entourer complètement le cercle d'eau */
+        /* Le cercle d'eau fait 100% de largeur/hauteur, les rochers doivent couvrir l'extérieur */
+        .rock:nth-child(1) { 
+            top: -30%; 
+            left: 50%; 
+            transform: translate(-50%, -50%); 
+            width: 500px;
+            height: 500px;
+        }
+        /* Haut - très grand pour couvrir le haut */
+        .rock:nth-child(2) { 
+            top: 50%; 
+            left: -30%; 
+            transform: translate(-50%, -50%); 
+            width: 500px;
+            height: 500px;
+        }
+        /* Gauche - très grand pour couvrir la gauche */
+        .rock:nth-child(3) { 
+            top: 130%; 
+            left: 50%; 
+            transform: translate(-50%, -50%); 
+            width: 500px;
+            height: 500px;
+        }
+        /* Bas - très grand pour couvrir le bas */
+        .rock:nth-child(4) { 
+            top: 50%; 
+            right: -30%; 
+            transform: translate(50%, -50%); 
+            width: 500px;
+            height: 500px;
+        }
+        /* Droite - très grand pour couvrir la droite */
+        .rock:nth-child(5) { 
+            top: 5%; 
+            left: 5%; 
+            transform: translate(-50%, -50%); 
+            width: 450px;
+            height: 450px;
+        }
+        /* Angle supérieur gauche - pour couvrir le coin */
+        .rock:nth-child(6) { 
+            top: 95%; 
+            right: 5%; 
+            transform: translate(50%, -50%); 
+            width: 450px;
+            height: 450px;
+        }
+        /* Angle inférieur droit - pour couvrir le coin */
 
         /* Têtards noirs style dessin simple (comme dans l'image) */
         .tadpole {
