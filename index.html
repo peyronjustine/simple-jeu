@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simple Jeu - Accueil</title>
+    <title>Changement - Simple Jeu</title>
     <style>
         * {
             margin: 0;
@@ -11,29 +11,78 @@
             box-sizing: border-box;
         }
 
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        @keyframes ripple {
+            0% { transform: scale(1); opacity: 0.8; }
+            100% { transform: scale(1.5); opacity: 0; }
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; }
+        }
+
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: 'Georgia', 'Times New Roman', serif;
+            background: #1a2332;
+            background-image: 
+                radial-gradient(circle at 20% 50%, rgba(100, 150, 200, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(150, 100, 200, 0.1) 0%, transparent 50%),
+                linear-gradient(135deg, #0f1621 0%, #1a2332 50%, #0d1a2e 100%);
             min-height: 100vh;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            color: #fff;
+            color: #e8e6e3;
             padding: 20px;
+            position: relative;
+            overflow-x: hidden;
         }
+
+        /* Étoiles en arrière-plan */
+        .stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .star {
+            position: absolute;
+            background: #fff;
+            border-radius: 50%;
+            animation: twinkle 3s infinite;
+        }
+
+        .star:nth-child(1) { width: 2px; height: 2px; top: 10%; left: 15%; animation-delay: 0s; }
+        .star:nth-child(2) { width: 1px; height: 1px; top: 20%; left: 80%; animation-delay: 0.5s; }
+        .star:nth-child(3) { width: 2px; height: 2px; top: 40%; left: 50%; animation-delay: 1s; }
+        .star:nth-child(4) { width: 1px; height: 1px; top: 60%; left: 25%; animation-delay: 1.5s; }
+        .star:nth-child(5) { width: 2px; height: 2px; top: 80%; left: 70%; animation-delay: 2s; }
+        .star:nth-child(6) { width: 1px; height: 1px; top: 30%; left: 90%; animation-delay: 0.8s; }
+        .star:nth-child(7) { width: 2px; height: 2px; top: 70%; left: 10%; animation-delay: 1.2s; }
 
         .container {
             text-align: center;
-            max-width: 800px;
+            max-width: 900px;
             width: 100%;
-            animation: fadeIn 1s ease-in;
+            z-index: 1;
+            position: relative;
+            animation: fadeIn 2s ease-in;
         }
 
         @keyframes fadeIn {
             from {
                 opacity: 0;
-                transform: translateY(-20px);
+                transform: translateY(30px);
             }
             to {
                 opacity: 1;
@@ -42,106 +91,204 @@
         }
 
         h1 {
-            font-size: 4rem;
-            margin-bottom: 1rem;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-            animation: pulse 2s ease-in-out infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% {
-                transform: scale(1);
-            }
-            50% {
-                transform: scale(1.05);
-            }
+            font-size: 4.5rem;
+            margin-bottom: 0.5rem;
+            text-shadow: 
+                0 0 10px rgba(255, 200, 100, 0.5),
+                0 0 20px rgba(150, 200, 255, 0.3),
+                2px 2px 4px rgba(0, 0, 0, 0.8);
+            color: #ffd89b;
+            font-weight: normal;
+            letter-spacing: 3px;
+            animation: float 6s ease-in-out infinite;
         }
 
         .subtitle {
-            font-size: 1.5rem;
+            font-size: 1.4rem;
             margin-bottom: 3rem;
-            opacity: 0.9;
+            opacity: 0.85;
+            font-style: italic;
+            color: #b8c5d6;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
         }
 
         .game-card {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            padding: 3rem;
+            background: rgba(15, 22, 33, 0.6);
+            backdrop-filter: blur(15px);
+            border-radius: 25px;
+            padding: 3.5rem;
             margin: 2rem 0;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 
+                0 8px 32px rgba(0, 0, 0, 0.4),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(150, 180, 220, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .game-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(100, 150, 255, 0.1) 0%, transparent 70%);
+            animation: ripple 8s infinite;
+        }
+
+        .game-card h2 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: #d4c4a8;
+            text-shadow: 0 0 10px rgba(200, 180, 150, 0.3);
+        }
+
+        .game-card p {
+            margin: 1.5rem 0;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #c8d0da;
+        }
+
+        .warning {
+            margin: 2rem 0;
+            padding: 1.5rem;
+            background: rgba(150, 100, 50, 0.2);
+            border-left: 3px solid rgba(255, 180, 100, 0.6);
+            border-radius: 10px;
+            font-size: 1rem;
+            color: #e8d4b8;
+            font-style: italic;
+            text-align: left;
         }
 
         .btn {
             display: inline-block;
             padding: 15px 40px;
             font-size: 1.2rem;
-            background: rgba(255, 255, 255, 0.2);
-            border: 2px solid rgba(255, 255, 255, 0.3);
+            background: rgba(100, 150, 200, 0.2);
+            border: 2px solid rgba(150, 200, 255, 0.4);
             border-radius: 50px;
-            color: #fff;
+            color: #e8e6e3;
             text-decoration: none;
             margin: 10px;
-            transition: all 0.3s ease;
+            transition: all 0.4s ease;
             cursor: pointer;
+            font-family: 'Georgia', serif;
+            text-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .btn:hover::before {
+            width: 300px;
+            height: 300px;
         }
 
         .btn:hover {
-            background: rgba(255, 255, 255, 0.3);
-            border-color: rgba(255, 255, 255, 0.5);
+            background: rgba(150, 200, 255, 0.3);
+            border-color: rgba(200, 220, 255, 0.6);
             transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            box-shadow: 
+                0 5px 20px rgba(100, 150, 255, 0.4),
+                0 0 30px rgba(150, 200, 255, 0.2);
         }
 
         .btn-primary {
-            background: rgba(255, 255, 255, 0.9);
-            color: #667eea;
+            background: rgba(255, 200, 100, 0.25);
+            border-color: rgba(255, 220, 150, 0.5);
+            color: #ffd89b;
             font-weight: bold;
         }
 
         .btn-primary:hover {
-            background: #fff;
-            color: #764ba2;
+            background: rgba(255, 220, 150, 0.35);
+            border-color: rgba(255, 240, 180, 0.7);
+            box-shadow: 
+                0 5px 20px rgba(255, 200, 100, 0.5),
+                0 0 30px rgba(255, 220, 150, 0.3);
         }
 
         .features {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
             gap: 2rem;
             margin-top: 3rem;
         }
 
         .feature {
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(15, 22, 33, 0.5);
             padding: 2rem;
             border-radius: 15px;
-            backdrop-filter: blur(5px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(100, 150, 200, 0.2);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .feature:hover {
+            border-color: rgba(150, 200, 255, 0.4);
+            transform: translateY(-5px);
+            box-shadow: 0 5px 20px rgba(100, 150, 255, 0.2);
         }
 
         .feature-icon {
             font-size: 3rem;
             margin-bottom: 1rem;
+            filter: drop-shadow(0 0 10px rgba(150, 200, 255, 0.4));
         }
 
         .feature h3 {
             margin-bottom: 0.5rem;
+            color: #d4c4a8;
+        }
+
+        .feature p {
+            color: #b8c5d6;
+            font-size: 0.95rem;
+        }
+
+        .quote {
+            margin: 3rem 0;
+            padding: 2rem;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 15px;
+            border-left: 4px solid rgba(255, 200, 100, 0.6);
+            font-style: italic;
+            color: #d4c4a8;
+            font-size: 1.1rem;
+            line-height: 1.8;
         }
 
         footer {
-            margin-top: 3rem;
-            opacity: 0.7;
+            margin-top: 4rem;
+            opacity: 0.6;
             font-size: 0.9rem;
+            color: #8a9ba8;
         }
 
         @media (max-width: 768px) {
             h1 {
-                font-size: 2.5rem;
+                font-size: 2.8rem;
+                letter-spacing: 2px;
             }
 
             .subtitle {
-                font-size: 1.2rem;
+                font-size: 1.1rem;
             }
 
             .game-card {
@@ -155,50 +302,85 @@
     </style>
 </head>
 <body>
+    <div class="stars">
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+    </div>
+
     <div class="container">
-        <h1>🎮 Simple Jeu</h1>
-        <p class="subtitle">Le jeu simple et amusant pour tous</p>
+        <h1>CHANGEMENT</h1>
+        <p class="subtitle">Une île maudite. Trente pépites d'or. Votre courage.</p>
         
         <div class="game-card">
-            <h2>Bienvenue dans Simple Jeu !</h2>
-            <p style="margin: 2rem 0; font-size: 1.1rem; line-height: 1.6;">
-                Découvrez un jeu simple et captivant qui vous divertira pendant des heures.
-                Que vous soyez un joueur occasionnel ou passionné, Simple Jeu est fait pour vous !
+            <h2>L'Île vous attend...</h2>
+            <p>
+                Plongez dans un monde aquatique mystérieux où chaque niveau vous mène plus profondément. 
+                De l'eau cristalline du ruisseau aux abysses océaniques, collectez les 30 pépites d'or 
+                cachées dans les profondeurs. Mais attention, cette île est ancienne, et elle se nourrit 
+                de votre peur...
             </p>
             
-            <a href="#" class="btn btn-primary" onclick="startGame(); return false;">Jouer Maintenant</a>
-            <a href="#features" class="btn">En Savoir Plus</a>
+            <div class="warning">
+                ⚠️ Le jeu peut être effrayant. L'objectif n'est pas de créer un jeu d'horreur, 
+                mais de ressentir une légère appréhension, d'avoir la chair de poule. 
+                Prenez votre temps, observez les étoiles, faites des pauses. 
+                Ne laissez pas la peur prendre le contrôle.
+            </div>
+
+            <a href="#" class="btn btn-primary" onclick="startGame(); return false;">Commencer l'aventure</a>
+            <a href="#features" class="btn">Découvrir l'univers</a>
         </div>
 
         <div class="features" id="features">
             <div class="feature">
-                <div class="feature-icon">⚡</div>
-                <h3>Rapide</h3>
-                <p>Parties rapides et dynamiques</p>
+                <div class="feature-icon">🌊</div>
+                <h3>Neuf Étap es</h3>
+                <p>Du ruisseau jusqu'au Triangle des Bermudes, explorez des environnements variés et dangereux</p>
             </div>
             <div class="feature">
-                <div class="feature-icon">🎯</div>
-                <h3>Simple</h3>
-                <p>Règles faciles à comprendre</p>
+                <div class="feature-icon">🐟</div>
+                <h3>Faune Réaliste</h3>
+                <p>Rencontrez des créatures aquatiques authentiques, de l'inoffensive ablette aux terrifiantes créatures légendaires</p>
             </div>
             <div class="feature">
-                <div class="feature-icon">🌟</div>
-                <h3>Divertissant</h3>
-                <p>Des heures de plaisir garanti</p>
+                <div class="feature-icon">⭐</div>
+                <h3>Moments de Paix</h3>
+                <p>Observez les étoiles filantes, lisez, discutez avec vos compagnons. Parfois, les choses simples redonnent espoir</p>
             </div>
         </div>
 
+        <div class="quote">
+            "Pourquoi continuez-vous cette aventure, malgré la peur ?<br>
+            Est-ce l'adrénaline ? Ou l'espoir de réussir un jour ?<br>
+            N'oubliez pas que parfois les choses simples comme regarder les étoiles, lire, 
+            discuter peuvent nous changer les idées et nous redonner espoir."
+        </div>
+
         <footer>
-            <p>© 2024 Simple Jeu - Créé avec ❤️</p>
+            <p>© 2024 Changement - Simple Jeu</p>
+            <p style="margin-top: 0.5rem; font-size: 0.85rem;">Bon courage à vous.</p>
         </footer>
     </div>
 
     <script>
         function startGame() {
-            alert('🚀 Le jeu va bientôt démarrer ! Restez à l\'écoute pour les prochaines mises à jour.');
+            const messages = [
+                "L'île maudite vous attend...",
+                "30 pépites d'or vous séparent de la liberté.",
+                "Restez vigilant, mais ne perdez pas espoir.",
+                "N'oubliez pas : regardez les étoiles, prenez des pauses.",
+                "Le temps peut être un allié précieux."
+            ];
+            const message = messages[Math.floor(Math.random() * messages.length)];
+            alert('🌊 ' + message + '\n\n🚀 Le jeu sera bientôt disponible !');
         }
 
-        // Animation au scroll
+        // Animation au scroll pour les features
         const observerOptions = {
             threshold: 0.1,
             rootMargin: '0px 0px -50px 0px'
@@ -213,13 +395,29 @@
             });
         }, observerOptions);
 
-        document.querySelectorAll('.feature').forEach(feature => {
+        document.querySelectorAll('.feature').forEach((feature, index) => {
             feature.style.opacity = '0';
-            feature.style.transform = 'translateY(20px)';
-            feature.style.transition = 'all 0.6s ease';
+            feature.style.transform = 'translateY(30px)';
+            feature.style.transition = `all 0.8s ease ${index * 0.2}s`;
             observer.observe(feature);
+        });
+
+        // Effet de vague sur le hover de la carte
+        document.querySelector('.game-card').addEventListener('mousemove', (e) => {
+            const card = e.currentTarget;
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            
+            const centerX = rect.width / 2;
+            const centerY = rect.height / 2;
+            
+            const angle = Math.atan2(y - centerY, x - centerX) * 180 / Math.PI;
+            card.style.background = `
+                radial-gradient(circle at ${x}px ${y}px, rgba(100, 150, 255, 0.15) 0%, transparent 50%),
+                rgba(15, 22, 33, 0.6)
+            `;
         });
     </script>
 </body>
 </html>
-
