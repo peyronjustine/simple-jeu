@@ -587,14 +587,11 @@
             }
         }
 
-        /* Rochers gris style dessin simple - TRÈS GRANDS pour entourer le cercle */
+        /* Rochers gris style dessin simple - Formes variées (carrés et rectangles) */
         .rock {
             position: absolute;
-            width: 400px;
-            height: 400px;
             background: #808080;
-            border-radius: 50% 30% 50% 30%;
-            border: 8px solid #000000;
+            border: 6px solid #000000;
             box-shadow: none;
             filter: none;
         }
@@ -605,55 +602,61 @@
         }
 
         /* Rochers positionnés pour entourer le cercle d'eau sans dépasser */
-        /* Le cercle d'eau fait 100% de largeur/hauteur, les rochers sont juste sur le bord */
+        /* Formes variées : certains carrés, d'autres rectangles */
         .rock:nth-child(1) { 
-            top: 0%; 
+            /* Haut - rectangle horizontal */
+            top: 2%; 
             left: 50%; 
             transform: translate(-50%, -50%); 
-            width: 400px;
-            height: 400px;
+            width: 250px;
+            height: 180px;
+            border-radius: 20% 30% 20% 30%;
         }
-        /* Haut - au bord du cercle */
         .rock:nth-child(2) { 
+            /* Gauche - rectangle vertical */
             top: 50%; 
-            left: 0%; 
+            left: 2%; 
             transform: translate(-50%, -50%); 
-            width: 400px;
-            height: 400px;
+            width: 180px;
+            height: 250px;
+            border-radius: 30% 20% 30% 20%;
         }
-        /* Gauche - au bord du cercle */
         .rock:nth-child(3) { 
-            top: 100%; 
+            /* Bas - rectangle horizontal */
+            top: 98%; 
             left: 50%; 
             transform: translate(-50%, -50%); 
-            width: 400px;
-            height: 400px;
+            width: 280px;
+            height: 160px;
+            border-radius: 25% 35% 25% 35%;
         }
-        /* Bas - au bord du cercle */
         .rock:nth-child(4) { 
+            /* Droite - rectangle vertical */
             top: 50%; 
-            right: 0%; 
+            right: 2%; 
             transform: translate(50%, -50%); 
-            width: 400px;
-            height: 400px;
+            width: 160px;
+            height: 280px;
+            border-radius: 35% 25% 35% 25%;
         }
-        /* Droite - au bord du cercle */
         .rock:nth-child(5) { 
-            top: 8%; 
-            left: 8%; 
+            /* Angle supérieur gauche - carré */
+            top: 3%; 
+            left: 3%; 
             transform: translate(-50%, -50%); 
-            width: 350px;
-            height: 350px;
+            width: 200px;
+            height: 200px;
+            border-radius: 15% 25% 15% 25%;
         }
-        /* Angle supérieur gauche - au bord du cercle */
         .rock:nth-child(6) { 
-            top: 92%; 
-            right: 8%; 
+            /* Angle inférieur droit - carré */
+            top: 97%; 
+            right: 3%; 
             transform: translate(50%, -50%); 
-            width: 350px;
-            height: 350px;
+            width: 220px;
+            height: 220px;
+            border-radius: 25% 15% 25% 15%;
         }
-        /* Angle inférieur droit - au bord du cercle */
 
         /* Têtards noirs style dessin simple (comme dans l'image) */
         .tadpole {
