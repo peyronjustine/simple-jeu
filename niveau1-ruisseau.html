@@ -23,14 +23,12 @@
 
         body {
             font-family: 'Georgia', serif;
-            /* Arrière-plan : image IMG_E4190.png */
-            background-image: url('IMG_E4190.png');
-            background-size: cover;
-            background-position: center center;
+            /* Arrière-plan : gradient sombre (l'image IMG_E4190.png sert de référence uniquement) */
+            background: radial-gradient(ellipse at center, 
+                #0f1f2e 0%, 
+                #0a1a25 50%, 
+                #050f15 100%);
             background-attachment: fixed;
-            background-repeat: no-repeat;
-            /* Couleur de fallback si l'image ne charge pas */
-            background-color: #0a1a25;
             min-height: 100vh;
             overflow-x: hidden;
             /* overflow-y autorisé - seul le clavier est bloqué via preventDefault */
@@ -327,14 +325,19 @@
             transform: translate(-50%, -50%);
             width: 60%;
             height: 60%;
-            background: radial-gradient(circle, #6b5848 0%, #4a3d32 50%, #3a2f26 100%);
+            /* Plateforme de terre verte avec herbe (référence image) */
+            background: radial-gradient(circle, 
+                #4a7c59 0%, 
+                #3d6b4a 30%,
+                #2f5540 60%, 
+                #254030 100%);
             border-radius: 50%;
-            border: 4px solid #2a1f18;
+            border: 4px solid #1a3020;
             box-shadow: 
                 0 0 40px rgba(0, 0, 0, 0.5),
-                0 0 80px rgba(10, 50, 70, 0.3),
-                inset 0 0 30px rgba(0, 0, 0, 0.4),
-                inset 0 0 60px rgba(10, 30, 40, 0.2);
+                0 0 80px rgba(20, 60, 40, 0.3),
+                inset 0 0 30px rgba(60, 100, 70, 0.3),
+                inset 0 0 60px rgba(40, 70, 50, 0.2);
             /* Effet crayonné */
             filter: contrast(1.2) brightness(0.9);
             position: relative;
@@ -344,10 +347,10 @@
 
         .island:hover {
             box-shadow: 
-                0 0 60px rgba(100, 150, 200, 0.4),
-                0 0 100px rgba(10, 50, 70, 0.5),
-                inset 0 0 30px rgba(0, 0, 0, 0.4),
-                inset 0 0 60px rgba(10, 30, 40, 0.2);
+                0 0 60px rgba(80, 140, 100, 0.4),
+                0 0 100px rgba(20, 60, 40, 0.5),
+                inset 0 0 30px rgba(60, 100, 70, 0.3),
+                inset 0 0 60px rgba(40, 70, 50, 0.2);
         }
 
         /* Indicateur pour s'allonger sur la plateforme */
@@ -371,7 +374,7 @@
             opacity: 1;
         }
 
-        /* Texture crayonnée sur l'île */
+        /* Texture crayonnée et herbe sur l'île */
         .island::after {
             content: '';
             position: absolute;
@@ -381,6 +384,18 @@
             height: 100%;
             border-radius: 50%;
             background-image: 
+                /* Texture d'herbe - fines lignes verticales */
+                repeating-linear-gradient(90deg, 
+                    transparent, 
+                    transparent 2px, 
+                    rgba(60, 120, 80, 0.1) 2px, 
+                    rgba(60, 120, 80, 0.1) 3px),
+                repeating-linear-gradient(0deg, 
+                    transparent, 
+                    transparent 1px, 
+                    rgba(80, 140, 100, 0.08) 1px, 
+                    rgba(80, 140, 100, 0.08) 2px),
+                /* Texture crayonnée */
                 repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(0, 0, 0, 0.05) 10px, rgba(0, 0, 0, 0.05) 20px),
                 repeating-linear-gradient(-45deg, transparent, transparent 10px, rgba(0, 0, 0, 0.05) 10px, rgba(0, 0, 0, 0.05) 20px);
             pointer-events: none;
@@ -691,22 +706,23 @@
             position: absolute;
             width: 22px;
             height: 22px;
+            /* Têtards noirs (référence image) - ils bougent uniquement dans l'eau */
             background: linear-gradient(135deg, 
-                #3d5a3d 0%, 
-                #2f4f2f 40%,
-                #1f3f1f 70%,
-                #0f2f0f 100%);
+                #1a1a1a 0%, 
+                #0f0f0f 40%,
+                #050505 70%,
+                #000000 100%);
             border-radius: 50% 40% 50% 40%;
-            border: 2px solid #0a2a0a;
+            border: 2px solid #000000;
             box-shadow: 
-                0 4px 12px rgba(0, 0, 0, 0.6),
-                0 0 25px rgba(10, 80, 120, 0.4),
-                inset 0 0 8px rgba(0, 0, 0, 0.3),
-                inset 0 0 12px rgba(100, 150, 100, 0.4);
+                0 4px 12px rgba(0, 0, 0, 0.8),
+                0 0 25px rgba(10, 80, 120, 0.5),
+                inset 0 0 8px rgba(0, 0, 0, 0.5),
+                inset 0 0 12px rgba(30, 30, 30, 0.3);
             animation: swim 8s linear infinite;
             cursor: pointer;
             /* Effet réaliste Subnautica avec touche d'horreur */
-            filter: contrast(1.3) brightness(0.85) saturate(1.1);
+            filter: contrast(1.5) brightness(0.7) saturate(0.8);
         }
 
         /* Texture crayonnée sur les têtards */
