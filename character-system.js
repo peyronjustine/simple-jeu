@@ -11,14 +11,17 @@ const CHARACTER_CONFIG = {
         accent: '#6B8E23'      // Vert olive pour les nuances
     },
     size: {
-        width: 50,
-        height: 60,
-        headSize: 35,
-        bodySize: 50
+        width: 55,      // Proportionnel à 1m65 (environ 55px pour un personnage de 1m65)
+        height: 82,     // Hauteur proportionnelle (1m65 ≈ 82px)
+        headSize: 40,
+        bodySize: 55
     },
+    realHeight: 165,    // Taille réelle en cm (1m65)
     speed: 500, // Temps de mouvement en ms
     collectDistance: 60, // Distance de collecte en pixels
-    swimAnimation: true
+    swimAnimation: true,
+    maxApnea: 7 * 60 * 1000, // 7 minutes sous l'eau
+    permadeath: true    // Une seule vie, recommencer depuis le début si mort
 };
 
 /**
@@ -388,8 +391,8 @@ function initCharacterSystem(config = {}) {
 const CHARACTER_CSS = `
     .character {
         position: absolute;
-        width: 50px;
-        height: 60px;
+        width: 55px;
+        height: 82px;
         z-index: 45;
         cursor: pointer;
         transition: all 0.3s ease;
@@ -397,8 +400,8 @@ const CHARACTER_CSS = `
 
     .character-body {
         position: relative;
-        width: 50px;
-        height: 50px;
+        width: 55px;
+        height: 55px;
         background: linear-gradient(135deg, #4682B4 0%, #5F9EA0 50%, #6B8E23 100%);
         border-radius: 50% 50% 45% 45%;
         box-shadow: 
@@ -411,8 +414,8 @@ const CHARACTER_CSS = `
         top: -20px;
         left: 50%;
         transform: translateX(-50%);
-        width: 35px;
-        height: 35px;
+        width: 40px;
+        height: 40px;
         background: linear-gradient(135deg, #4682B4 0%, #5F9EA0 100%);
         border-radius: 50%;
         box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);

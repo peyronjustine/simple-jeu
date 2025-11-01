@@ -127,7 +127,7 @@
             border-radius: 15px;
             border: 2px solid rgba(255, 200, 100, 0.3);
             z-index: 200;
-            min-width: 200px;
+            min-width: 250px;
         }
 
         .game-hud h3 {
@@ -145,6 +145,169 @@
 
         .hud-stat strong {
             color: #9fc4b8;
+        }
+
+        /* Barres de santé et apnée */
+        .health-bar, .apnea-bar {
+            width: 100%;
+            height: 20px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+            margin: 0.5rem 0;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .health-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #4CAF50 0%, #8BC34A 100%);
+            transition: width 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 0.75rem;
+            font-weight: bold;
+        }
+
+        .health-fill.danger {
+            background: linear-gradient(90deg, #f44336 0%, #ff9800 100%);
+        }
+
+        .apnea-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #2196F3 0%, #64B5F6 100%);
+            transition: width 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 0.75rem;
+            font-weight: bold;
+        }
+
+        .apnea-fill.warning {
+            background: linear-gradient(90deg, #ff9800 0%, #ff5722 100%);
+        }
+
+        .apnea-fill.danger {
+            background: linear-gradient(90deg, #f44336 0%, #d32f2f 100%);
+        }
+
+        /* Statut d'empoisonnement */
+        .poisoned {
+            color: #ff6b6b !important;
+            animation: pulse 1s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        /* Mode repos - personnage allongé */
+        .character.resting {
+            transform: rotate(-90deg) scaleX(-1);
+        }
+
+        .character.resting .character-body {
+            animation: breathing 3s ease-in-out infinite;
+        }
+
+        @keyframes breathing {
+            0%, 100% { transform: scaleY(1); }
+            50% { transform: scaleY(1.05); }
+        }
+
+        /* Modal pour les pensées nostalgiques */
+        .nostalgia-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            z-index: 1000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(5px);
+        }
+
+        .nostalgia-modal.show {
+            display: flex;
+        }
+
+        .nostalgia-content {
+            background: linear-gradient(135deg, rgba(10, 30, 50, 0.95) 0%, rgba(5, 15, 25, 0.95) 100%);
+            padding: 3rem;
+            border-radius: 20px;
+            max-width: 600px;
+            text-align: center;
+            border: 2px solid rgba(100, 150, 200, 0.3);
+            box-shadow: 0 0 50px rgba(100, 150, 200, 0.2);
+        }
+
+        .nostalgia-content h2 {
+            color: #9fc4b8;
+            margin-bottom: 1.5rem;
+            font-size: 2rem;
+        }
+
+        .nostalgia-content p {
+            color: #d4e6dc;
+            line-height: 1.8;
+            font-size: 1.1rem;
+            font-style: italic;
+            margin: 1rem 0;
+        }
+
+        .nostalgia-content .stars {
+            font-size: 1.5rem;
+            margin: 1rem 0;
+            color: #ffd89b;
+        }
+
+        /* Message de mort (permadeath) */
+        .death-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 2000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(10px);
+        }
+
+        .death-modal.show {
+            display: flex;
+        }
+
+        .death-content {
+            background: linear-gradient(135deg, rgba(50, 10, 10, 0.95) 0%, rgba(25, 5, 5, 0.95) 100%);
+            padding: 3rem;
+            border-radius: 20px;
+            max-width: 600px;
+            text-align: center;
+            border: 2px solid rgba(200, 50, 50, 0.5);
+            box-shadow: 0 0 50px rgba(200, 50, 50, 0.3);
+        }
+
+        .death-content h2 {
+            color: #ff6b6b;
+            margin-bottom: 1.5rem;
+            font-size: 2.5rem;
+        }
+
+        .death-content p {
+            color: #d4e6dc;
+            line-height: 1.8;
+            font-size: 1.2rem;
+            margin: 1rem 0;
         }
 
         .island-container {
@@ -173,6 +336,37 @@
             /* Effet crayonné */
             filter: contrast(1.2) brightness(0.9);
             position: relative;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .island:hover {
+            box-shadow: 
+                0 0 60px rgba(100, 150, 200, 0.4),
+                0 0 100px rgba(10, 50, 70, 0.5),
+                inset 0 0 30px rgba(0, 0, 0, 0.4),
+                inset 0 0 60px rgba(10, 30, 40, 0.2);
+        }
+
+        /* Indicateur pour s'allonger sur la plateforme */
+        .rest-prompt {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(100, 150, 200, 0.8);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.3s;
+            z-index: 100;
+        }
+
+        .rest-prompt.show {
+            opacity: 1;
         }
 
         /* Texture crayonnée sur l'île */
@@ -833,6 +1027,37 @@
             <div class="nugget-position" style="top: 50%; right: 20%;">
                 <div class="gold-nugget" data-nugget="6"></div>
             </div>
+
+            <!-- Indicateur pour se reposer sur la plateforme -->
+            <div class="rest-prompt" id="restPrompt">
+                Appuyez sur [Espace] ou touchez la plateforme pour vous reposer et observer le ciel
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de pensées nostalgiques -->
+    <div class="nostalgia-modal" id="nostalgiaModal">
+        <div class="nostalgia-content">
+            <h2>✨ Étoiles Filantes ✨</h2>
+            <div class="stars">⭐ 🌟 ⭐ 🌟 ⭐</div>
+            <p id="nostalgiaText">Les étoiles brillent dans le ciel nocturne, rappelant des souvenirs d'un passé lointain...</p>
+            <p style="margin-top: 2rem; font-size: 0.9rem; color: #9fc4b8;">
+                Appuyez sur [Espace] ou touchez n'importe où pour continuer
+            </p>
+        </div>
+    </div>
+
+    <!-- Message de mort (permadeath) -->
+    <div class="death-modal" id="deathModal">
+        <div class="death-content">
+            <h2>💀 Mort</h2>
+            <p>Votre personnage est mort. Dans ce monde, il n'y a qu'une seule vie.</p>
+            <p style="margin-top: 2rem; font-size: 1.5rem; color: #ff6b6b;">
+                Permadeath : Vous devez recommencer depuis le début.
+            </p>
+            <button onclick="resetGame()" style="margin-top: 2rem; padding: 1rem 2rem; font-size: 1.2rem; background: #ff6b6b; color: white; border: none; border-radius: 10px; cursor: pointer;">
+                Recommencer depuis le début
+            </button>
         </div>
     </div>
 
@@ -844,6 +1069,7 @@
         <a href="etape1-ruisseau.html" class="victory-btn">Retour aux niveaux</a>
     </div>
 
+    <script src="character-health-system.js"></script>
     <script>
         // Attendre que le DOM soit complètement chargé
         document.addEventListener('DOMContentLoaded', () => {
@@ -998,6 +1224,8 @@
             }
 
             function moveCharacterToTouch(x, y) {
+                if (isResting || healthSystem.isDead) return;
+                
                 // Limiter les coordonnées
                 x = Math.max(5, Math.min(95, x));
                 y = Math.max(5, Math.min(95, y));
@@ -1017,8 +1245,16 @@
                     
                     // Vérifier la collecte après le mouvement
                     setTimeout(() => {
+                        updateUnderwaterStatus();
                         checkNuggetCollection();
                     }, 100);
+                } else {
+                    // Si proche de l'île, mettre à jour le statut
+                    characterX = x;
+                    characterY = y;
+                    character.style.left = x + '%';
+                    character.style.top = y + '%';
+                    updateUnderwaterStatus();
                 }
             }
 
@@ -1093,7 +1329,7 @@
             let keysPressed = {};
 
             function moveCharacterWithKeys(direction) {
-                if (isMoving) return;
+                if (isMoving || isResting || healthSystem.isDead) return;
                 
                 let newX = characterX;
                 let newY = characterY;
@@ -1131,8 +1367,16 @@
                     setTimeout(() => {
                         isMoving = false;
                         character.classList.remove('moving');
+                        updateUnderwaterStatus();
                         checkNuggetCollection(); // Vérifier après le mouvement
                     }, 200); // Mouvement plus rapide avec le clavier
+                } else {
+                    // Permettre d'approcher de l'île
+                    characterX = newX;
+                    characterY = newY;
+                    character.style.left = characterX + '%';
+                    character.style.top = characterY + '%';
+                    updateUnderwaterStatus();
                 }
             }
 
