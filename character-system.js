@@ -180,20 +180,58 @@ function initCharacterSystem(config = {}) {
         character.style.top = y + '%';
 
         isMoving = true;
+        const moveDuration = config.speed || CHARACTER_CONFIG.speed;
         setTimeout(() => {
             isMoving = false;
             character.classList.remove('moving');
             checkNuggetCollection();
-        }, moveSpeed);
+        }, moveDuration);
 
         return true;
     }
-
+    
     /**
-     * Contrôle du personnage avec les flèches du clavier
+     * Déplace le personnage avec les flèches du clavier
      */
     const keyboardMoveSpeed = config.moveSpeed || 2; // Pourcentage de déplacement par appui
     let keysPressed = {};
+    let currentCharacterX = startPos.x;
+    let currentCharacterY = startPos.y;
+
+    function moveCharacterWithKeys(direction) {
+        if (isMoving) return;
+        
+        let newX = currentCharacterX;
+        let newY = currentCharacterY;
+
+        switch(direction) {
+            case 'ArrowUp':
+                newY = Math.max(5, currentCharacterY - keyboardMoveSpeed);
+                break;
+            case 'ArrowDown':
+                newY = Math.min(95, currentCharacterY + keyboardMoveSpeed);
+                break;
+            case 'ArrowLeft':
+                newX = Math.max(5, currentCharacterX - keyboardMoveSpeed);
+                break;
+            case 'ArrowRight':
+                newX = Math.min(95, currentCharacterX + keyboardMoveSpeed);
+                break;
+        }
+
+        // Vérifier que la nouvelle position est dans l'eau (pas sur l'île)
+        const centerX = 50;
+        const centerY = 50;
+        const distance = Math.sqrt(Math.pow(newX - centerX, 2) + Math.pow(newY - centerY, 2));
+        
+        // Ne se déplace que dans l'eau (au-delà de 25% du centre = dans l'eau)
+        if (distance > 25) {
+            if (moveCharacter(newX, newY, config.inWaterOnly !== false)) {
+                currentCharacterX = newX;
+                currentCharacterY = newY;
+            }
+        }
+    }
 
     // Gestion des touches du clavier
     document.addEventListener('keydown', (e) => {
