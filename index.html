@@ -343,6 +343,138 @@
             color: #8a9ba8;
         }
 
+        /* Modal de mot de passe */
+        .password-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(5px);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .password-modal.active {
+            display: flex;
+        }
+
+        .password-box {
+            background: rgba(15, 22, 33, 0.95);
+            backdrop-filter: blur(15px);
+            border-radius: 25px;
+            padding: 3rem;
+            max-width: 500px;
+            width: 90%;
+            border: 2px solid rgba(255, 200, 100, 0.3);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+            text-align: center;
+            position: relative;
+        }
+
+        .password-box h2 {
+            color: #ffd89b;
+            margin-bottom: 1.5rem;
+            font-size: 2rem;
+            text-shadow: 0 0 10px rgba(255, 216, 155, 0.5);
+        }
+
+        .password-box p {
+            color: #d4c4a8;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+            font-size: 1.1rem;
+        }
+
+        .password-input {
+            width: 100%;
+            padding: 15px 20px;
+            background: rgba(100, 150, 200, 0.1);
+            border: 2px solid rgba(150, 200, 255, 0.3);
+            border-radius: 15px;
+            color: #e8e6e3;
+            font-size: 1.2rem;
+            font-family: 'Georgia', serif;
+            margin-bottom: 1.5rem;
+            outline: none;
+            transition: all 0.3s;
+        }
+
+        .password-input:focus {
+            border-color: rgba(255, 200, 100, 0.6);
+            background: rgba(100, 150, 200, 0.2);
+            box-shadow: 0 0 20px rgba(255, 200, 100, 0.3);
+        }
+
+        .password-error {
+            color: #ff6b6b;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+            display: none;
+        }
+
+        .password-error.show {
+            display: block;
+            animation: shake 0.5s;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-10px); }
+            75% { transform: translateX(10px); }
+        }
+
+        .password-actions {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+        }
+
+        .password-btn {
+            padding: 12px 30px;
+            font-size: 1.1rem;
+            border: 2px solid rgba(150, 200, 255, 0.4);
+            border-radius: 50px;
+            background: rgba(100, 150, 200, 0.2);
+            color: #e8e6e3;
+            cursor: pointer;
+            font-family: 'Georgia', serif;
+            transition: all 0.3s;
+        }
+
+        .password-btn:hover {
+            background: rgba(150, 200, 255, 0.3);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(100, 150, 255, 0.3);
+        }
+
+        .password-btn-primary {
+            background: rgba(255, 200, 100, 0.25);
+            border-color: rgba(255, 220, 150, 0.5);
+            color: #ffd89b;
+            font-weight: bold;
+        }
+
+        .password-btn-primary:hover {
+            background: rgba(255, 220, 150, 0.35);
+            box-shadow: 0 5px 15px rgba(255, 200, 100, 0.4);
+        }
+
+        .password-hint {
+            margin-top: 1.5rem;
+            padding: 1rem;
+            background: rgba(255, 200, 100, 0.1);
+            border-radius: 10px;
+            border-left: 3px solid rgba(255, 200, 100, 0.5);
+            font-size: 0.9rem;
+            color: #d4c4a8;
+            text-align: left;
+        }
+
         @media (max-width: 768px) {
             h1 {
                 font-size: 2.8rem;
@@ -480,18 +612,121 @@
         </footer>
     </div>
 
+    <!-- Modal de mot de passe -->
+    <div class="password-modal" id="passwordModal">
+        <div class="password-box">
+            <h2>🔐 Accès à l'Aventure</h2>
+            <p>Pour commencer votre périple sur l'île maudite, vous devez entrer le mot de passe.</p>
+            
+            <div class="password-error" id="passwordError">
+                ❌ Mot de passe incorrect. Essayez encore.
+            </div>
+
+            <input 
+                type="password" 
+                id="passwordInput" 
+                class="password-input" 
+                placeholder="Entrez le mot de passe..."
+                autocomplete="off"
+            />
+
+            <div class="password-actions">
+                <button class="password-btn" onclick="closePasswordModal()">Annuler</button>
+                <button class="password-btn password-btn-primary" onclick="checkPassword()">Entrer</button>
+            </div>
+
+            <div class="password-hint">
+                💡 Indice : Le mot de passe est lié à l'objectif principal du jeu. Combien de pépites d'or devez-vous collecter ?
+            </div>
+        </div>
+    </div>
+
     <script>
+        // Mot de passe (peut être changé facilement)
+        const CORRECT_PASSWORD = "30 pepites";
+        const ALTERNATIVE_PASSWORDS = ["30 pépites", "30pepites", "30 pepites d'or", "changement"];
+
         function startGame() {
-            const messages = [
-                "L'île maudite vous attend...",
-                "30 pépites d'or vous séparent de la liberté.",
-                "Restez vigilant, mais ne perdez pas espoir.",
-                "N'oubliez pas : regardez les étoiles, prenez des pauses.",
-                "Le temps peut être un allié précieux."
-            ];
-            const message = messages[Math.floor(Math.random() * messages.length)];
-            alert('🌊 ' + message + '\n\n🚀 Le jeu sera bientôt disponible !');
+            const modal = document.getElementById('passwordModal');
+            modal.classList.add('active');
+            document.getElementById('passwordInput').focus();
         }
+
+        function closePasswordModal() {
+            const modal = document.getElementById('passwordModal');
+            modal.classList.remove('active');
+            document.getElementById('passwordInput').value = '';
+            document.getElementById('passwordError').classList.remove('show');
+        }
+
+        function checkPassword() {
+            const input = document.getElementById('passwordInput');
+            const password = input.value.trim().toLowerCase();
+            const errorDiv = document.getElementById('passwordError');
+
+            // Vérifier le mot de passe principal et les alternatives
+            const isCorrect = password === CORRECT_PASSWORD.toLowerCase() || 
+                            ALTERNATIVE_PASSWORDS.some(alt => password === alt.toLowerCase());
+
+            if (isCorrect) {
+                closePasswordModal();
+                const messages = [
+                    "L'île maudite vous attend...",
+                    "30 pépites d'or vous séparent de la liberté.",
+                    "Restez vigilant, mais ne perdez pas espoir.",
+                    "N'oubliez pas : regardez les étoiles, prenez des pauses.",
+                    "Le temps peut être un allié précieux.",
+                    "Bienvenue sur l'île maudite. Votre courage sera mis à l'épreuve."
+                ];
+                const message = messages[Math.floor(Math.random() * messages.length)];
+                
+                setTimeout(() => {
+                    alert('🌊 ' + message + '\n\n🚀 Le jeu sera bientôt disponible !\n\nPour l\'instant, explorez les différentes étapes depuis le menu.');
+                }, 300);
+            } else {
+                errorDiv.classList.add('show');
+                input.value = '';
+                input.focus();
+                
+                // Animation de secousse pour le champ
+                input.style.animation = 'shake 0.5s';
+                setTimeout(() => {
+                    input.style.animation = '';
+                }, 500);
+            }
+        }
+
+        // Permettre d'appuyer sur Entrée pour valider
+        document.addEventListener('DOMContentLoaded', () => {
+            const passwordInput = document.getElementById('passwordInput');
+            if (passwordInput) {
+                passwordInput.addEventListener('keypress', (e) => {
+                    if (e.key === 'Enter') {
+                        checkPassword();
+                    }
+                });
+            }
+
+            // Fermer le modal en cliquant en dehors
+            const modal = document.getElementById('passwordModal');
+            if (modal) {
+                modal.addEventListener('click', (e) => {
+                    if (e.target === modal) {
+                        closePasswordModal();
+                    }
+                });
+            }
+
+            // Fermer avec Escape
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') {
+                    const modal = document.getElementById('passwordModal');
+                    if (modal && modal.classList.contains('active')) {
+                        closePasswordModal();
+                    }
+                }
+            });
+        });
 
         // Animation au scroll pour les features
         const observerOptions = {
