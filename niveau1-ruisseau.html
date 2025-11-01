@@ -1462,6 +1462,78 @@
                 }
             }
 
+            // Fonction pour redémarrer le niveau
+            function restartLevel() {
+                // Réinitialiser les pépites collectées
+                collectedNuggets = 0;
+                collectedCountEl.textContent = 0;
+                progressBar.style.width = '0%';
+                progressBar.textContent = '0%';
+                
+                // Réinitialiser le système de progression (ne pas perdre la progression globale)
+                if (gameProgression) {
+                    // On garde la progression globale, on ne fait que réinitialiser ce niveau
+                    gameProgression.levelsCompleted.delete('niveau1-ruisseau');
+                    gameProgression.save();
+                    
+                    // Mettre à jour l'affichage
+                    const totalGlobal = gameProgression.getTotalCollected();
+                    if (globalCollectedEl && globalProgressHUD) {
+                        globalCollectedEl.textContent = totalGlobal;
+                        if (totalGlobal > 0) {
+                            globalProgressHUD.style.display = 'flex';
+                        }
+                    }
+                }
+                
+                // Réinitialiser toutes les pépites
+                nuggets.forEach(nugget => {
+                    nugget.classList.remove('collected');
+                    const nuggetEl = nugget;
+                    nuggetEl.style.transition = '';
+                    nuggetEl.style.transform = '';
+                    nuggetEl.style.opacity = '1';
+                });
+                
+                // Réinitialiser la position du personnage
+                characterX = 50;
+                characterY = 50;
+                character.style.left = '50%';
+                character.style.top = '50%';
+                
+                // Réinitialiser la santé (si le système existe)
+                if (healthSystem && typeof healthSystem.reset === 'function') {
+                    healthSystem.reset();
+                }
+                
+                // Cacher le message de victoire
+                victoryMessage.classList.remove('show');
+                
+                // Réinitialiser l'état de repos
+                isResting = false;
+                character.classList.remove('resting');
+                if (restPrompt) {
+                    restPrompt.style.display = 'none';
+                }
+            }
+
+            // Gestion des boutons du message de victoire
+            const restartBtn = document.getElementById('restartBtn');
+            const nextLevelBtn = document.getElementById('nextLevelBtn');
+
+            if (restartBtn) {
+                restartBtn.addEventListener('click', () => {
+                    restartLevel();
+                });
+            }
+
+            if (nextLevelBtn) {
+                nextLevelBtn.addEventListener('click', () => {
+                    // Rediriger vers le niveau 2
+                    window.location.href = 'niveau2-ruisseau.html';
+                });
+            }
+
             // Vérifier si le personnage est proche d'une pépite et collecte automatique
             function checkNuggetCollection() {
                 if (!character || isResting || healthSystem.isDead) return;
