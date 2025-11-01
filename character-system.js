@@ -78,6 +78,12 @@ function initCharacterSystem(config = {}) {
     let isMoving = false;
     let collectedNuggets = 0;
     const totalNuggets = nuggets.length;
+    
+    // Récupérer la position initiale du personnage
+    const startPos = {
+        x: parseFloat(character.style.left) || 50,
+        y: parseFloat(character.style.top) || 50
+    };
 
     // Callbacks pour la collecte (peuvent être personnalisés)
     const onNuggetCollect = config.onNuggetCollect || function(nugget, count, total) {
@@ -184,14 +190,37 @@ function initCharacterSystem(config = {}) {
     }
 
     /**
-     * Gestion du clic pour déplacer le personnage
+     * Contrôle du personnage avec les flèches du clavier
      */
-    container.addEventListener('click', (e) => {
-        const rect = container.getBoundingClientRect();
-        const x = ((e.clientX - rect.left) / rect.width) * 100;
-        const y = ((e.clientY - rect.top) / rect.height) * 100;
+    const keyboardMoveSpeed = config.moveSpeed || 2; // Pourcentage de déplacement par appui
+    let keysPressed = {};
 
-        moveCharacter(x, y, config.inWaterOnly !== false);
+    // Gestion des touches du clavier
+    document.addEventListener('keydown', (e) => {
+        if (['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'].includes(e.key)) {
+            e.preventDefault(); // Empêcher le scroll de la page
+            
+            if (!keysPressed[e.key]) {
+                keysPressed[e.key] = true;
+                moveCharacterWithKeys(e.key);
+                
+                // Répéter le mouvement si la touche reste enfoncée
+                const repeatInterval = setInterval(() => {
+                    if (keysPressed[e.key] && !isMoving) {
+                        moveCharacterWithKeys(e.key);
+                    } else {
+                        clearInterval(repeatInterval);
+                    }
+                }, 150);
+            }
+        }
+    });
+
+    document.addEventListener('keyup', (e) => {
+        if (['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'].includes(e.key)) {
+            keysPressed[e.key] = false;
+            character.classList.remove('swimming'); // Arrêter l'animation de nage
+        }
     });
 
     // Vérifier la collecte en continu
@@ -200,10 +229,18 @@ function initCharacterSystem(config = {}) {
     // Retourner les fonctions publiques
     return {
         moveCharacter,
+        moveCharacterWithKeys,
         collectNugget,
         getCollectedCount: () => collectedNuggets,
         getTotalCount: () => totalNuggets,
-        isMoving: () => isMoving
+        isMoving: () => isMoving,
+        getPosition: () => ({ x: currentCharacterX, y: currentCharacterY }),
+        setPosition: (x, y) => {
+            currentCharacterX = x;
+            currentCharacterY = y;
+            character.style.left = x + '%';
+            character.style.top = y + '%';
+        }
     };
 }
 
