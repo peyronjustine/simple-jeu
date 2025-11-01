@@ -966,9 +966,10 @@
         </div>
 
         <div class="island-container">
+            <!-- Eau : Ruisseau circulaire autour de la plateforme ronde de terre -->
             <div class="water"></div>
             
-            <!-- Rochers -->
+            <!-- Rochers permanents entourant l'île (élément permanent unique au niveau 1) -->
             <div class="rock"></div>
             <div class="rock"></div>
             <div class="rock"></div>
@@ -976,9 +977,10 @@
             <div class="rock"></div>
             <div class="rock"></div>
 
-            <!-- Île -->
+            <!-- Île de départ : Plateforme ronde de terre au centre -->
             <div class="island">
-                <div class="tree"></div>
+                <!-- Arbre : Cerisier japonais "Kansan" au milieu (unique au niveau 1) -->
+                <div class="tree" title="Cerisier japonais 'Kansan'"></div>
             </div>
 
             <!-- Personnage joueur -->
@@ -1071,8 +1073,114 @@
 
     <script src="character-health-system.js"></script>
     <script>
+        // Ambiance sonore unique au Niveau 1 - L'île de départ
+        // Vent, bruits naturels, poissons sautant hors de l'eau (pas de musique)
+        let ambientSounds = {
+            wind: null,
+            nature: null,
+            fishSplash: null,
+            isPlaying: false
+        };
+
+        function initAmbientSounds() {
+            // Note: Pour une vraie implémentation, créer des fichiers audio
+            // Ici on simule avec l'API Web Audio pour générer des sons d'ambiance
+            
+            try {
+                const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                
+                // Vent (bruit blanc filtré pour ressembler au vent)
+                function createWindSound() {
+                    const bufferSize = audioContext.sampleRate * 2;
+                    const buffer = audioContext.createBuffer(1, bufferSize, audioContext.sampleRate);
+                    const data = buffer.getChannelData(0);
+                    
+                    for (let i = 0; i < bufferSize; i++) {
+                        data[i] = Math.random() * 2 - 1;
+                    }
+                    
+                    const source = audioContext.createBufferSource();
+                    source.buffer = buffer;
+                    source.loop = true;
+                    
+                    const filter = audioContext.createBiquadFilter();
+                    filter.type = 'lowpass';
+                    filter.frequency.setValueAtTime(500, audioContext.currentTime);
+                    filter.Q.setValueAtTime(1, audioContext.currentTime);
+                    
+                    const gainNode = audioContext.createGain();
+                    gainNode.gain.setValueAtTime(0.1, audioContext.currentTime);
+                    
+                    source.connect(filter);
+                    filter.connect(gainNode);
+                    gainNode.connect(audioContext.destination);
+                    
+                    return { source, gainNode };
+                }
+                
+                // Sons de poissons sautant (périodiques)
+                function createFishSplash() {
+                    return setInterval(() => {
+                        const oscillator = audioContext.createOscillator();
+                        const gainNode = audioContext.createGain();
+                        
+                        oscillator.type = 'sine';
+                        oscillator.frequency.setValueAtTime(200 + Math.random() * 100, audioContext.currentTime);
+                        
+                        gainNode.gain.setValueAtTime(0.2, audioContext.currentTime);
+                        gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.3);
+                        
+                        oscillator.connect(gainNode);
+                        gainNode.connect(audioContext.destination);
+                        
+                        oscillator.start();
+                        oscillator.stop(audioContext.currentTime + 0.3);
+                    }, 3000 + Math.random() * 4000); // Toutes les 3-7 secondes
+                }
+                
+                // Bruits naturels (créatures, eau, etc.)
+                function createNatureSounds() {
+                    return setInterval(() => {
+                        const oscillator = audioContext.createOscillator();
+                        const gainNode = audioContext.createGain();
+                        
+                        // Sons de créatures aquatiques
+                        oscillator.type = 'triangle';
+                        oscillator.frequency.setValueAtTime(150 + Math.random() * 50, audioContext.currentTime);
+                        
+                        gainNode.gain.setValueAtTime(0.1, audioContext.currentTime);
+                        gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.5);
+                        
+                        oscillator.connect(gainNode);
+                        gainNode.connect(audioContext.destination);
+                        
+                        oscillator.start();
+                        oscillator.stop(audioContext.currentTime + 0.5);
+                    }, 5000 + Math.random() * 5000); // Toutes les 5-10 secondes
+                }
+                
+                // Démarrer les sons (optionnel - nécessite interaction utilisateur)
+                // Les sons ne démarrent que si l'utilisateur a interagi avec la page
+                document.addEventListener('click', () => {
+                    if (!ambientSounds.isPlaying && audioContext.state !== 'suspended') {
+                        const wind = createWindSound();
+                        wind.source.start(0);
+                        ambientSounds.wind = wind;
+                        ambientSounds.fishSplash = createFishSplash();
+                        ambientSounds.nature = createNatureSounds();
+                        ambientSounds.isPlaying = true;
+                    }
+                }, { once: true });
+                
+            } catch (e) {
+                console.log('Audio context non disponible. Ambiance sonore désactivée.');
+            }
+        }
+
         // Attendre que le DOM soit complètement chargé
         document.addEventListener('DOMContentLoaded', () => {
+            // Initialiser l'ambiance sonore unique du niveau 1
+            initAmbientSounds();
             let collectedNuggets = 0;
             const totalNuggets = 6;
             const nuggets = document.querySelectorAll('.gold-nugget');
