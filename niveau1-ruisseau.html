@@ -547,7 +547,7 @@
             <p><strong>Arbre :</strong> Cerisier japonais "Kansan" 🌸</p>
             <p><strong>Créatures :</strong> Têtards 🐸 (inoffensifs)</p>
             <p><strong>Objectif :</strong> Collectez toutes les pépites d'or dans l'eau pour débloquer le niveau suivant.</p>
-            <p><strong>Conseil :</strong> Cliquez sur les pépites dorées qui scintillent dans l'eau autour de l'île.</p>
+            <p><strong>Conseil :</strong> Cliquez dans l'eau autour de l'île pour déplacer votre personnage. Il collectera automatiquement les pépites d'or lorsqu'il s'en approchera.</p>
         </div>
 
         <div class="island-container">
@@ -669,37 +669,107 @@
             createRipple(); // Première vague immédiate
             setInterval(createRipple, 3000);
 
-            // Système de collecte
-            nuggets.forEach((nugget, index) => {
-                nugget.addEventListener('click', () => {
+            // Système de mouvement et collecte avec le personnage
+            const character = document.getElementById('character');
+            const islandContainer = document.querySelector('.island-container');
+            let isMoving = false;
+            let characterX = 50; // Pourcentage
+            let characterY = 50; // Pourcentage
+
+            // Position initiale du personnage (sur l'île, au centre)
+            character.style.left = '50%';
+            character.style.top = '50%';
+
+            // Fonction pour collecter une pépite
+            function collectNugget(nugget) {
+                if (!nugget.classList.contains('collected')) {
+                    nugget.classList.add('collected');
+                    collectedNuggets++;
+                    
+                    // Animation de collecte
+                    collectedCountEl.textContent = collectedNuggets;
+                    const progress = (collectedNuggets / totalNuggets) * 100;
+                    progressBar.style.width = progress + '%';
+                    progressBar.textContent = Math.round(progress) + '%';
+
+                    // Effet visuel
+                    nugget.style.transition = 'all 0.5s';
+                    nugget.style.transform = 'scale(2)';
+                    nugget.style.opacity = '0';
+
+                    // Animation du personnage (saut de joie)
+                    character.style.transform = 'scale(1.3)';
+                    setTimeout(() => {
+                        character.style.transform = 'scale(1)';
+                    }, 300);
+
+                    // Vérifier si toutes les pépites sont collectées
+                    if (collectedNuggets === totalNuggets) {
+                        setTimeout(() => {
+                            victoryMessage.classList.add('show');
+                        }, 500);
+                    }
+                }
+            }
+
+            // Vérifier si le personnage est proche d'une pépite
+            function checkNuggetCollection() {
+                const characterRect = character.getBoundingClientRect();
+                const characterCenterX = characterRect.left + characterRect.width / 2;
+                const characterCenterY = characterRect.top + characterRect.height / 2;
+
+                nuggets.forEach((nugget) => {
                     if (!nugget.classList.contains('collected')) {
-                        nugget.classList.add('collected');
-                        collectedNuggets++;
-                        
-                        // Animation de collecte
-                        collectedCountEl.textContent = collectedNuggets;
-                        const progress = (collectedNuggets / totalNuggets) * 100;
-                        progressBar.style.width = progress + '%';
-                        progressBar.textContent = Math.round(progress) + '%';
+                        const nuggetRect = nugget.getBoundingClientRect();
+                        const nuggetCenterX = nuggetRect.left + nuggetRect.width / 2;
+                        const nuggetCenterY = nuggetRect.top + nuggetRect.height / 2;
 
-                        // Effet visuel
-                        nugget.style.transition = 'all 0.5s';
-                        nugget.style.transform = 'scale(2)';
-                        nugget.style.opacity = '0';
+                        const distance = Math.sqrt(
+                            Math.pow(characterCenterX - nuggetCenterX, 2) +
+                            Math.pow(characterCenterY - nuggetCenterY, 2)
+                        );
 
-                        // Vérifier si toutes les pépites sont collectées
-                        if (collectedNuggets === totalNuggets) {
-                            setTimeout(() => {
-                                victoryMessage.classList.add('show');
-                            }, 500);
+                        // Si le personnage est proche (moins de 60px), collecte automatique
+                        if (distance < 60) {
+                            collectNugget(nugget);
                         }
                     }
                 });
+            }
 
-                // S'assurer que les pépites sont cliquables
-                nugget.style.cursor = 'pointer';
-                nugget.style.userSelect = 'none';
+            // Mouvement du personnage au clic sur l'eau
+            islandContainer.addEventListener('click', (e) => {
+                if (isMoving) return;
+                
+                const rect = islandContainer.getBoundingClientRect();
+                const x = ((e.clientX - rect.left) / rect.width) * 100;
+                const y = ((e.clientY - rect.top) / rect.height) * 100;
+
+                // Limiter le mouvement dans la zone de l'eau (pas sur l'île)
+                const centerX = 50;
+                const centerY = 50;
+                const distance = Math.sqrt(Math.pow(x - centerX, 2) + Math.pow(y - centerY, 2));
+                
+                // Ne se déplace que dans l'eau (au-delà de 25% du centre = dans l'eau)
+                if (distance > 25) {
+                    characterX = Math.max(5, Math.min(95, x));
+                    characterY = Math.max(5, Math.min(95, y));
+                    
+                    character.classList.add('moving', 'swimming');
+                    character.style.left = characterX + '%';
+                    character.style.top = characterY + '%';
+                    
+                    isMoving = true;
+                    setTimeout(() => {
+                        isMoving = false;
+                        character.classList.remove('moving');
+                        checkNuggetCollection(); // Vérifier après le mouvement
+                    }, 500);
+                }
             });
+
+            // Vérifier la collecte en continu toutes les 200ms
+            setInterval(checkNuggetCollection, 200);
 
             // Animations pour les têtards au survol
             document.querySelectorAll('.tadpole').forEach(tadpole => {
