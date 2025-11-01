@@ -721,24 +721,27 @@
             border-radius: 50%;
         }
 
-        /* Animation très limitée pour que les têtards restent dans la couronne d'eau */
-        /* L'île fait 60% de largeur (rayon 30%), les têtards doivent rester à plus de 40% du centre */
-        /* Animation minimale pour éviter qu'ils entrent dans l'île */
+        /* Animation circulaire pour que les têtards restent dans la couronne d'eau */
+        /* L'île fait 60% de largeur (rayon 30%), les têtards sont positionnés à 40%+ du centre */
+        /* Animation circulaire limitée pour éviter qu'ils entrent dans l'île */
         @keyframes swim {
-            0%, 100% {
+            0% {
                 transform: translate(0, 0) rotate(0deg);
             }
             25% {
-                /* Très petit déplacement circulaire (2% seulement) */
-                transform: translate(2%, -1%) rotate(5deg);
+                /* Petit déplacement circulaire vers la droite (5% max, reste dans l'eau) */
+                transform: translate(5%, -2%) rotate(90deg);
             }
             50% {
-                /* Très petit déplacement vers le haut */
-                transform: translate(0, -2%) rotate(0deg);
+                /* Petit déplacement vers le haut (5% max) */
+                transform: translate(0, -5%) rotate(180deg);
             }
             75% {
-                /* Très petit déplacement retour */
-                transform: translate(-2%, -1%) rotate(-5deg);
+                /* Petit déplacement vers la gauche (5% max) */
+                transform: translate(-5%, -2%) rotate(270deg);
+            }
+            100% {
+                transform: translate(0, 0) rotate(360deg);
             }
         }
 
