@@ -1347,14 +1347,16 @@
                 }
             }
 
-            // Vérifier si le personnage est proche d'une pépite
+            // Vérifier si le personnage est proche d'une pépite et collecte automatique
             function checkNuggetCollection() {
+                if (!character || isResting || healthSystem.isDead) return;
+                
                 const characterRect = character.getBoundingClientRect();
                 const characterCenterX = characterRect.left + characterRect.width / 2;
                 const characterCenterY = characterRect.top + characterRect.height / 2;
 
                 nuggets.forEach((nugget) => {
-                    if (!nugget.classList.contains('collected')) {
+                    if (!nugget.classList.contains('collected') && nugget.offsetParent !== null) {
                         const nuggetRect = nugget.getBoundingClientRect();
                         const nuggetCenterX = nuggetRect.left + nuggetRect.width / 2;
                         const nuggetCenterY = nuggetRect.top + nuggetRect.height / 2;
@@ -1364,7 +1366,7 @@
                             Math.pow(characterCenterY - nuggetCenterY, 2)
                         );
 
-                        // Si le personnage est proche (moins de 60px), collecte automatique
+                        // Si le personnage touche ou est proche d'une pépite (moins de 60px), collecte automatique
                         if (distance < 60) {
                             collectNugget(nugget);
                         }
@@ -1512,9 +1514,10 @@
             // Contrôle du personnage avec les flèches du clavier
             const moveSpeed = 2; // Pourcentage de déplacement par appui
             let keysPressed = {};
+            let keyIntervals = {}; // Stocker les intervalles pour pouvoir les nettoyer
 
             function moveCharacterWithKeys(direction) {
-                if (isMoving || isResting || healthSystem.isDead) return;
+                if (isResting || healthSystem.isDead) return;
                 
                 let newX = characterX;
                 let newY = characterY;
@@ -1548,15 +1551,11 @@
                     character.style.left = characterX + '%';
                     character.style.top = characterY + '%';
                     
-                    isMoving = true;
-                    setTimeout(() => {
-                        isMoving = false;
-                        character.classList.remove('moving');
-                        updateUnderwaterStatus();
-                        checkNuggetCollection(); // Vérifier après le mouvement
-                    }, 200); // Mouvement plus rapide avec le clavier
+                    // Mettre à jour immédiatement le statut et vérifier la collecte
+                    updateUnderwaterStatus();
+                    checkNuggetCollection(); // Vérifier immédiatement après le mouvement
                 } else {
-                    // Permettre d'approcher de l'île
+                    // Permettre d'approcher de l'île pour se reposer
                     characterX = newX;
                     characterY = newY;
                     character.style.left = characterX + '%';
@@ -1575,13 +1574,14 @@
                         moveCharacterWithKeys(e.key);
                         
                         // Répéter le mouvement si la touche reste enfoncée
-                        const repeatInterval = setInterval(() => {
-                            if (keysPressed[e.key] && !isMoving) {
+                        keyIntervals[e.key] = setInterval(() => {
+                            if (keysPressed[e.key]) {
                                 moveCharacterWithKeys(e.key);
                             } else {
-                                clearInterval(repeatInterval);
+                                clearInterval(keyIntervals[e.key]);
+                                delete keyIntervals[e.key];
                             }
-                        }, 150);
+                        }, 100); // Répétition plus rapide pour une meilleure réactivité
                     }
                 }
             });
@@ -1589,12 +1589,17 @@
             document.addEventListener('keyup', (e) => {
                 if (['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'].includes(e.key)) {
                     keysPressed[e.key] = false;
-                    character.classList.remove('swimming'); // Arrêter l'animation de nage
+                    // Nettoyer l'intervalle de répétition
+                    if (keyIntervals[e.key]) {
+                        clearInterval(keyIntervals[e.key]);
+                        delete keyIntervals[e.key];
+                    }
+                    character.classList.remove('swimming', 'moving'); // Arrêter l'animation de nage
                 }
             });
 
-            // Vérifier la collecte en continu toutes les 200ms
-            setInterval(checkNuggetCollection, 200);
+            // Vérifier la collecte en continu toutes les 100ms pour une meilleure réactivité
+            setInterval(checkNuggetCollection, 100);
 
             // Animations pour les têtards au survol
             document.querySelectorAll('.tadpole').forEach(tadpole => {
