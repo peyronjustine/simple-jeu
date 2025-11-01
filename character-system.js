@@ -394,8 +394,9 @@ const CHARACTER_CSS = `
         width: 55px;
         height: 82px;
         z-index: 45;
-        cursor: pointer;
+        cursor: default; /* Pas de curseur pointer - contrôle uniquement par clavier sur desktop */
         transition: all 0.3s ease;
+        pointer-events: none; /* Empêche les interactions souris avec le personnage */
     }
 
     .character-body {

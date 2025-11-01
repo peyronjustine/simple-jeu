@@ -349,8 +349,14 @@ function initGameLevel(config = {}) {
         }
     });
 
-    // Collecte tactile directe des pépites
+    // Collecte tactile directe des pépites (MOBILE UNIQUEMENT)
+    // Sur ordinateur, les pépites sont collectées automatiquement par proximité
+    // DÉSACTIVÉ : Pas de clic souris pour collecter sur desktop
+    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || 
+                    (window.matchMedia && window.matchMedia("(max-width: 768px)").matches);
+    
     nuggets.forEach((nugget) => {
+        // Permettre la collecte tactile directe (mobile uniquement)
         nugget.addEventListener('touchstart', (e) => {
             e.preventDefault();
             e.stopPropagation();
@@ -359,13 +365,8 @@ function initGameLevel(config = {}) {
             }
         }, { passive: false });
 
-        nugget.addEventListener('click', (e) => {
-            e.preventDefault();
-            e.stopPropagation();
-            if (!nugget.classList.contains('collected')) {
-                collectNugget(nugget);
-            }
-        });
+        // DÉSACTIVÉ : Pas de clic souris pour collecter
+        // Les pépites sont collectées automatiquement quand le personnage s'approche
     });
 
     // Position initiale
