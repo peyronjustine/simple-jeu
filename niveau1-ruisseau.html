@@ -417,9 +417,14 @@
             width: 100%;
             height: 100%;
             border-radius: 50%;
-            /* Eau verte simple style dessin (comme dans l'image) */
-            background: #4a9d6e;
-            border: 5px solid #000000;
+            /* Eau bleue avec gradient radial (comme avant) */
+            background: radial-gradient(circle, 
+                rgba(10, 120, 180, 0.4) 0%,
+                rgba(15, 100, 150, 0.5) 30%,
+                rgba(20, 80, 120, 0.6) 50%,
+                rgba(10, 60, 90, 0.7) 70%,
+                rgba(5, 40, 60, 0.85) 85%,
+                rgba(5, 25, 40, 0.95) 100%);
             pointer-events: none;
             z-index: 1;
         }
@@ -599,12 +604,20 @@
             display: none;
         }
 
-        .rock:nth-child(1) { top: 10%; left: 10%; }
-        .rock:nth-child(2) { top: 10%; right: 10%; }
-        .rock:nth-child(3) { bottom: 10%; left: 10%; }
-        .rock:nth-child(4) { bottom: 10%; right: 10%; }
-        .rock:nth-child(5) { top: 50%; left: 5%; }
-        .rock:nth-child(6) { top: 50%; right: 5%; }
+        /* Rochers positionnés autour du bord extérieur du cercle d'eau */
+        /* Positionnement à environ 48-52% du centre pour entourer le cercle d'eau */
+        .rock:nth-child(1) { top: 0%; left: 50%; transform: translate(-50%, -50%); }
+        /* Haut du cercle */
+        .rock:nth-child(2) { top: 50%; left: 0%; transform: translate(-50%, -50%); }
+        /* Gauche du cercle */
+        .rock:nth-child(3) { top: 100%; left: 50%; transform: translate(-50%, -50%); }
+        /* Bas du cercle */
+        .rock:nth-child(4) { top: 50%; right: 0%; transform: translate(50%, -50%); }
+        /* Droite du cercle */
+        .rock:nth-child(5) { top: 15%; left: 15%; transform: translate(-50%, -50%); }
+        /* Angle supérieur gauche */
+        .rock:nth-child(6) { top: 85%; right: 15%; transform: translate(50%, -50%); }
+        /* Angle inférieur droit */
 
         /* Têtards noirs style dessin simple (comme dans l'image) */
         .tadpole {
