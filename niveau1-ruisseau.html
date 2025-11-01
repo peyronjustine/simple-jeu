@@ -604,56 +604,56 @@
             display: none;
         }
 
-        /* Rochers TRÈS GRANDS positionnés pour entourer complètement le cercle d'eau */
-        /* Le cercle d'eau fait 100% de largeur/hauteur, les rochers doivent couvrir l'extérieur */
+        /* Rochers positionnés pour entourer le cercle d'eau sans dépasser */
+        /* Le cercle d'eau fait 100% de largeur/hauteur, les rochers sont juste sur le bord */
         .rock:nth-child(1) { 
-            top: -30%; 
+            top: 0%; 
             left: 50%; 
             transform: translate(-50%, -50%); 
-            width: 500px;
-            height: 500px;
+            width: 400px;
+            height: 400px;
         }
-        /* Haut - très grand pour couvrir le haut */
+        /* Haut - au bord du cercle */
         .rock:nth-child(2) { 
             top: 50%; 
-            left: -30%; 
+            left: 0%; 
             transform: translate(-50%, -50%); 
-            width: 500px;
-            height: 500px;
+            width: 400px;
+            height: 400px;
         }
-        /* Gauche - très grand pour couvrir la gauche */
+        /* Gauche - au bord du cercle */
         .rock:nth-child(3) { 
-            top: 130%; 
+            top: 100%; 
             left: 50%; 
             transform: translate(-50%, -50%); 
-            width: 500px;
-            height: 500px;
+            width: 400px;
+            height: 400px;
         }
-        /* Bas - très grand pour couvrir le bas */
+        /* Bas - au bord du cercle */
         .rock:nth-child(4) { 
             top: 50%; 
-            right: -30%; 
+            right: 0%; 
             transform: translate(50%, -50%); 
-            width: 500px;
-            height: 500px;
+            width: 400px;
+            height: 400px;
         }
-        /* Droite - très grand pour couvrir la droite */
+        /* Droite - au bord du cercle */
         .rock:nth-child(5) { 
-            top: 5%; 
-            left: 5%; 
+            top: 8%; 
+            left: 8%; 
             transform: translate(-50%, -50%); 
-            width: 450px;
-            height: 450px;
+            width: 350px;
+            height: 350px;
         }
-        /* Angle supérieur gauche - pour couvrir le coin */
+        /* Angle supérieur gauche - au bord du cercle */
         .rock:nth-child(6) { 
-            top: 95%; 
-            right: 5%; 
+            top: 92%; 
+            right: 8%; 
             transform: translate(50%, -50%); 
-            width: 450px;
-            height: 450px;
+            width: 350px;
+            height: 350px;
         }
-        /* Angle inférieur droit - pour couvrir le coin */
+        /* Angle inférieur droit - au bord du cercle */
 
         /* Têtards noirs style dessin simple (comme dans l'image) */
         .tadpole {
