@@ -1,0 +1,598 @@
+        Titre du jeu : "Changement" (ou Simple Jeux)
+
+ObSYSTÈME DE PROGRESSION DU JEU
+Règle fondamentale : Pour passer au niveau suivant, le personnage doit récupérer TOUTES les pépites d'or du niveau actuel.
+Exemple de progression :
+    • Niveau 1 du Ruisseau → Récupérer les X pépites d'or → Débloquer Niveau 2 du Ruisseau 
+    • Niveau 6 du Ruisseau (dernier niveau) → Récupérer toutes les pépites → Débloquer Niveau 1 de la Mare 
+    • Et ainsi de suite pour chaque étape... 
+Objectif final : Collecter les 30 pépites d'or totales à travers toutes les étapes et tous les niveaux pour terminer le jeu.
+Objectif principal
+Le joueur doit collecter 30 pépites d'or cachées dans l'eau.
+Ambiance et style visuel
+    • Design réaliste inspiré de Subnautica, avec une touche d'horreur 
+    • Légère esthétique "crayonnée" pour le style graphique 
+    • Palette de couleurs : ni trop sombre, ni trop claire, avec une atmosphère étrange et légèrement inquiétante 
+Le personnage joueur
+    • Taille : 1m65 
+    • Apparence : corps d'amphibien à peau bleu Neptune 
+    • Capacité : peut rester sous l'eau 7 minutes 
+    • Une seule vie (permadeath) : si le personnage meurt, le joueur recommence tout depuis le début 
+    • Restauration de vie : repos ou fabrication d'antidote en cas d'empoisonnement 
+    • Le personnage peut s'allonger pour observer le ciel nocturne et les étoiles filantes, ce qui déclenche des pensées nostalgiques 
+L'île de départ
+    • Plateforme ronde de terre au centre 
+    • Un arbre au milieu (commence par un cerisier japonais "Kansan") 
+    • Ruisseau circulaire autour de la terre avec des têtards 
+    • Rochers entourant l'île (élément permanent) 
+    • Pépites d'or dans l'eau 
+    • Profondeur initiale : 15m 
+    • Ambiance sonore : vent, bruits naturels, poissons sautant hors de l'eau (pas de musique) 
+Système de progression : évolution de l'environnement
+Le jeu évolue par étapes et niveaux. À chaque niveau, l'arbre central et les créatures aquatiques changent progressivement, augmentant la difficulté.
+
+
+ÉTAPE 1 : LE RUISSEAU
+Difficulté : Entre inoffensif et faire attention
+Règle générale : Maximum 10 poissons par niveau
+Évolution par niveau :
+Niveau 1 (départ)
+    • Arbre : Cerisier japonais "Kansan" 
+    • Créatures : Têtards 
+Niveau 2
+    • Arbre : Poirier 
+    • Créatures : Ablettes de Heckel (5-6 cm, inoffensives) 
+Niveau 3
+    • Arbre : Pêcher 
+    • Créatures : Bouvières (5-7 cm) 
+Niveau 4
+    • Arbre : Oranger 
+    • Créatures : Épinoches (4-8 cm) 
+Niveau 5
+    • Arbre : Pommier 
+    • Créatures : Perches-soleil (6 cm) 
+Niveau 6
+    • Arbre : Citronnier 
+    • Créatures : Mélange des 4 espèces précédentes (Ablettes de Heckel, Bouvières, Épinoches, Perches-soleil) + Écrevisses (6 cm) 
+
+ÉTAPE 2 : LA MARE
+Difficulté : Augmentée
+Caractéristiques de la mare :
+    • Profondeur : 20m 
+    • Eau verte et trouble (micro-organismes dus au soleil et nutriments) 
+    • Visibilité très réduite 
+    • Présence d'algues, nénuphars et autres plantes aquatiques 
+Règles de population :
+    • Maximum 13 poissons par niveau 
+    • Maximum 5 grenouilles 
+    • Maximum 30 mollusques 
+    • Maximum 6 insectes 
+Évolution par niveau :
+Niveau 1
+    • Arbre : Passiflore (Passonaria) 
+    • Créatures : Carassins dorés (30 cm) 
+Niveau 2
+    • Arbre : Palmier-bâche 
+    • Créatures : Carpes koï (15-30 cm) 
+Niveau 3
+    • Arbre : Pied de cupuaçu 
+    • Créatures : Carpes amour (20-30 cm) + Grenouilles géantes (1-2 m !) 
+Niveau 4
+    • Arbre : Palmier comou 
+    • Créatures : 
+        ◦ Moules d'eau douce (25 cm) 
+        ◦ Limnées (50-60 mm) 
+        ◦ Libellules (7-8 cm) - volent et se posent sur les nénuphars, très discrètes 
+Niveau 5 - NIVEAU SPÉCIAL AVEC MINI-JEUX
+Un mécanisme apparaît sur un rocher : un cercle orange que le personnage peut toucher.
+Séquence du mécanisme :
+    1. Le personnage touche le cercle orange 
+    2. Apparition d'un cercle transparent (comme du verre) 
+    3. Son de "clic" (comme un appareil photo) 
+    4. Bruit de dés qui roulent 
+    5. 3 chiffres apparaissent : 3, 6, 2 (représentent 3 mini-jeux tirés au hasard) 
+    6. Le cercle devient vert fluo et aspire le personnage 
+Les 3 mini-jeux (dans l'ordre) :
+🎮 Mini-jeu 3 : Escape Room
+    • Une seule salle 
+    • Objectif : ouvrir la porte pour s'échapper 
+🎮 Mini-jeu 6 : Jeu de tuiles (Match-3)
+    • Casse-tête où il faut aligner/échanger des cartes 
+    • Dessins de fruits et fruits exotiques 
+    • Former des combinaisons d'au moins 3 éléments identiques 
+🎮 Mini-jeu 2 : Sauvetage chronométré
+    • Le personnage est emprisonné 6 fois de différentes manières 
+    • Le joueur doit le libérer avant qu'il ne se noie, soit écrasé, manque d'air, etc. 
+    • En chemin, le personnage trouve une clé 
+    • La clé ouvre un coffre contenant une BD humoristique et sage 
+    • Il range la BD dans sa poche de sweat 
+Après les mini-jeux :
+    • Si victoire : le personnage est recraché sur l'île, le cercle orange devient un trou d'où sort de l'eau, la BD est dans sa poche 
+    • Si défaite : recommencer le mini-jeu raté 
+Évolution de l'environnement (Niveau 5) :
+    • Arbre : Plante d'Inca Inchi (Sacha Inchi) 
+    • Créatures : Loches baromètre (20-35 cm) - remplacent tous les mollusques et libellules
+ÉTAPE 3 : LA RIVIÈRE
+Profondeur : 120m
+Niveau 1 - NIVEAU SPÉCIAL AVEC MÉCANISMES
+Premier mécanisme (cercle orange n°1) :
+    • Situé sur un rocher accessible 
+    • Quand le personnage le touche : l'eau coule davantage 
+Deuxième mécanisme (cercle orange n°2) :
+    • Même système que le niveau 5 de la Mare 
+    • 3 chiffres tirés au hasard : 1, 9, 4 
+Les 3 mini-jeux (dans l'ordre) :
+🎮 Mini-jeu 1 : Puzzle
+    • Puzzle de 40 pièces représentant l'île 
+🎮 Mini-jeu 9 : Culture générale
+    • Répondre à des questions de culture générale 
+🎮 Mini-jeu 4 : Identification botanique
+    • Attribuer les bons noms aux arbres fruitiers et plantes exotiques de la forêt amazonienne que le personnage a vus sur l'île 
+Après les mini-jeux :
+    • Si victoire : le personnage est recraché sur l'île, le cercle orange devient un trou d'où l'eau sort de l'autre côté de l'île 
+Évolution de l'environnement (Niveau 1) :
+    • Arbre : Cerisier (retour au début symbolique) 
+    • Créatures : 3 espèces de poissons 
+        ◦ Ablettes (10-15 cm) 
+        ◦ Black-bass (20-35 cm) 
+        ◦ Carassins (20 cm) 
+
+Niveau 2
+    • Arbre : Prunier 
+    • Créatures : 3 nouvelles espèces 
+        ◦ Gardons (25-30 cm) 
+        ◦ Goujons (10-20 cm) 
+        ◦ Crémilles (10-12 cm) 
+
+Niveau 3
+    • Arbre : Vigne (arbrisseau sarmenteux, grimpant, à fruits en grappes) 
+    • Créatures : 3 nouvelles espèces 
+        ◦ Perches communes (15-25 cm) 
+        ◦ Ombles chevaliers (30-35 cm) 
+        ◦ Perches (11-25 cm) 
+
+Niveau 4
+    • Arbre : Myrtillier 
+    • Créatures : 3 nouvelles espèces 
+        ◦ Poissons-chats (18 cm) 
+        ◦ Rotengles (15-20 cm) 
+        ◦ Truites communes (18-20 cm) 
+
+Niveau 5
+    • Arbre : Cassissier 
+    • Créatures : 2 espèces 
+        ◦ Vairons (5-10 cm) 
+        ◦ Vandoises (15-20 cm) 
+
+ÉTAPE 4 : RIVIÈRE 2
+Transformation majeure de l'environnement !
+Changements des mécanismes :
+Mécanisme n°1 (premier cercle orange) :
+    • Ne fait plus apparaître un trou 
+    • Crée maintenant une cascade de 300m de haut ! 
+Mécanisme n°2 (deuxième cercle orange) :
+    • Ne fait plus apparaître un trou 
+    • Les rochers sont repoussés de 1000m devant la terre 
+    • L'île s'agrandit considérablement et ressemble vraiment à une rivière 
+
+Niveau 1 - NIVEAU SPÉCIAL SOUS-MARIN
+Nouveau mécanisme en profondeur :
+    • À 80m sous l'eau, apparition d'un cercle orange sur un rocher accessible 
+    • 3 chiffres tirés au hasard : 8, 10, 5 
+Les 3 mini-jeux (dans l'ordre) :
+🎮 Mini-jeu 8 : Jeu de restaurant (2 niveaux)
+    • Le personnage doit cuisiner et servir les clients 
+    • Utilise les poissons comestibles qu'il a vus sur l'île 
+🎮 Mini-jeu 10 : Connecter les points - "Liberté"
+    • Le personnage est assis sur une chaise 
+    • Une porte grande ouverte devant lui 
+    • Sur une feuille, il doit relier les pointillés avec un crayon de papier : 
+        ◦ Gauche : "li" 
+        ◦ Centre : "ber" 
+        ◦ Droite : "té" 
+        ◦ → forme le mot "LIBERTÉ" 
+    • Danger : Une personne regarde par la porte ouverte toutes les minutes - ne pas se faire repérer ! 
+    • Derrière la feuille, message caché : "Regarde les étoiles, ça fait toujours chaud au cœur" 
+🎮 Mini-jeu 5 : Jeu des gobelets
+    • Deux bras apparaissent et placent une pépite d'or dans l'un des 4 gobelets 
+    • Les bras mélangent rapidement les gobelets du premier au quatrième 
+    • Le personnage doit retrouver la pépite d'or 
+Après les mini-jeux :
+    • Si victoire : le personnage est recraché sur l'île, le cercle orange devient un grand trou de 4m avec du bois bloquant le passage 
+Évolution de l'environnement (Niveau 1) :
+    • Arbre : Arbousier 
+    • Créatures : 3 nouvelles espèces 
+        ◦ Anguilles (1,50m à 50 cm) (je suppose 50cm à 1,50m) 
+        ◦ Barbeaux fluviatiles (30-60 cm) 
+        ◦ Brèmes (30-45 cm)
+          
+Niveau 2
+    • Arbre : Abricotier 
+    • Créatures : 3 espèces de plus grande taille 
+        ◦ Brochets (1,30m) 
+        ◦ Carpes (40-80 cm) 
+        ◦ Chevesnes (60 cm) 
+
+Niveau 3
+    • Arbre : Actinidier (Actinidia deliciosa - kiwi) 
+    • Créatures : 4 nouvelles espèces 
+        ◦ Hotus (50 cm) 
+        ◦ Lottes (40 cm) 
+        ◦ Ombles de fontaine (42 cm) 
+        ◦ Ombres communs (30-50 cm) 
+
+ÉTAPE 5 : L'OCÉAN
+Profondeur : 5 669m ⚠️ Changement radical !
+Niveau 1 - ÉVÉNEMENT D'OUVERTURE
+Séquence chronométrée automatique :
+Minute 0-20 : Le joueur explore normalement
+Minute 20 :
+    • Grand bruit de fracas - le bois qui bloquait le passage de 4m est détruit ! 
+Minute 22 :
+    • Un phoque saute hors de l'eau 
+    • Il fait un petit coucou avec sa nageoire pour saluer le personnage 
+    • Il chasse les poissons : réussit à en attraper toutes les 5 minutes 
+Changement de l'environnement :
+    • Le grand trou (de 4m) où le passage était bloqué par du bois a complètement disparu 
+    • Le personnage peut maintenant passer librement 
+
+
+Évolution de l'environnement (Niveau 1) :
+    • Arbre : Argousier
+    • Créatures : Phoque + poissons océaniques Maquereaux
+Évolution de l'environnement :
+    • Créatures : Phoque + poissons océaniques adaptés à la profondeur moyenne (0-100m) : 
+        ◦ Maquereaux (30-50 cm) - poissons rapides en bancs 
+        ◦ Rougets-barbets (20-30 cm) - poissons de fond colorés 
+        ◦ Lieus jaunes (40-60 cm) - prédateurs côtiers 
+
+Niveau 2 - DIALOGUE AVEC LE PHOQUE
+Le phoque est maintenant sur l'île. Avant de s'endormir, il s'adresse au personnage :
+💬 "Bonjour l'ami, j'espère que je t'embête pas à rentrer dans ton île comme ça sans que je te demande la permission. J'étais curieux et j'ai entendu plein de poissons derrière ce gros bloc de bois. En dehors il n'y a plus rien, c'est la hess l'ami."
+Le phoque bâille :
+💬 "Tu permets que je m'endorme l'ami, je suis si fatigué après manger ?"
+Sans que le personnage ne dise un mot, le phoque le remercie et lui promet de répondre à toutes ses questions et de s'en aller bientôt de son île. Il s'endort aussitôt.
+Évolution de l'environnement :
+    • Arbre : Aronia à fruits rouges Brilliant
+      Créatures : Phoque endormi + poissons océaniques de zone intermédiaire (100-500m) : 
+        ◦ Grondins (30-40 cm) - poissons marcheurs avec nageoires en forme de pattes 
+        ◦ Bars communs (50-80 cm) - prédateurs élégants argentés 
+        ◦ Soles (30-50 cm) - poissons plats benthiques 
+
+Niveau 3 - LE PHOQUE RESTE
+À son réveil, le phoque s'adresse au personnage :
+💬 "Finalement l'ami, je ne veux point partir. J'aimerais rester un peu. En dehors de l'île je ne trouve aucun poisson. Je te propose un marché : je reste sur ton île et en contrepartie je te dirai tout ce que je sais qui pourrait t'être utile !"
+Évolution de l'environnement :
+    • Arbre : Amélanchier Smokey
+      Créatures : Phoque (compagnon permanent) + poissons océaniques de profondeur moyenne (500-1000m) : 
+        ◦ Congres (1-2m) - anguilles de mer puissantes 
+        ◦ Dorades roses (30-50 cm) - poissons de profondeur aux reflets rosés 
+        ◦ Sabres noirs (80-100 cm) - poissons effilés aux dents acérées
+ÉTAPE 6 : EAU MARÉCAGEUSE
+Difficulté : DANGEREUX ⚠️
+Profondeur : 1 500m
+Ambiance : Environnement de mangrove - eau trouble, racines aériennes, végétation dense
+
+Niveau 1 - DÉCOUVERTE INQUIÉTANTE
+Le phoque réagit avec surprise :
+💬 "Et l'ami, je rêve ou tout a qui dirait tout changé ? Comment ça se fait ? Je rêve ou il y a des PIRANHAS et DES CROCODILES ?"
+Évolution de l'environnement :
+    • Arbre : Le cyprès chauve - Taxodium distichum
+    • Créatures dangereuses : 
+        ◦ Piranhas rouges (15-25 cm) - en bancs agressifs 
+        ◦ Crocodiles américains (2-3m) - prédateurs apex 
+        ◦ Poissons-chats géants (1-1,5m) - benthiques, épines venimeuses 
+
+Niveau 2
+Évolution de l'environnement :
+    • Arbre : La viorne aubier - Viburnum opulus
+    • Créatures : 
+        ◦ Arawanas (60-90 cm) - sauteurs spectaculaires, peuvent sortir de l'eau 
+        ◦ Caïmans à lunettes (1,5-2m) - plus petits mais rapides 
+        ◦ Tarpons (1-1,5m) - poissons puissants aux écailles argentées 
+
+Niveau 3
+Évolution de l'environnement :
+    • Arbre :Le Myrte des marais - Myrica gale 
+    • Créatures : 
+        ◦ Piranhas noirs (30-40 cm) - plus grands et solitaires que les rouges 
+        ◦ Anacondas aquatiques (3-4m) - serpents constricteurs chassant dans l'eau 
+        ◦ Perches du Nil (80-120 cm) - prédateurs voraces 
+
+Niveau 4
+Évolution de l'environnement :
+    • Arbre :Le chêne des marais - Quercus palustris 
+    • Créatures : 
+        ◦ Raies d'eau douce géantes (1-2m d'envergure) - dard venimeux mortel 
+        ◦ Alligators gars (1,5-2m) - poissons préhistoriques cuirassés aux dents acérées 
+        ◦ Poissons-tigres (40-60 cm) - dents saillantes, très agressifs 
+
+
+Niveau 5
+Évolution de l'environnement :
+    • Arbre : L'aulne cordé - Alnus cordata
+    • Créatures : 
+        ◦ Payaras (poissons-vampires) (50-70 cm) - canines proéminentes 
+        ◦ Crocodiles du Nil (3-4m) - encore plus dangereux 
+        ◦ Anguilles électriques (1,5-2m) - décharges électriques jusqu'à 600 volts 
+
+Niveau 6 - NIVEAU SPÉCIAL
+      Arbre : Le saule rampant - Salix repens
+    • Créatures - 
+        ◦ Piranhas géants (Pygocentrus piraya) (40-50 cm) - les plus dangereux 
+        ◦ Crocodiles marins (4-5m) - les plus grands reptiles vivants 
+        ◦ Poissons-chiens (60-80 cm) - mâchoires puissantes, chassent en meute
+ÉTAPE 7 : OCÉAN 2
+Profondeur : 8 335m 🌊 Océan profond
+
+Niveau 1
+Évolution de l'environnement :
+    • Arbre : Olivier Verdale de l'Hérault
+      Créatures océaniques des zones pélagiques (0-200m) : 
+        ◦ Thons rouges (1,5-2m) - nageurs ultra-rapides 
+        ◦ Espadons (2-3m) - rostre acéré comme une épée 
+        ◦ Daurades coryphènes (1-1,5m) - couleurs éblouissantes, très rapides 
+
+Niveau 2
+Évolution de l'environnement :
+    • Arbre : Prunier Mirabelle Belle de Nancy
+      Créatures de la zone mésopélagique (200-1000m) : 
+        ◦ Poissons-lanternes (10-30 cm) - bioluminescents, organes lumineux 
+        ◦ Calmars de Humboldt (1-1,5m) - agressifs, tentacules puissants 
+        ◦ Marlins bleus (2-4m) - chasseurs élégants et puissants 
+
+Niveau 3
+Évolution de l'environnement :
+    • Arbre : TRIO de Kiwaïs
+       de la zone bathypélagique (1000-4000m) : 
+        ◦ Poissons-hachettes (5-10 cm) - corps aplati, photophores ventraux 
+        ◦ Requins-lézards (1,5-2m) - aspect préhistorique, mâchoires extensibles 
+        ◦ Poissons-vipères (30-60 cm) - dents énormes, bioluminescence 
+
+Niveau 4
+Évolution de l'environnement :
+    • Arbre : Olivier Lucques
+      Créatures de la zone abyssopélagique (4000-6000m) : 
+        ◦ Poissons-dragons (15-50 cm) - barbillon lumineux, dents translucides 
+        ◦ Calmars vampires (30 cm) - cape membraneuse, yeux énormes 
+        ◦ Requins-lutin (3-4m) - mâchoires protractiles terrifiantes 
+
+Niveau 5
+Évolution de l'environnement :
+    • Arbre : Feijoa gros fruits Triumph
+      Créatures de la zone hadale (6000-8000m) : 
+        ◦ Baudroies abyssales (20-100 cm) - leurre bioluminescent, mâchoires démesurées 
+        ◦ Poissons-ogres (15-20 cm) - mâchoires articulées, estomac extensible 
+        ◦ Liparidés des abysses (20-30 cm) - corps gélatineux, résistent à la pression extrême 
+
+Niveau 6 - TRANSFORMATION GLACIAIRE
+Changement atmosphérique progressif :
+    • L'air devient de plus en plus froid 
+    • Le vent se renforce et devient glacial 
+    • Les plantes commencent à geler petit à petit 
+Événement de fin (après avoir collecté toutes les pépites d'or) :
+🧊 De gros blocs de glace apparaissent
+    • Ils flottent sur l'eau 
+    • Ils font tranquillement le tour de l'île 
+    • Entre les blocs de glace, on peut voir des poissons préhistoriques piégés dedans 
+Évolution de l'environnement :
+    • Arbre : Noyer Ronde de Montignac
+    •  Créatures des profondeurs extrêmes + transition préhistorique (8000m+) : 
+        ◦ Chimères des abysses (1-1,5m) - parents éloignés des requins, aspect fantomatique 
+        ◦ Poissons-rats (30-40 cm) - queue effilée, yeux réduits 
+        ◦ Anguilles-pélican (60-100 cm) - bouche immense, estomac comme un sac 
+Aperçu dans les blocs de glace (poissons préhistoriques congelés) :
+    • Dunkleosteus (fragments visibles) - poisson cuirassé préhistorique 
+    • Cœlacanthes - "fossiles vivants" 
+    • Xiphactinus - prédateur préhistorique aux dents acérées
+ÉTAPE 8 : ANTARCTIQUE
+Profondeur : 10 000m ❄️ Ambiance "L'Âge de Glace 2"
+Environnement : Glace omniprésente, icebergs flottants, eau glaciale, faune préhistorique de l'ère glaciaire
+
+Niveau 1
+Évolution de l'environnement :
+    • Arbre : Pin de Wollemi  
+    • Créatures préhistoriques de l'ère glaciaire (surface, 0-200m) : 
+        ◦ Xiphactinus (4-6m) - poisson préhistorique géant aux dents acérées 
+        ◦ Liopleurodon jeunes (3-5m) - reptiles marins prédateurs de l'ère glaciaire 
+        ◦ Ammonites géantes (50-100 cm de diamètre) - céphalopodes en spirale, coquille épaisse 
+
+Niveau 2
+Évolution de l'environnement :
+    • Arbre : Bouleau nain arctique  
+    • Créatures préhistoriques (200-1000m) : 
+        ◦ Dunkleosteus jeunes (2-3m) - poissons cuirassés préhistoriques, mâchoires en plaques osseuses 
+        ◦ Hyneria (3-4m) - poisson carnivore préhistorique massif 
+        ◦ Helicoprion (2-3m) - requin préhistorique à mâchoire spirale dentée 
+
+
+Niveau 3
+Évolution de l'environnement :
+    • Arbre : Saule arctique 
+    • Créatures préhistoriques (1000-4000m) : 
+        ◦ Megalodon jeunes (3-5m) - ancêtres géants des requins 
+        ◦ Temnodontosaurus (6-9m) - ichtyosaures géants aux yeux énormes 
+        ◦ Trilobites géants (40-60 cm) - arthropodes marins cuirassés 
+
+Niveau 4
+Évolution de l'environnement :
+    • Arbre : Saule arctique 
+    • Créatures préhistoriques (4000-7000m) : 
+        ◦ Basilosaurus (12-15m) - ancêtres préhistoriques des baleines, serpentiformes 
+        ◦ Mosasaurus (10-15m) - reptiles marins massifs, prédateurs apex 
+        ◦ Cœlacanthes géants (2-3m) - "fossiles vivants" préhistoriques 
+
+Niveau 5 - NIVEAU SPÉCIAL CACHÉ
+Zone cachée par des algues sous l'eau à plus de 8 000m de profondeur
+Un cercle orange apparaît sur un rocher accessible. Chiffres tirés au hasard : 14, 52, 11
+
+Les mini-jeux :
+🎮 Mini-jeu 14 : Tranchage de légumes
+    • Le personnage doit trancher au moins 50 légumes 
+    • À 40 légumes coupés : 
+        ◦ Un bras sort d'en haut (là où sortent les légumes) 
+        ◦ Une main fermée apparaît 
+        ◦ La main s'ouvre : une toupie en bois tombe 
+        ◦ Une compétence "MAIN" apparaît instantanément 
+        ◦ Le personnage peut choisir : 
+            ▪ Couper la toupie (elle est détruite) 
+            ▪ Prendre la toupie avec la compétence "main" 
+        ◦ ⚠️ La compétence "main" disparaît dès que la toupie sort de l'écran 
+
+🎮 Mini-jeu 52 : MESSAGE MYSTÉRIEUX
+Le jeu allait se lancer mais il se bloque soudainement.
+Un texte apparaît à l'écran :
+📜 "J'ai enfin réussi à bloquer un instant ces jeux, le système de cette île maudite. Et toi qui es en train de lire, sache que tu n'es pas le seul à avoir vécu ce que tu as vécu. Retrouve-moi dans la huitième étape sous la plateforme en terre où tu trouveras un grand et gros cylindre en métal. Rentre dedans et bonne chance, tu en auras besoin... Sinon repose en paix et je ressaierai encore de re-contacter quelqu'un, enfin s'il y a de nouveau quelqu'un."
+⚠️ Pas de mini-jeu - Message narratif important
+
+🎮 Mini-jeu 11 : Traversée des glaces flottantes
+Concept : Un jeu de plateforme/timing dans un environnement glacial
+Description : Le personnage se retrouve sur un petit iceberg au milieu d'une étendue d'eau glacée. Devant lui, des blocs de glace flottent et dérivent dans différentes directions. Il doit traverser en sautant de bloc en bloc pour atteindre l'autre rive.
+Mécaniques :
+    • 15 blocs de glace à traverser 
+    • Les blocs bougent continuellement : certains s'éloignent, d'autres se rapprochent, certains tournent sur eux-mêmes 
+    • Certains blocs sont fragiles et commencent à se fissurer dès que le personnage saute dessus (3 secondes avant de couler) 
+    • D'autres blocs ont des créatures préhistoriques gelées dedans qui sont visibles à travers la glace transparente 
+Danger :
+    • Si le personnage tombe dans l'eau glacée : il a 10 secondes pour remonter sur un bloc, sinon il meurt de froid (hypothermie) 
+    • Des ombres de Mosasaurus passent parfois sous l'eau, créant des vagues qui déstabilisent les blocs 
+Récompense bonus : En chemin, sur le 7ème bloc, il y a un petit coffre gelé dans la glace. Si le personnage s'arrête dessus pendant 5 secondes (risqué car le bloc peut dériver), il peut briser la glace et récupérer un morceau de carte qui sera utile plus tard.
+ 
+
+Récompense après victoire :
+    • Si le personnage a utilisé la compétence "main" pendant le mini-jeu 14 : Il obtient la toupie en bois 
+    • Dans sa poche de sweat, la toupie porte l'inscription : "COURAGE !" avec un trèfle à 4 feuilles gravé 
+Évolution de l'environnement (Niveau 5) :
+    • Arbre : Mélèze de Sibérie (conifère résistant au gel extrême) 
+    • Créatures préhistoriques (7000-9000m) : 
+        ◦ Kronosaurus (9-10m) - pliosaures massifs, crâne de 3m 
+        ◦ Tanystropheus (6m de long) - reptiles au cou démesuré chassant dans l'eau 
+        ◦ Euryptérides géants (scorpions de mer) (2-3m) - arthropodes prédateurs anciens 
+
+
+Niveau 6
+Évolution de l'environnement :
+    • Arbre : Cyprès de Nootka  
+    • Créatures préhistoriques de la zone ultra-profonde (9000-10 000m) : 
+        ◦ Dunkleosteus adultes (6-10m) - poissons cuirassés géants, force de morsure colossale 
+        ◦ Megalodon adultes (15-18m) - requins préhistoriques géants, terreur des océans 
+        ◦ Livyatan (13-17m) - cachalots préhistoriques aux dents de 36 cm, chasseurs de baleines
+
+ÉTAPE 9 : LE TRIANGLE DES BERMUDES
+Difficulté : DANGER EXTRÊME ⚠️💀
+Profondeur : 8 000m
+Environnement apocalyptique :
+    • Grand triangle fin de couleur dorée-orange flotte au-dessus de l'île 
+    • Eau extrêmement agitée - vagues violentes 
+    • Pluie battante constante 
+    • Pressions d'eau soudaines : peuvent propulser le personnage instantanément à 4 000m de profondeur 
+    • Poissons rares - très peu de créatures ordinaires 
+    • Atmosphère terrifiante et imprévisible 
+PARTICULARITÉ UNIQUE : Le personnage peut entrer dans le cylindre dans n'importe quel niveau de la 7ème étape
+
+LE CYLINDRE EN MÉTAL - RENCONTRE AVEC LA TAUPE
+Localisation : Sous la plateforme en terre (mentionné au niveau 5 de l'Antarctique)
+À l'intérieur du cylindre :
+    • Tout au bout : grand espace ouvert 
+    • Près d'un mur : cabane en bois 
+    • À l'intérieur : Une taupe avec une petite barbe 
+💬 Dialogue de la taupe :
+"Il existe un dernier symbole, un rond avec un point au milieu orange, pour battre cette île maudite. Les deux premiers jeux ne sont pas le problème, mais c'est le dernier qui est fastidieux, où on aura besoin de nous deux."
+La taupe montre l'emplacement du symbole :
+    • Pas très loin du cylindre 
+    • Il faut traverser un autre cylindre 
+    • Puis traverser un grand espace d'eau où le personnage peut marcher sur des pierres jusqu'au symbole 
+⚠️ DANGER - LE MONSTRE GARDIEN :
+    • Un monstre hybride ressemblant à un Qalupalik + Mahaha (créatures des légendes inuit) 
+    • Très bon nageur et extrêmement rapide 
+    • Peut noyer le personnage s'il l'attrape 
+    • Le lieu ressemble à la caverne où Harry Potter récupère l'Horcruxe avec Albus Dumbledore (eau sombre, atmosphère oppressante) 
+
+LE SYMBOLE FINAL - LES 3 DERNIERS MINI-JEUX
+Une fois arrivé au symbole :
+🎮 Mini-jeu 1 : Memory
+    • Jeu de mémoire avec tous les poissons, arbres et plantes que le personnage a rencontrés durant son voyage 
+    • Retourner les cartes pour former des paires 
+🎮 Mini-jeu 2 : Grand puzzle de 100 pièces
+    • Chaque pièce forme progressivement le Monstre de l'Île Maudite 
+    • Une fois le puzzle terminé → Le monstre prend vie ! 
+🎮 Mini-jeu 3 : Combat final - ACTION-RPG
+    • Le monstre sort du puzzle et attaque ! 
+    • Style de jeu : Action-RPG comme Dark Souls 
+    • Design et graphisme du monstre : Inspiré de l'esthétique sombre et détaillée de Dark Souls 
+    • Combat difficile nécessitant la collaboration du personnage + la taupe 
+
+LES 6 NIVEAUX DU TRIANGLE DES BERMUDES
+Niveau 1
+Évolution de l'environnement :
+    • Arbre : Arbre mort pétrifié (tronc noir, branches tordues) 
+    • Créatures légendaires et imaginaires : 
+        ◦ Kraken jeune (10-15m de tentacules) - céphalopode géant mythique 
+        ◦ Serpents de mer (15-20m) - dragons marins des légendes scandinaves 
+        ◦ Sirènes des profondeurs (1,5-2m) - créatures mi-femme mi-poisson, hypnotiques et dangereuses 
+
+Niveau 2
+Évolution de l'environnement :
+    • Arbre : Arbre fantôme (translucide, phosphorescent) 
+    • Créatures légendaires : 
+        ◦ Cetus (20-25m) - monstre marin de la mythologie grecque 
+        ◦ Aspidochelone (île-tortue, 30m) - tortue géante que les marins confondent avec une île 
+        ◦ Scylla (8-12m avec 6 têtes) - monstre à têtes multiples de l'Odyssée 
+
+Niveau 3
+Évolution de l'environnement :
+    • Arbre : Arbre de corail noir maudit (branches comme des os) 
+    • Créatures légendaires : 
+        ◦ Léviathan (30-40m) - serpent marin biblique, écailles impénétrables 
+        ◦ Charybde (tourbillon vivant de 20m) - créature-tourbillon de la mythologie 
+        ◦ Hydre marine (15m, 7 têtes) - chaque tête crachant du venin 
+
+Niveau 4
+Évolution de l'environnement :
+    • Arbre : Arbre inversé (racines vers le ciel, branches enfouies) 
+    • Créatures légendaires : 
+        ◦ Nessie (Monstre du Loch Ness) (15-20m) - plésiosaure légendaire à long cou 
+        ◦ Jörmungandr (serpent-monde, 50m visible) - serpent de mer de la mythologie nordique 
+        ◦ Umibōzu (10-15m) - esprit marin japonais, silhouette noire géante émergeant de l'eau 
+
+Niveau 5
+Évolution de l'environnement :
+    • Arbre : Arbre de feu sous-marin (flammes bleues qui brûlent sous l'eau) 
+    • Créatures légendaires : 
+        ◦ Hafgufa (40-50m) - créature nordique gigantesque ressemblant à une baleine-île 
+        ◦ Tiamat (25-30m) - dragon marin de la mythologie babylonienne, chaos incarné 
+        ◦ Morgawr (15-20m) - serpent de mer des légendes cornouaillaises 
+
+Niveau 6 - NIVEAU FINAL
+Évolution de l'environnement :
+    • Arbre : Arbre de l'Apocalypse (tronc fendu, lumière rouge qui s'en échappe) 
+    • Créatures légendaires ultimes : 
+        ◦ Kraken adulte (60-80m de tentacules) - terreur des mers, peut engloutir des navires entiers 
+        ◦ Bloop (100m+) - créature mystérieuse des profondeurs, émettant un son terrifiant 
+        ◦ Lusca (30-40m) - poulpe-requin légendaire des Bahamas, tentacules et mâchoires
+
+
+
+
+Combien de personnages dans ce jeux ? : Il y aura 3 personnages
+Qu’est ce qu’ont peut faire dans le jeux « Changement » ou « Simple jeux » ? : 
+
+- Des antidotes
+- une canne à pêche
+- Conseille de plante qui te permet de respirer plus longtemps sous l’eau
+- Regarder les étoiles,lire,discuter et jouer avec une toupie
+
+Résumer du jeux vidéo : Le jeux peut être effrayant, le but ce n’est pas de faire un jeux d’horreur mais en même temps c’est un peu l’idée, d’avoir un peu la frousse et d’avoir les poils hérisser.
+
+
+Comme vous l’avez s’en doute remarquer l’objectif et de trouver 30 pépites d’or ni plus ni moins ont peut facilement rentrée dedans et ressentir atmosphère, ce qu’il y autour de vous.
+L’île est maudite de puis très très longtemps et son but est de vous faire ressentir de la peur, car il s’en nourrir.
+
+Moi la créatrice je vous pose une question ?
+
+Pk vous continuez vous cette aventure, malgré la peur ?
+Est ce l’adrénaline ? Ou l’espoir de réussir un jour ce jeux ? … peut-être les deux aller savoir.
+
+N’oubliez pas que parfois les simple chose comme ex : Regarder les étoiles, lire, discuter avec un amis qui ce trouve piéger comme vous etc peut nous changer les idées et nous redonner espoirs, ont peut trouver dans ces simples instant de la beauté, du réconfort et un allier n’hésiter surtout pas à faire des pauses, le temps peut être parfois un allier précieux, ne laisser pas votre peur prendre le contrôle et prisonnier de cette île .
+
+Bon courage à vous.
