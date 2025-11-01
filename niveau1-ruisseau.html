@@ -1312,9 +1312,9 @@
                             const progressPercent = gameProgression.getProgressPercent();
                             
                             // Mettre à jour le message de victoire avec la progression globale
-                            const victoryText = victoryMessage.querySelector('p:last-of-type');
-                            if (victoryText) {
-                                victoryText.textContent = `Progression globale : ${totalGlobal}/30 pépites collectées (${Math.round(progressPercent)}%)`;
+                            const globalProgressEl = victoryMessage.querySelector('#globalProgress');
+                            if (globalProgressEl) {
+                                globalProgressEl.textContent = `Progression globale : ${totalGlobal}/30 pépites collectées (${Math.round(progressPercent)}%)`;
                             }
                             
                             console.log(`Niveau complété ! Total global : ${totalGlobal}/30 pépites (${Math.round(progressPercent)}%)`);
