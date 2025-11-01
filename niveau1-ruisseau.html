@@ -1932,8 +1932,9 @@
                             Math.pow(characterCenterY - nuggetCenterY, 2)
                         );
 
-                        // Si le personnage touche ou est proche d'une pépite (moins de 60px), collecte automatique
-                        if (distance < 60) {
+                        // Si le personnage touche ou est proche d'une pépite (moins de 80px pour plus de facilité), collecte automatique
+                        // La distance est augmentée pour une collecte plus fluide et naturelle
+                        if (distance < 80) {
                             collectNugget(nugget);
                         }
                     }
@@ -2197,8 +2198,9 @@
                 }
             }, { passive: false });
 
-            // Vérifier la collecte en continu toutes les 100ms pour une meilleure réactivité
-            setInterval(checkNuggetCollection, 100);
+            // Vérifier la collecte en continu toutes les 50ms pour une réactivité maximale
+            // La collecte se fait automatiquement quand le personnage touche une pépite
+            setInterval(checkNuggetCollection, 50);
 
             // Animations pour les têtards au survol
             document.querySelectorAll('.tadpole').forEach(tadpole => {
