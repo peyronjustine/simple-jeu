@@ -553,7 +553,7 @@
             <p><strong>Arbre :</strong> Cerisier japonais "Kansan" 🌸</p>
             <p><strong>Créatures :</strong> Têtards 🐸 (inoffensifs)</p>
             <p><strong>Objectif :</strong> Collectez toutes les pépites d'or dans l'eau pour débloquer le niveau suivant.</p>
-            <p><strong>Conseil :</strong> Cliquez dans l'eau autour de l'île pour déplacer votre personnage. Il collectera automatiquement les pépites d'or lorsqu'il s'en approchera.</p>
+            <p><strong>Contrôles :</strong> Utilisez les <strong>flèches du clavier</strong> (↑ ↓ ← →) pour déplacer votre personnage dans l'eau. Il collectera automatiquement les pépites d'or lorsqu'il s'en approchera.</p>
         </div>
 
         <div class="island-container">
@@ -743,23 +743,40 @@
                 });
             }
 
-            // Mouvement du personnage au clic sur l'eau
-            islandContainer.addEventListener('click', (e) => {
+            // Contrôle du personnage avec les flèches du clavier
+            const moveSpeed = 2; // Pourcentage de déplacement par appui
+            let keysPressed = {};
+
+            function moveCharacterWithKeys(direction) {
                 if (isMoving) return;
                 
-                const rect = islandContainer.getBoundingClientRect();
-                const x = ((e.clientX - rect.left) / rect.width) * 100;
-                const y = ((e.clientY - rect.top) / rect.height) * 100;
+                let newX = characterX;
+                let newY = characterY;
 
-                // Limiter le mouvement dans la zone de l'eau (pas sur l'île)
+                switch(direction) {
+                    case 'ArrowUp':
+                        newY = Math.max(5, characterY - moveSpeed);
+                        break;
+                    case 'ArrowDown':
+                        newY = Math.min(95, characterY + moveSpeed);
+                        break;
+                    case 'ArrowLeft':
+                        newX = Math.max(5, characterX - moveSpeed);
+                        break;
+                    case 'ArrowRight':
+                        newX = Math.min(95, characterX + moveSpeed);
+                        break;
+                }
+
+                // Vérifier que la nouvelle position est dans l'eau (pas sur l'île)
                 const centerX = 50;
                 const centerY = 50;
-                const distance = Math.sqrt(Math.pow(x - centerX, 2) + Math.pow(y - centerY, 2));
+                const distance = Math.sqrt(Math.pow(newX - centerX, 2) + Math.pow(newY - centerY, 2));
                 
                 // Ne se déplace que dans l'eau (au-delà de 25% du centre = dans l'eau)
                 if (distance > 25) {
-                    characterX = Math.max(5, Math.min(95, x));
-                    characterY = Math.max(5, Math.min(95, y));
+                    characterX = newX;
+                    characterY = newY;
                     
                     character.classList.add('moving', 'swimming');
                     character.style.left = characterX + '%';
@@ -770,7 +787,35 @@
                         isMoving = false;
                         character.classList.remove('moving');
                         checkNuggetCollection(); // Vérifier après le mouvement
-                    }, 500);
+                    }, 200); // Mouvement plus rapide avec le clavier
+                }
+            }
+
+            // Gestion des touches du clavier
+            document.addEventListener('keydown', (e) => {
+                if (['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'].includes(e.key)) {
+                    e.preventDefault(); // Empêcher le scroll de la page
+                    
+                    if (!keysPressed[e.key]) {
+                        keysPressed[e.key] = true;
+                        moveCharacterWithKeys(e.key);
+                        
+                        // Répéter le mouvement si la touche reste enfoncée
+                        const repeatInterval = setInterval(() => {
+                            if (keysPressed[e.key] && !isMoving) {
+                                moveCharacterWithKeys(e.key);
+                            } else {
+                                clearInterval(repeatInterval);
+                            }
+                        }, 150);
+                    }
+                }
+            });
+
+            document.addEventListener('keyup', (e) => {
+                if (['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'].includes(e.key)) {
+                    keysPressed[e.key] = false;
+                    character.classList.remove('swimming'); // Arrêter l'animation de nage
                 }
             });
 
