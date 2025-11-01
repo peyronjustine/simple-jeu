@@ -4,7 +4,7 @@ Une page d'accueil moderne et élégante pour Simple Jeu.
 
 ## 🌐 Accès
 
-Visitez la page : [https://votre-username.github.io/simple-jeu/](https://votre-username.github.io/simple-jeu/)
+Visitez la page : [https://peyronjustine.github.io/simple-jeu/](https://peyronjustine.github.io/simple-jeu/)
 
 ## 📝 Description
 
