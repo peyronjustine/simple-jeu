@@ -19,11 +19,48 @@
 
         body {
             font-family: 'Georgia', serif;
-            background: linear-gradient(180deg, #87CEEB 0%, #4682B4 50%, #1a3a2e 100%);
+            background: linear-gradient(180deg, 
+                #0a4d6a 0%, 
+                #0d6b8f 20%,
+                #0f7aa0 40%,
+                #1a4a5f 60%,
+                #0f2a35 80%,
+                #0a1a25 100%);
             min-height: 100vh;
             overflow-x: hidden;
             color: #e8e6e3;
             position: relative;
+            /* Filtre crayonné pour l'esthétique */
+            filter: contrast(1.1) brightness(0.95);
+        }
+
+        /* Overlay pour effet crayonné/texturé */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                repeating-linear-gradient(
+                    0deg,
+                    transparent,
+                    transparent 2px,
+                    rgba(0, 0, 0, 0.03) 2px,
+                    rgba(0, 0, 0, 0.03) 4px
+                ),
+                repeating-linear-gradient(
+                    90deg,
+                    transparent,
+                    transparent 2px,
+                    rgba(0, 0, 0, 0.03) 2px,
+                    rgba(0, 0, 0, 0.03) 4px
+                );
+            pointer-events: none;
+            z-index: 1000;
+            mix-blend-mode: multiply;
+            opacity: 0.4;
         }
 
         .container {
@@ -121,12 +158,33 @@
             transform: translate(-50%, -50%);
             width: 60%;
             height: 60%;
-            background: radial-gradient(circle, #8B7355 0%, #6B5848 100%);
+            background: radial-gradient(circle, #6b5848 0%, #4a3d32 50%, #3a2f26 100%);
             border-radius: 50%;
-            border: 3px solid #5a4a3a;
+            border: 4px solid #2a1f18;
             box-shadow: 
-                0 0 30px rgba(0, 0, 0, 0.3),
-                inset 0 0 20px rgba(0, 0, 0, 0.2);
+                0 0 40px rgba(0, 0, 0, 0.5),
+                0 0 80px rgba(10, 50, 70, 0.3),
+                inset 0 0 30px rgba(0, 0, 0, 0.4),
+                inset 0 0 60px rgba(10, 30, 40, 0.2);
+            /* Effet crayonné */
+            filter: contrast(1.2) brightness(0.9);
+            position: relative;
+        }
+
+        /* Texture crayonnée sur l'île */
+        .island::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background-image: 
+                repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(0, 0, 0, 0.05) 10px, rgba(0, 0, 0, 0.05) 20px),
+                repeating-linear-gradient(-45deg, transparent, transparent 10px, rgba(0, 0, 0, 0.05) 10px, rgba(0, 0, 0, 0.05) 20px);
+            pointer-events: none;
+            mix-blend-mode: multiply;
         }
 
         .tree {
@@ -134,17 +192,42 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 80px;
-            height: 80px;
-            background: #FF69B4;
+            width: 90px;
+            height: 100px;
+            background: linear-gradient(135deg, #ff6b9d 0%, #ff1493 50%, #dc143c 100%);
             border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+            border: 2px solid #8b008b;
             box-shadow: 
-                0 -30px 0 -10px #FF1493,
-                0 -60px 0 -20px #FF69B4,
-                0 20px 0 #8B4513,
-                -20px 20px 0 #8B4513,
-                20px 20px 0 #8B4513;
+                0 -30px 0 -10px #ff1493,
+                0 -60px 0 -20px #ff69b4,
+                0 25px 0 #654321,
+                -25px 25px 0 #654321,
+                25px 25px 0 #654321,
+                0 0 20px rgba(255, 20, 147, 0.4),
+                inset 0 0 15px rgba(255, 105, 180, 0.3);
             animation: treeSway 3s ease-in-out infinite;
+            /* Effet crayonné réaliste */
+            filter: contrast(1.3) brightness(0.95) saturate(1.1);
+            position: relative;
+        }
+
+        /* Texture crayonnée sur l'arbre */
+        .tree::before {
+            content: '';
+            position: absolute;
+            top: -60px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 60px;
+            background: radial-gradient(circle, #ff69b4 0%, #ff1493 100%);
+            border-radius: 50%;
+            border: 2px solid #8b008b;
+            box-shadow: 
+                0 -15px 0 -5px #ff1493,
+                0 -30px 0 -10px #ff69b4,
+                0 0 15px rgba(255, 20, 147, 0.5);
+            filter: contrast(1.3);
         }
 
         @keyframes treeSway {
@@ -160,9 +243,40 @@
             width: 100%;
             height: 100%;
             border-radius: 50%;
-            background: radial-gradient(circle, rgba(135, 206, 235, 0.3) 40%, rgba(70, 130, 180, 0.5) 70%, rgba(26, 58, 46, 0.8) 100%);
+            background: radial-gradient(circle, 
+                rgba(10, 120, 180, 0.4) 0%,
+                rgba(15, 100, 150, 0.5) 30%,
+                rgba(20, 80, 120, 0.6) 50%,
+                rgba(10, 60, 90, 0.7) 70%,
+                rgba(5, 40, 60, 0.85) 85%,
+                rgba(5, 25, 40, 0.95) 100%);
             pointer-events: none;
             z-index: 1;
+            /* Effet d'eau réaliste Subnautica */
+            filter: blur(0.5px) contrast(1.1);
+            box-shadow: 
+                inset 0 0 100px rgba(10, 120, 180, 0.3),
+                inset 0 0 200px rgba(5, 40, 60, 0.5),
+                0 0 50px rgba(10, 100, 150, 0.2);
+        }
+
+        /* Reflets sous-marins réalistes */
+        .water::before {
+            content: '';
+            position: absolute;
+            top: 10%;
+            left: 20%;
+            width: 30%;
+            height: 30%;
+            background: radial-gradient(circle, rgba(100, 200, 255, 0.3) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: lightShift 8s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+        @keyframes lightShift {
+            0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.3; }
+            50% { transform: translate(50px, 30px) scale(1.2); opacity: 0.5; }
         }
 
         .island {
@@ -190,11 +304,35 @@
             position: relative;
             width: 50px;
             height: 50px;
-            background: linear-gradient(135deg, #4682B4 0%, #5F9EA0 50%, #6B8E23 100%);
+            background: linear-gradient(135deg, 
+                #4682B4 0%, 
+                #5F9EA0 30%,
+                #4682B4 60%,
+                #5F9EA0 100%);
             border-radius: 50% 50% 45% 45%;
+            border: 2px solid #2F4F4F;
             box-shadow: 
-                0 2px 10px rgba(0, 0, 0, 0.3),
-                inset 0 -5px 10px rgba(0, 0, 0, 0.2);
+                0 2px 10px rgba(0, 0, 0, 0.4),
+                0 0 15px rgba(70, 130, 180, 0.3),
+                inset 0 -5px 10px rgba(0, 0, 0, 0.3),
+                inset 0 2px 5px rgba(100, 150, 200, 0.3);
+            /* Effet crayonné réaliste Subnautica */
+            filter: contrast(1.2) brightness(0.95);
+        }
+
+        /* Texture crayonnée sur le corps */
+        .character-body::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                repeating-linear-gradient(45deg, transparent, transparent 5px, rgba(0, 0, 0, 0.1) 5px, rgba(0, 0, 0, 0.1) 10px);
+            border-radius: inherit;
+            mix-blend-mode: multiply;
+            opacity: 0.4;
         }
 
         .character-head {
@@ -204,9 +342,14 @@
             transform: translateX(-50%);
             width: 35px;
             height: 35px;
-            background: linear-gradient(135deg, #4682B4 0%, #5F9EA0 100%);
+            background: linear-gradient(135deg, #4682B4 0%, #5F9EA0 50%, #4682B4 100%);
             border-radius: 50%;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            border: 1px solid #2F4F4F;
+            box-shadow: 
+                0 2px 5px rgba(0, 0, 0, 0.4),
+                0 0 10px rgba(70, 130, 180, 0.3),
+                inset 0 2px 5px rgba(100, 150, 200, 0.2);
+            filter: contrast(1.2);
         }
 
         .character-eyes {
@@ -239,9 +382,13 @@
         .character-arm {
             width: 12px;
             height: 25px;
-            background: linear-gradient(135deg, #4682B4 0%, #5F9EA0 100%);
+            background: linear-gradient(135deg, #4682B4 0%, #5F9EA0 50%, #4682B4 100%);
             border-radius: 20px;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+            border: 1px solid #2F4F4F;
+            box-shadow: 
+                0 1px 3px rgba(0, 0, 0, 0.4),
+                inset 0 1px 2px rgba(100, 150, 200, 0.2);
+            filter: contrast(1.2);
         }
 
         .character-arm.left {
@@ -269,8 +416,11 @@
         .character-leg {
             width: 10px;
             height: 15px;
-            background: linear-gradient(135deg, #4682B4 0%, #5F9EA0 100%);
+            background: linear-gradient(135deg, #4682B4 0%, #5F9EA0 50%, #4682B4 100%);
             border-radius: 0 0 10px 10px;
+            border: 1px solid #2F4F4F;
+            box-shadow: inset 0 1px 2px rgba(100, 150, 200, 0.2);
+            filter: contrast(1.2);
         }
 
         .character.swimming {
@@ -314,9 +464,31 @@
             position: absolute;
             width: 60px;
             height: 60px;
-            background: linear-gradient(135deg, #696969 0%, #2F2F2F 100%);
+            background: linear-gradient(135deg, #5a5a5a 0%, #3a3a3a 50%, #2a2a2a 100%);
             border-radius: 50% 30% 50% 30%;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+            border: 2px solid #1a1a1a;
+            box-shadow: 
+                0 5px 15px rgba(0, 0, 0, 0.7),
+                0 0 20px rgba(10, 50, 70, 0.3),
+                inset 0 0 10px rgba(0, 0, 0, 0.5);
+            /* Effet crayonné réaliste */
+            filter: contrast(1.4) brightness(0.85);
+        }
+
+        /* Texture crayonnée sur les rochers */
+        .rock::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(0, 0, 0, 0.2) 3px, rgba(0, 0, 0, 0.2) 6px),
+                repeating-linear-gradient(90deg, transparent, transparent 3px, rgba(0, 0, 0, 0.15) 3px, rgba(0, 0, 0, 0.15) 6px);
+            border-radius: inherit;
+            mix-blend-mode: multiply;
+            opacity: 0.6;
         }
 
         .rock:nth-child(1) { top: 10%; left: 10%; }
@@ -328,12 +500,30 @@
 
         .tadpole {
             position: absolute;
-            width: 20px;
-            height: 20px;
-            background: #2F4F2F;
+            width: 22px;
+            height: 22px;
+            background: linear-gradient(135deg, #3d5a3d 0%, #2f4f2f 50%, #1f3f1f 100%);
             border-radius: 50% 40% 50% 40%;
+            border: 1px solid #1a3a1a;
+            box-shadow: 
+                0 2px 5px rgba(0, 0, 0, 0.4),
+                inset 0 0 5px rgba(100, 150, 100, 0.3);
             animation: swim 8s linear infinite;
             cursor: pointer;
+            /* Effet crayonné réaliste */
+            filter: contrast(1.2) brightness(0.9);
+        }
+
+        /* Texture crayonnée sur les têtards */
+        .tadpole::after {
+            content: '';
+            position: absolute;
+            top: 30%;
+            left: 30%;
+            width: 40%;
+            height: 40%;
+            background: radial-gradient(circle, rgba(150, 200, 150, 0.5) 0%, transparent 70%);
+            border-radius: 50%;
         }
 
         @keyframes swim {
@@ -362,18 +552,42 @@
 
         .gold-nugget {
             position: relative;
-            width: 30px;
-            height: 30px;
-            background: radial-gradient(circle, #FFD700 0%, #FFA500 100%);
+            width: 32px;
+            height: 32px;
+            background: radial-gradient(circle, #ffd700 0%, #ffa500 50%, #daa520 100%);
             border-radius: 50%;
+            border: 2px solid #b8860b;
             box-shadow: 
-                0 0 10px rgba(255, 215, 0, 0.8),
-                inset 0 0 5px rgba(255, 255, 255, 0.5);
+                0 0 15px rgba(255, 215, 0, 1),
+                0 0 30px rgba(255, 165, 0, 0.6),
+                0 4px 8px rgba(0, 0, 0, 0.4),
+                inset 0 0 8px rgba(255, 255, 255, 0.6),
+                inset 0 2px 4px rgba(255, 215, 0, 0.8);
             cursor: pointer;
             animation: sparkle 2s ease-in-out infinite;
             transition: all 0.3s;
             z-index: 50;
             pointer-events: all;
+            /* Éclat réaliste mais crayonné */
+            filter: contrast(1.3) brightness(1.1);
+        }
+
+        /* Texture crayonnée sur les pépites */
+        .gold-nugget::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            width: calc(100% + 4px);
+            height: calc(100% + 4px);
+            border-radius: 50%;
+            background: 
+                repeating-conic-gradient(from 0deg at 50% 50%, 
+                    transparent 0deg, 
+                    rgba(184, 134, 11, 0.3) 15deg, 
+                    transparent 30deg);
+            opacity: 0.5;
+            mix-blend-mode: multiply;
         }
 
         .gold-nugget:hover {
@@ -389,10 +603,16 @@
 
         @keyframes sparkle {
             0%, 100% {
-                box-shadow: 0 0 10px rgba(255, 215, 0, 0.8);
+                box-shadow: 
+                    0 0 15px rgba(255, 215, 0, 1),
+                    0 0 30px rgba(255, 165, 0, 0.6),
+                    inset 0 0 8px rgba(255, 255, 255, 0.6);
             }
             50% {
-                box-shadow: 0 0 20px rgba(255, 215, 0, 1);
+                box-shadow: 
+                    0 0 25px rgba(255, 215, 0, 1.2),
+                    0 0 45px rgba(255, 165, 0, 0.8),
+                    inset 0 0 12px rgba(255, 255, 255, 0.8);
             }
         }
 
