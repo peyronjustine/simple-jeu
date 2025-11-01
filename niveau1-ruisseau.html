@@ -156,6 +156,19 @@
             border-radius: 50%;
             background: radial-gradient(circle, rgba(135, 206, 235, 0.3) 40%, rgba(70, 130, 180, 0.5) 70%, rgba(26, 58, 46, 0.8) 100%);
             pointer-events: none;
+            z-index: 1;
+        }
+
+        .island {
+            z-index: 10;
+        }
+
+        .rock {
+            z-index: 20;
+        }
+
+        .tadpole {
+            z-index: 15;
         }
 
         .water-ripple {
@@ -222,10 +235,16 @@
             }
         }
 
-        .gold-nugget {
+        .nugget-position {
             position: absolute;
-            width: 25px;
-            height: 25px;
+            z-index: 50;
+            pointer-events: all;
+        }
+
+        .gold-nugget {
+            position: relative;
+            width: 30px;
+            height: 30px;
             background: radial-gradient(circle, #FFD700 0%, #FFA500 100%);
             border-radius: 50%;
             box-shadow: 
@@ -234,6 +253,8 @@
             cursor: pointer;
             animation: sparkle 2s ease-in-out infinite;
             transition: all 0.3s;
+            z-index: 50;
+            pointer-events: all;
         }
 
         .gold-nugget:hover {
@@ -256,16 +277,12 @@
             }
         }
 
-        .nugget-position {
-            position: absolute;
-        }
-
-        .nugget-position:nth-child(1) { top: 20%; left: 30%; }
-        .nugget-position:nth-child(2) { top: 30%; right: 25%; }
-        .nugget-position:nth-child(3) { bottom: 25%; left: 35%; }
-        .nugget-position:nth-child(4) { bottom: 35%; right: 30%; }
-        .nugget-position:nth-child(5) { top: 50%; left: 20%; }
-        .nugget-position:nth-child(6) { top: 50%; right: 20%; }
+        .nugget-position:nth-of-type(1) { top: 20%; left: 30%; }
+        .nugget-position:nth-of-type(2) { top: 30%; right: 25%; }
+        .nugget-position:nth-of-type(3) { bottom: 25%; left: 35%; }
+        .nugget-position:nth-of-type(4) { bottom: 35%; right: 30%; }
+        .nugget-position:nth-of-type(5) { top: 50%; left: 20%; }
+        .nugget-position:nth-of-type(6) { top: 50%; right: 20%; }
 
         .info-panel {
             background: rgba(15, 30, 25, 0.8);
@@ -444,22 +461,22 @@
             <div class="tadpole" style="top: 60%; left: 75%; animation-delay: 3s;"></div>
 
             <!-- Pépites d'or -->
-            <div class="nugget-position">
+            <div class="nugget-position" style="top: 20%; left: 30%;">
                 <div class="gold-nugget" data-nugget="1"></div>
             </div>
-            <div class="nugget-position">
+            <div class="nugget-position" style="top: 30%; right: 25%;">
                 <div class="gold-nugget" data-nugget="2"></div>
             </div>
-            <div class="nugget-position">
+            <div class="nugget-position" style="bottom: 25%; left: 35%;">
                 <div class="gold-nugget" data-nugget="3"></div>
             </div>
-            <div class="nugget-position">
+            <div class="nugget-position" style="bottom: 35%; right: 30%;">
                 <div class="gold-nugget" data-nugget="4"></div>
             </div>
-            <div class="nugget-position">
+            <div class="nugget-position" style="top: 50%; left: 20%;">
                 <div class="gold-nugget" data-nugget="5"></div>
             </div>
-            <div class="nugget-position">
+            <div class="nugget-position" style="top: 50%; right: 20%;">
                 <div class="gold-nugget" data-nugget="6"></div>
             </div>
         </div>
@@ -563,6 +580,13 @@
             });
 
             console.log('Niveau 1 initialisé avec', nuggets.length, 'pépites d\'or');
+            
+            // Test visuel : ajouter une bordure aux pépites pour debug
+            nuggets.forEach((nugget, i) => {
+                console.log(`Pépite ${i + 1} trouvée à:`, nugget.getBoundingClientRect());
+                // Désactiver cette ligne en production si besoin
+                // nugget.style.border = '2px solid red';
+            });
         });
     </script>
 </body>
