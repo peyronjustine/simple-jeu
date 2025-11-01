@@ -602,47 +602,62 @@
         }
 
         /* Rochers positionnés pour s'assembler comme Tetris et entourer le cercle d'eau */
-        /* Le cercle d'eau fait 100% de largeur/hauteur, les rochers sont positionnés exactement sur le bord */
-        /* Formes variées : minces, larges, aplatis pour s'emboîter */
+        /* Tailles variées : PETITES (80-120px), MOYENNES (140-200px), GRANDES (220-320px) */
+        /* Positionnés exactement sur le bord du cercle (0%, 100%) pour ne pas dépasser */
         
-        /* Calcul : position sur le cercle = 50% + 50% * cos/sin(angle) */
-        /* Les rochers sont positionnés à 50% du centre (bord du cercle d'eau) */
+        /* HAUT - rochers de toutes tailles */
+        .rock:nth-child(1) { top: 0%; left: 10%; transform: translate(-50%, -50%); width: 180px; height: 90px; border-radius: 20% 30% 20% 30%; } /* Moyen */
+        .rock:nth-child(2) { top: 0%; left: 25%; transform: translate(-50%, -50%); width: 120px; height: 70px; border-radius: 25% 35% 25% 35%; } /* Petit */
+        .rock:nth-child(3) { top: 0%; left: 38%; transform: translate(-50%, -50%); width: 260px; height: 110px; border-radius: 20% 30% 20% 30%; } /* Grand */
+        .rock:nth-child(4) { top: 0%; left: 55%; transform: translate(-50%, -50%); width: 140px; height: 85px; border-radius: 28% 22% 28% 22%; } /* Moyen */
+        .rock:nth-child(5) { top: 0%; left: 70%; transform: translate(-50%, -50%); width: 100px; height: 65px; border-radius: 30% 20% 30% 20%; } /* Petit */
+        .rock:nth-child(6) { top: 0%; left: 85%; transform: translate(-50%, -50%); width: 220px; height: 100px; border-radius: 24% 26% 24% 26%; } /* Grand */
         
-        /* Haut - rocher aplati horizontal */
-        .rock:nth-child(1) { top: 0%; left: 45%; transform: translate(-50%, -50%); width: 300px; height: 120px; border-radius: 20% 30% 20% 30%; }
-        .rock:nth-child(2) { top: 0%; left: 75%; transform: translate(-50%, -50%); width: 280px; height: 110px; border-radius: 25% 35% 25% 35%; }
+        /* ANGLE SUPÉRIEUR DROIT */
+        .rock:nth-child(7) { top: 5%; right: 0%; transform: translate(50%, -50%); width: 90px; height: 160px; border-radius: 30% 20% 30% 20%; } /* Petit vertical */
+        .rock:nth-child(8) { top: 12%; right: 2%; transform: translate(50%, -50%); width: 180px; height: 75px; border-radius: 28% 22% 28% 22%; } /* Moyen horizontal */
         
-        /* Angle supérieur droit - rocher mince vertical puis horizontal */
-        .rock:nth-child(3) { top: 8%; right: 0%; transform: translate(50%, -50%); width: 100px; height: 200px; border-radius: 30% 20% 30% 20%; }
-        .rock:nth-child(4) { top: 18%; right: 3%; transform: translate(50%, -50%); width: 220px; height: 90px; border-radius: 28% 22% 28% 22%; }
+        /* DROITE - rochers minces verticaux variés */
+        .rock:nth-child(9) { top: 25%; right: 0%; transform: translate(50%, -50%); width: 100px; height: 200px; border-radius: 32% 18% 32% 18%; } /* Petit */
+        .rock:nth-child(10) { top: 40%; right: 0%; transform: translate(50%, -50%); width: 150px; height: 220px; border-radius: 30% 20% 30% 20%; } /* Moyen */
+        .rock:nth-child(11) { top: 58%; right: 0%; transform: translate(50%, -50%); width: 110px; height: 180px; border-radius: 28% 22% 28% 22%; } /* Petit */
+        .rock:nth-child(12) { top: 72%; right: 0%; transform: translate(50%, -50%); width: 170px; height: 240px; border-radius: 26% 24% 26% 24%; } /* Grand */
         
-        /* Droite - rochers minces verticaux */
-        .rock:nth-child(5) { top: 35%; right: 0%; transform: translate(50%, -50%); width: 110px; height: 240px; border-radius: 32% 18% 32% 18%; }
-        .rock:nth-child(6) { top: 55%; right: 0%; transform: translate(50%, -50%); width: 100px; height: 250px; border-radius: 35% 25% 35% 25%; }
+        /* ANGLE INFÉRIEUR DROIT */
+        .rock:nth-child(13) { top: 88%; right: 2%; transform: translate(50%, -50%); width: 200px; height: 85px; border-radius: 24% 26% 24% 26%; } /* Moyen horizontal */
+        .rock:nth-child(14) { top: 95%; right: 0%; transform: translate(50%, -50%); width: 85px; height: 170px; border-radius: 26% 24% 26% 24%; } /* Petit vertical */
         
-        /* Angle inférieur droit */
-        .rock:nth-child(7) { top: 82%; right: 3%; transform: translate(50%, -50%); width: 230px; height: 95px; border-radius: 24% 26% 24% 26%; }
-        .rock:nth-child(8) { top: 92%; right: 0%; transform: translate(50%, -50%); width: 95px; height: 210px; border-radius: 26% 24% 26% 24%; }
+        /* BAS - rochers aplatis horizontaux variés */
+        .rock:nth-child(15) { top: 100%; left: 10%; transform: translate(-50%, -50%); width: 160px; height: 95px; border-radius: 22% 28% 22% 28%; } /* Moyen */
+        .rock:nth-child(16) { top: 100%; left: 25%; transform: translate(-50%, -50%); width: 110px; height: 70px; border-radius: 27% 23% 27% 23%; } /* Petit */
+        .rock:nth-child(17) { top: 100%; left: 38%; transform: translate(-50%, -50%); width: 300px; height: 120px; border-radius: 19% 31% 19% 31%; } /* Grand */
+        .rock:nth-child(18) { top: 100%; left: 58%; transform: translate(-50%, -50%); width: 130px; height: 80px; border-radius: 25% 25% 25% 25%; } /* Moyen */
+        .rock:nth-child(19) { top: 100%; left: 72%; transform: translate(-50%, -50%); width: 95px; height: 65px; border-radius: 30% 20% 30% 20%; } /* Petit */
+        .rock:nth-child(20) { top: 100%; left: 85%; transform: translate(-50%, -50%); width: 240px; height: 105px; border-radius: 23% 27% 23% 27%; } /* Grand */
         
-        /* Bas - rochers aplatis horizontaux */
-        .rock:nth-child(9) { top: 100%; left: 75%; transform: translate(-50%, -50%); width: 290px; height: 115px; border-radius: 22% 28% 22% 28%; }
-        .rock:nth-child(10) { top: 100%; left: 45%; transform: translate(-50%, -50%); width: 310px; height: 125px; border-radius: 19% 31% 19% 31%; }
-        .rock:nth-child(11) { top: 100%; left: 15%; transform: translate(-50%, -50%); width: 270px; height: 105px; border-radius: 27% 23% 27% 23%; }
+        /* ANGLE INFÉRIEUR GAUCHE */
+        .rock:nth-child(21) { top: 95%; left: 0%; transform: translate(-50%, -50%); width: 100px; height: 175px; border-radius: 29% 21% 29% 21%; } /* Petit vertical */
+        .rock:nth-child(22) { top: 88%; left: 2%; transform: translate(-50%, -50%); width: 190px; height: 90px; border-radius: 23% 27% 23% 27%; } /* Moyen horizontal */
         
-        /* Angle inférieur gauche */
-        .rock:nth-child(12) { top: 92%; left: 0%; transform: translate(-50%, -50%); width: 105px; height: 200px; border-radius: 29% 21% 29% 21%; }
-        .rock:nth-child(13) { top: 82%; left: 3%; transform: translate(-50%, -50%); width: 240px; height: 100px; border-radius: 23% 27% 23% 27%; }
+        /* GAUCHE - rochers minces verticaux variés */
+        .rock:nth-child(23) { top: 72%; left: 0%; transform: translate(-50%, -50%); width: 160px; height: 230px; border-radius: 31% 19% 31% 19%; } /* Grand */
+        .rock:nth-child(24) { top: 58%; left: 0%; transform: translate(-50%, -50%); width: 105px; height: 190px; border-radius: 33% 17% 33% 17%; } /* Petit */
+        .rock:nth-child(25) { top: 40%; left: 0%; transform: translate(-50%, -50%); width: 140px; height: 210px; border-radius: 29% 21% 29% 21%; } /* Moyen */
+        .rock:nth-child(26) { top: 25%; left: 0%; transform: translate(-50%, -50%); width: 115px; height: 185px; border-radius: 31% 19% 31% 19%; } /* Petit */
         
-        /* Gauche - rochers minces verticaux */
-        .rock:nth-child(14) { top: 55%; left: 0%; transform: translate(-50%, -50%); width: 115px; height: 245px; border-radius: 31% 19% 31% 19%; }
-        .rock:nth-child(15) { top: 35%; left: 0%; transform: translate(-50%, -50%); width: 105px; height: 235px; border-radius: 33% 17% 33% 17%; }
+        /* ANGLE SUPÉRIEUR GAUCHE */
+        .rock:nth-child(27) { top: 12%; left: 2%; transform: translate(-50%, -50%); width: 170px; height: 75px; border-radius: 21% 29% 21% 29%; } /* Moyen horizontal */
+        .rock:nth-child(28) { top: 5%; left: 0%; transform: translate(-50%, -50%); width: 95px; height: 165px; border-radius: 30% 20% 30% 20%; } /* Petit vertical */
         
-        /* Angle supérieur gauche */
-        .rock:nth-child(16) { top: 18%; left: 3%; transform: translate(-50%, -50%); width: 210px; height: 85px; border-radius: 21% 29% 21% 29%; }
-        .rock:nth-child(17) { top: 8%; left: 0%; transform: translate(-50%, -50%); width: 90px; height: 190px; border-radius: 30% 20% 30% 20%; }
-        
-        /* Positions intermédiaires pour combler les espaces */
-        .rock:nth-child(18) { top: 3%; left: 50%; transform: translate(-50%, -50%); width: 260px; height: 95px; border-radius: 26% 24% 26% 24%; }
+        /* POSITIONS INTERMÉDIAIRES pour combler les espaces */
+        .rock:nth-child(29) { top: 3%; left: 50%; transform: translate(-50%, -50%); width: 150px; height: 80px; border-radius: 26% 24% 26% 24%; } /* Moyen */
+        .rock:nth-child(30) { top: 8%; left: 30%; transform: translate(-50%, -50%); width: 110px; height: 120px; border-radius: 22% 28% 22% 28%; } /* Petit carré */
+        .rock:nth-child(31) { top: 8%; right: 30%; transform: translate(50%, -50%); width: 125px; height: 115px; border-radius: 24% 26% 24% 26%; } /* Petit carré */
+        .rock:nth-child(32) { top: 50%; right: 3%; transform: translate(50%, -50%); width: 135px; height: 85px; border-radius: 27% 23% 27% 23%; } /* Moyen horizontal */
+        .rock:nth-child(33) { top: 50%; left: 3%; transform: translate(-50%, -50%); width: 120px; height: 90px; border-radius: 25% 25% 25% 25%; } /* Moyen horizontal */
+        .rock:nth-child(34) { top: 92%; left: 30%; transform: translate(-50%, -50%); width: 140px; height: 110px; border-radius: 28% 22% 28% 22%; } /* Moyen carré */
+        .rock:nth-child(35) { top: 92%; right: 30%; transform: translate(50%, -50%); width: 155px; height: 105px; border-radius: 26% 24% 26% 24%; } /* Moyen carré */
+        .rock:nth-child(36) { top: 97%; left: 50%; transform: translate(-50%, -50%); width: 180px; height: 75px; border-radius: 24% 26% 24% 26%; } /* Moyen */
 
         /* Têtards noirs style dessin simple (comme dans l'image) */
         .tadpole {
@@ -948,7 +963,25 @@
             <div class="water"></div>
             
             <!-- Rochers permanents entourant le cercle d'eau (élément permanent unique au niveau 1) -->
-            <!-- Rochers assemblés comme Tetris pour entourer le cercle d'eau sans dépasser -->
+            <!-- Beaucoup de rochers de tailles variées (petites, moyennes, grandes) assemblés comme Tetris -->
+            <div class="rock"></div>
+            <div class="rock"></div>
+            <div class="rock"></div>
+            <div class="rock"></div>
+            <div class="rock"></div>
+            <div class="rock"></div>
+            <div class="rock"></div>
+            <div class="rock"></div>
+            <div class="rock"></div>
+            <div class="rock"></div>
+            <div class="rock"></div>
+            <div class="rock"></div>
+            <div class="rock"></div>
+            <div class="rock"></div>
+            <div class="rock"></div>
+            <div class="rock"></div>
+            <div class="rock"></div>
+            <div class="rock"></div>
             <div class="rock"></div>
             <div class="rock"></div>
             <div class="rock"></div>
