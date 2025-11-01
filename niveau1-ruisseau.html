@@ -602,61 +602,34 @@
         }
 
         /* Rochers positionnés pour entourer le cercle d'eau sans dépasser */
-        /* Formes variées : certains carrés, d'autres rectangles */
-        .rock:nth-child(1) { 
-            /* Haut - rectangle horizontal */
-            top: 2%; 
-            left: 50%; 
-            transform: translate(-50%, -50%); 
-            width: 250px;
-            height: 180px;
-            border-radius: 20% 30% 20% 30%;
-        }
-        .rock:nth-child(2) { 
-            /* Gauche - rectangle vertical */
-            top: 50%; 
-            left: 2%; 
-            transform: translate(-50%, -50%); 
-            width: 180px;
-            height: 250px;
-            border-radius: 30% 20% 30% 20%;
-        }
-        .rock:nth-child(3) { 
-            /* Bas - rectangle horizontal */
-            top: 98%; 
-            left: 50%; 
-            transform: translate(-50%, -50%); 
-            width: 280px;
-            height: 160px;
-            border-radius: 25% 35% 25% 35%;
-        }
-        .rock:nth-child(4) { 
-            /* Droite - rectangle vertical */
-            top: 50%; 
-            right: 2%; 
-            transform: translate(50%, -50%); 
-            width: 160px;
-            height: 280px;
-            border-radius: 35% 25% 35% 25%;
-        }
-        .rock:nth-child(5) { 
-            /* Angle supérieur gauche - carré */
-            top: 3%; 
-            left: 3%; 
-            transform: translate(-50%, -50%); 
-            width: 200px;
-            height: 200px;
-            border-radius: 15% 25% 15% 25%;
-        }
-        .rock:nth-child(6) { 
-            /* Angle inférieur droit - carré */
-            top: 97%; 
-            right: 3%; 
-            transform: translate(50%, -50%); 
-            width: 220px;
-            height: 220px;
-            border-radius: 25% 15% 25% 15%;
-        }
+        /* Formes variées : certains carrés, d'autres rectangles, répartis autour du cercle */
+        
+        /* Points cardinaux */
+        .rock:nth-child(1) { top: 2%; left: 50%; transform: translate(-50%, -50%); width: 200px; height: 150px; border-radius: 20% 30% 20% 30%; }
+        .rock:nth-child(2) { top: 50%; left: 2%; transform: translate(-50%, -50%); width: 150px; height: 200px; border-radius: 30% 20% 30% 20%; }
+        .rock:nth-child(3) { top: 98%; left: 50%; transform: translate(-50%, -50%); width: 220px; height: 140px; border-radius: 25% 35% 25% 35%; }
+        .rock:nth-child(4) { top: 50%; right: 2%; transform: translate(50%, -50%); width: 140px; height: 220px; border-radius: 35% 25% 35% 25%; }
+        
+        /* Entre les points cardinaux - répartition autour du cercle */
+        .rock:nth-child(5) { top: 5%; left: 20%; transform: translate(-50%, -50%); width: 180px; height: 180px; border-radius: 15% 25% 15% 25%; }
+        .rock:nth-child(6) { top: 20%; left: 5%; transform: translate(-50%, -50%); width: 160px; height: 190px; border-radius: 25% 15% 25% 15%; }
+        .rock:nth-child(7) { top: 20%; right: 5%; transform: translate(50%, -50%); width: 170px; height: 180px; border-radius: 20% 30% 20% 30%; }
+        .rock:nth-child(8) { top: 5%; right: 20%; transform: translate(50%, -50%); width: 190px; height: 170px; border-radius: 30% 20% 30% 20%; }
+        
+        .rock:nth-child(9) { top: 80%; left: 5%; transform: translate(-50%, -50%); width: 165px; height: 185px; border-radius: 22% 28% 22% 28%; }
+        .rock:nth-child(10) { top: 95%; left: 20%; transform: translate(-50%, -50%); width: 185px; height: 155px; border-radius: 28% 22% 28% 22%; }
+        .rock:nth-child(11) { top: 95%; right: 20%; transform: translate(50%, -50%); width: 175px; height: 165px; border-radius: 24% 26% 24% 26%; }
+        .rock:nth-child(12) { top: 80%; right: 5%; transform: translate(50%, -50%); width: 155px; height: 195px; border-radius: 26% 24% 26% 24%; }
+        
+        /* Positions supplémentaires pour bien entourer */
+        .rock:nth-child(13) { top: 8%; left: 35%; transform: translate(-50%, -50%); width: 170px; height: 160px; border-radius: 18% 32% 18% 32%; }
+        .rock:nth-child(14) { top: 35%; left: 8%; transform: translate(-50%, -50%); width: 160px; height: 175px; border-radius: 32% 18% 32% 18%; }
+        .rock:nth-child(15) { top: 65%; left: 8%; transform: translate(-50%, -50%); width: 175px; height: 165px; border-radius: 19% 31% 19% 31%; }
+        .rock:nth-child(16) { top: 92%; left: 35%; transform: translate(-50%, -50%); width: 165px; height: 170px; border-radius: 31% 19% 31% 19%; }
+        .rock:nth-child(17) { top: 65%; right: 8%; transform: translate(50%, -50%); width: 160px; height: 180px; border-radius: 21% 29% 21% 29%; }
+        .rock:nth-child(18) { top: 35%; right: 8%; transform: translate(50%, -50%); width: 180px; height: 160px; border-radius: 29% 21% 29% 21%; }
+        .rock:nth-child(19) { top: 92%; right: 35%; transform: translate(50%, -50%); width: 170px; height: 165px; border-radius: 23% 27% 23% 27%; }
+        .rock:nth-child(20) { top: 8%; right: 35%; transform: translate(50%, -50%); width: 155px; height: 175px; border-radius: 27% 23% 27% 23%; }
 
         /* Têtards noirs style dessin simple (comme dans l'image) */
         .tadpole {
@@ -961,7 +934,20 @@
             <!-- Eau : Ruisseau circulaire autour de la plateforme ronde de terre -->
             <div class="water"></div>
             
-            <!-- Rochers permanents entourant l'île (élément permanent unique au niveau 1) -->
+            <!-- Rochers permanents entourant le cercle d'eau (élément permanent unique au niveau 1) -->
+            <!-- Beaucoup de rochers positionnés autour du bord du cercle d'eau sans dépasser -->
+            <div class="rock"></div>
+            <div class="rock"></div>
+            <div class="rock"></div>
+            <div class="rock"></div>
+            <div class="rock"></div>
+            <div class="rock"></div>
+            <div class="rock"></div>
+            <div class="rock"></div>
+            <div class="rock"></div>
+            <div class="rock"></div>
+            <div class="rock"></div>
+            <div class="rock"></div>
             <div class="rock"></div>
             <div class="rock"></div>
             <div class="rock"></div>
