@@ -1008,11 +1008,13 @@
             </div>
 
             <!-- Têtards dans le ruisseau circulaire (créatures uniques au niveau 1) -->
-            <div class="tadpole" style="top: 30%; left: 25%; animation-delay: 0s;" title="Têtard"></div>
-            <div class="tadpole" style="top: 50%; left: 30%; animation-delay: 2s;" title="Têtard"></div>
-            <div class="tadpole" style="top: 70%; left: 25%; animation-delay: 4s;" title="Têtard"></div>
-            <div class="tadpole" style="top: 40%; left: 70%; animation-delay: 1s;" title="Têtard"></div>
-            <div class="tadpole" style="top: 60%; left: 75%; animation-delay: 3s;" title="Têtard"></div>
+            <!-- Tous les poissons/créatures sont positionnés dans l'eau (pas sur l'île) -->
+            <!-- Positions vérifiées pour être dans l'eau : distance > 25% du centre (50%, 50%) -->
+            <div class="tadpole" style="top: 30%; left: 25%; animation-delay: 0s; z-index: 15;" title="Têtard"></div>
+            <div class="tadpole" style="top: 50%; left: 30%; animation-delay: 2s; z-index: 15;" title="Têtard"></div>
+            <div class="tadpole" style="top: 70%; left: 25%; animation-delay: 4s; z-index: 15;" title="Têtard"></div>
+            <div class="tadpole" style="top: 40%; left: 70%; animation-delay: 1s; z-index: 15;" title="Têtard"></div>
+            <div class="tadpole" style="top: 60%; left: 75%; animation-delay: 3s; z-index: 15;" title="Têtard"></div>
 
             <!-- Pépites d'or -->
             <div class="nugget-position" style="top: 20%; left: 30%;">
@@ -1296,9 +1298,10 @@
                 });
             }
 
-            // Gestion de la collecte tactile directe des pépites
+            // Gestion de la collecte tactile directe des pépites (mobile uniquement)
+            // Sur ordinateur, les pépites sont collectées automatiquement par proximité
             nuggets.forEach((nugget) => {
-                // Permettre la collecte tactile directe
+                // Permettre la collecte tactile directe (mobile uniquement)
                 nugget.addEventListener('touchstart', (e) => {
                     e.preventDefault();
                     e.stopPropagation();
@@ -1307,14 +1310,8 @@
                     }
                 }, { passive: false });
 
-                // Permettre aussi la collecte au clic (pour compatibilité)
-                nugget.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    if (!nugget.classList.contains('collected')) {
-                        collectNugget(nugget);
-                    }
-                });
+                // DÉSACTIVÉ : Pas de clic souris pour collecter
+                // Les pépites sont collectées automatiquement quand le personnage s'approche
             });
 
             // Contrôle tactile du personnage (mobile)
@@ -1400,41 +1397,43 @@
                 }, 100);
             }, { passive: false });
 
-            islandContainer.addEventListener('touchmove', (e) => {
-                // Vérifier d'abord si on touche une pépite
-                const touch = e.touches[0];
-                const elementUnderTouch = document.elementFromPoint(touch.clientX, touch.clientY);
-                const nugget = elementUnderTouch?.closest('.gold-nugget');
-                
-                // Si on touche une pépite, ne pas déplacer le personnage
-                if (nugget) {
-                    return;
-                }
+            if (isMobile) {
+                islandContainer.addEventListener('touchmove', (e) => {
+                    // Vérifier d'abord si on touche une pépite
+                    const touch = e.touches[0];
+                    const elementUnderTouch = document.elementFromPoint(touch.clientX, touch.clientY);
+                    const nugget = elementUnderTouch?.closest('.gold-nugget');
+                    
+                    // Si on touche une pépite, ne pas déplacer le personnage
+                    if (nugget) {
+                        return;
+                    }
 
-                if (isTouching && e.touches.length > 0) {
-                    e.preventDefault();
-                    const touchPos = getTouchPosition(e);
-                    moveCharacterToTouch(touchPos.x, touchPos.y);
-                }
-            }, { passive: false });
+                    if (isTouching && e.touches.length > 0) {
+                        e.preventDefault();
+                        const touchPos = getTouchPosition(e);
+                        moveCharacterToTouch(touchPos.x, touchPos.y);
+                    }
+                }, { passive: false });
 
-            islandContainer.addEventListener('touchend', (e) => {
-                isTouching = false;
-                if (touchMoveInterval) {
-                    clearInterval(touchMoveInterval);
-                    touchMoveInterval = null;
-                }
-                character.classList.remove('swimming');
-            }, { passive: false });
+                islandContainer.addEventListener('touchend', (e) => {
+                    isTouching = false;
+                    if (touchMoveInterval) {
+                        clearInterval(touchMoveInterval);
+                        touchMoveInterval = null;
+                    }
+                    character.classList.remove('swimming');
+                }, { passive: false });
 
-            islandContainer.addEventListener('touchcancel', (e) => {
-                isTouching = false;
-                if (touchMoveInterval) {
-                    clearInterval(touchMoveInterval);
-                    touchMoveInterval = null;
-                }
-                character.classList.remove('swimming');
-            }, { passive: false });
+                islandContainer.addEventListener('touchcancel', (e) => {
+                    isTouching = false;
+                    if (touchMoveInterval) {
+                        clearInterval(touchMoveInterval);
+                        touchMoveInterval = null;
+                    }
+                    character.classList.remove('swimming');
+                }, { passive: false });
+            }
 
             // Contrôle du personnage avec les flèches du clavier
             const moveSpeed = 2; // Pourcentage de déplacement par appui
