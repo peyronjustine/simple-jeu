@@ -601,63 +601,67 @@
             display: none;
         }
 
-        /* Rochers empilés pour s'assembler et entourer le cercle d'eau sans dépasser */
-        /* Positionnés sur le bord exact du cercle (0% et 100%) avec empilement */
-        /* Tailles variées : PETITES (90-130px), MOYENNES (140-200px), GRANDES (210-280px) */
+        /* Barrage de pierre compact qui entoure le cercle d'eau */
+        /* Positionnés sur le bord exact (0% et 100%) pour former une muraille continue */
+        /* Tailles variées empilées pour créer un effet de barrage */
         
-        /* HAUT - rochers empilés horizontalement */
-        .rock:nth-child(1) { top: 1%; left: 5%; transform: translate(-50%, -50%); width: 160px; height: 80px; border-radius: 20% 30% 20% 30%; z-index: 21; } /* Moyen */
-        .rock:nth-child(2) { top: 1%; left: 18%; transform: translate(-50%, -50%); width: 120px; height: 65px; border-radius: 25% 35% 25% 35%; z-index: 21; } /* Petit */
-        .rock:nth-child(3) { top: 1%; left: 30%; transform: translate(-50%, -50%); width: 200px; height: 95px; border-radius: 20% 30% 20% 30%; z-index: 21; } /* Grand */
-        .rock:nth-child(4) { top: 1%; left: 46%; transform: translate(-50%, -50%); width: 140px; height: 75px; border-radius: 28% 22% 28% 22%; z-index: 21; } /* Moyen */
-        .rock:nth-child(5) { top: 1%; left: 60%; transform: translate(-50%, -50%); width: 110px; height: 60px; border-radius: 30% 20% 30% 20%; z-index: 21; } /* Petit */
-        .rock:nth-child(6) { top: 1%; left: 72%; transform: translate(-50%, -50%); width: 190px; height: 90px; border-radius: 24% 26% 24% 26%; z-index: 21; } /* Grand */
-        .rock:nth-child(7) { top: 1%; left: 88%; transform: translate(-50%, -50%); width: 130px; height: 70px; border-radius: 22% 28% 22% 28%; z-index: 21; } /* Moyen */
+        /* HAUT - barrage horizontal compact */
+        .rock:nth-child(1) { top: 0%; left: 3%; transform: translate(-50%, -50%); width: 140px; height: 70px; border-radius: 20% 30% 20% 30%; z-index: 21; }
+        .rock:nth-child(2) { top: 0%; left: 12%; transform: translate(-50%, -50%); width: 110px; height: 60px; border-radius: 25% 35% 25% 35%; z-index: 21; }
+        .rock:nth-child(3) { top: 0%; left: 22%; transform: translate(-50%, -50%); width: 180px; height: 85px; border-radius: 20% 30% 20% 30%; z-index: 21; }
+        .rock:nth-child(4) { top: 0%; left: 33%; transform: translate(-50%, -50%); width: 130px; height: 65px; border-radius: 28% 22% 28% 22%; z-index: 21; }
+        .rock:nth-child(5) { top: 0%; left: 43%; transform: translate(-50%, -50%); width: 100px; height: 55px; border-radius: 30% 20% 30% 20%; z-index: 21; }
+        .rock:nth-child(6) { top: 0%; left: 52%; transform: translate(-50%, -50%); width: 170px; height: 80px; border-radius: 24% 26% 24% 26%; z-index: 21; }
+        .rock:nth-child(7) { top: 0%; left: 63%; transform: translate(-50%, -50%); width: 120px; height: 65px; border-radius: 22% 28% 22% 28%; z-index: 21; }
+        .rock:nth-child(8) { top: 0%; left: 72%; transform: translate(-50%, -50%); width: 160px; height: 75px; border-radius: 26% 24% 26% 24%; z-index: 21; }
+        .rock:nth-child(9) { top: 0%; left: 82%; transform: translate(-50%, -50%); width: 110px; height: 60px; border-radius: 23% 27% 23% 27%; z-index: 21; }
+        .rock:nth-child(10) { top: 0%; left: 91%; transform: translate(-50%, -50%); width: 150px; height: 70px; border-radius: 25% 25% 25% 25%; z-index: 21; }
         
-        /* ANGLE SUPÉRIEUR DROIT - empilés */
-        .rock:nth-child(8) { top: 4%; right: 1%; transform: translate(50%, -50%); width: 85px; height: 140px; border-radius: 30% 20% 30% 20%; z-index: 21; } /* Petit vertical */
-        .rock:nth-child(9) { top: 10%; right: 1%; transform: translate(50%, -50%); width: 150px; height: 70px; border-radius: 28% 22% 28% 22%; z-index: 21; } /* Moyen horizontal */
+        /* ANGLE SUPÉRIEUR DROIT - barrage en L */
+        .rock:nth-child(11) { top: 3%; right: 0%; transform: translate(50%, -50%); width: 80px; height: 130px; border-radius: 30% 20% 30% 20%; z-index: 21; }
+        .rock:nth-child(12) { top: 8%; right: 0%; transform: translate(50%, -50%); width: 140px; height: 65px; border-radius: 28% 22% 28% 22%; z-index: 21; }
         
-        /* DROITE - rochers empilés verticalement */
-        .rock:nth-child(10) { top: 22%; right: 1%; transform: translate(50%, -50%); width: 100px; height: 170px; border-radius: 32% 18% 32% 18%; z-index: 21; } /* Petit */
-        .rock:nth-child(11) { top: 38%; right: 1%; transform: translate(50%, -50%); width: 130px; height: 190px; border-radius: 30% 20% 30% 20%; z-index: 21; } /* Moyen */
-        .rock:nth-child(12) { top: 55%; right: 1%; transform: translate(50%, -50%); width: 105px; height: 160px; border-radius: 28% 22% 28% 22%; z-index: 21; } /* Petit */
-        .rock:nth-child(13) { top: 70%; right: 1%; transform: translate(50%, -50%); width: 150px; height: 210px; border-radius: 26% 24% 26% 24%; z-index: 21; } /* Grand */
+        /* DROITE - barrage vertical compact */
+        .rock:nth-child(13) { top: 18%; right: 0%; transform: translate(50%, -50%); width: 95px; height: 150px; border-radius: 32% 18% 32% 18%; z-index: 21; }
+        .rock:nth-child(14) { top: 32%; right: 0%; transform: translate(50%, -50%); width: 120px; height: 170px; border-radius: 30% 20% 30% 20%; z-index: 21; }
+        .rock:nth-child(15) { top: 48%; right: 0%; transform: translate(50%, -50%); width: 100px; height: 145px; border-radius: 28% 22% 28% 22%; z-index: 21; }
+        .rock:nth-child(16) { top: 63%; right: 0%; transform: translate(50%, -50%); width: 135px; height: 180px; border-radius: 26% 24% 26% 24%; z-index: 21; }
         
-        /* ANGLE INFÉRIEUR DROIT - empilés */
-        .rock:nth-child(14) { top: 87%; right: 1%; transform: translate(50%, -50%); width: 170px; height: 75px; border-radius: 24% 26% 24% 26%; z-index: 21; } /* Moyen horizontal */
-        .rock:nth-child(15) { top: 94%; right: 1%; transform: translate(50%, -50%); width: 90px; height: 150px; border-radius: 26% 24% 26% 24%; z-index: 21; } /* Petit vertical */
+        /* ANGLE INFÉRIEUR DROIT - barrage en L */
+        .rock:nth-child(17) { top: 82%; right: 0%; transform: translate(50%, -50%); width: 155px; height: 70px; border-radius: 24% 26% 24% 26%; z-index: 21; }
+        .rock:nth-child(18) { top: 90%; right: 0%; transform: translate(50%, -50%); width: 85px; height: 135px; border-radius: 26% 24% 26% 24%; z-index: 21; }
         
-        /* BAS - rochers empilés horizontalement */
-        .rock:nth-child(16) { top: 99%; left: 5%; transform: translate(-50%, -50%); width: 150px; height: 85px; border-radius: 22% 28% 22% 28%; z-index: 21; } /* Moyen */
-        .rock:nth-child(17) { top: 99%; left: 18%; transform: translate(-50%, -50%); width: 110px; height: 65px; border-radius: 27% 23% 27% 23%; z-index: 21; } /* Petit */
-        .rock:nth-child(18) { top: 99%; left: 30%; transform: translate(-50%, -50%); width: 250px; height: 110px; border-radius: 19% 31% 19% 31%; z-index: 21; } /* Grand */
-        .rock:nth-child(19) { top: 99%; left: 52%; transform: translate(-50%, -50%); width: 130px; height: 70px; border-radius: 25% 25% 25% 25%; z-index: 21; } /* Moyen */
-        .rock:nth-child(20) { top: 99%; left: 65%; transform: translate(-50%, -50%); width: 95px; height: 60px; border-radius: 30% 20% 30% 20%; z-index: 21; } /* Petit */
-        .rock:nth-child(21) { top: 99%; left: 75%; transform: translate(-50%, -50%); width: 210px; height: 95px; border-radius: 23% 27% 23% 27%; z-index: 21; } /* Grand */
-        .rock:nth-child(22) { top: 99%; left: 92%; transform: translate(-50%, -50%); width: 140px; height: 80px; border-radius: 24% 26% 24% 26%; z-index: 21; } /* Moyen */
+        /* BAS - barrage horizontal compact */
+        .rock:nth-child(19) { top: 100%; left: 3%; transform: translate(-50%, -50%); width: 145px; height: 75px; border-radius: 22% 28% 22% 28%; z-index: 21; }
+        .rock:nth-child(20) { top: 100%; left: 12%; transform: translate(-50%, -50%); width: 105px; height: 60px; border-radius: 27% 23% 27% 23%; z-index: 21; }
+        .rock:nth-child(21) { top: 100%; left: 22%; transform: translate(-50%, -50%); width: 220px; height: 100px; border-radius: 19% 31% 19% 31%; z-index: 21; }
+        .rock:nth-child(22) { top: 100%; left: 38%; transform: translate(-50%, -50%); width: 125px; height: 65px; border-radius: 25% 25% 25% 25%; z-index: 21; }
+        .rock:nth-child(23) { top: 100%; left: 48%; transform: translate(-50%, -50%); width: 190px; height: 85px; border-radius: 21% 29% 21% 29%; z-index: 21; }
+        .rock:nth-child(24) { top: 100%; left: 63%; transform: translate(-50%, -50%); width: 110px; height: 60px; border-radius: 30% 20% 30% 20%; z-index: 21; }
+        .rock:nth-child(25) { top: 100%; left: 72%; transform: translate(-50%, -50%); width: 200px; height: 90px; border-radius: 23% 27% 23% 27%; z-index: 21; }
+        .rock:nth-child(26) { top: 100%; left: 85%; transform: translate(-50%, -50%); width: 130px; height: 70px; border-radius: 24% 26% 24% 26%; z-index: 21; }
+        .rock:nth-child(27) { top: 100%; left: 95%; transform: translate(-50%, -50%); width: 140px; height: 75px; border-radius: 26% 24% 26% 24%; z-index: 21; }
         
-        /* ANGLE INFÉRIEUR GAUCHE - empilés */
-        .rock:nth-child(23) { top: 94%; left: 1%; transform: translate(-50%, -50%); width: 100px; height: 145px; border-radius: 29% 21% 29% 21%; z-index: 21; } /* Petit vertical */
-        .rock:nth-child(24) { top: 87%; left: 1%; transform: translate(-50%, -50%); width: 160px; height: 80px; border-radius: 23% 27% 23% 27%; z-index: 21; } /* Moyen horizontal */
+        /* ANGLE INFÉRIEUR GAUCHE - barrage en L */
+        .rock:nth-child(28) { top: 90%; left: 0%; transform: translate(-50%, -50%); width: 95px; height: 125px; border-radius: 29% 21% 29% 21%; z-index: 21; }
+        .rock:nth-child(29) { top: 82%; left: 0%; transform: translate(-50%, -50%); width: 150px; height: 75px; border-radius: 23% 27% 23% 27%; z-index: 21; }
         
-        /* GAUCHE - rochers empilés verticalement */
-        .rock:nth-child(25) { top: 70%; left: 1%; transform: translate(-50%, -50%); width: 140px; height: 200px; border-radius: 31% 19% 31% 19%; z-index: 21; } /* Grand */
-        .rock:nth-child(26) { top: 55%; left: 1%; transform: translate(-50%, -50%); width: 105px; height: 160px; border-radius: 33% 17% 33% 17%; z-index: 21; } /* Petit */
-        .rock:nth-child(27) { top: 38%; left: 1%; transform: translate(-50%, -50%); width: 125px; height: 180px; border-radius: 29% 21% 29% 21%; z-index: 21; } /* Moyen */
-        .rock:nth-child(28) { top: 22%; left: 1%; transform: translate(-50%, -50%); width: 110px; height: 155px; border-radius: 31% 19% 31% 19%; z-index: 21; } /* Petit */
+        /* GAUCHE - barrage vertical compact */
+        .rock:nth-child(30) { top: 63%; left: 0%; transform: translate(-50%, -50%); width: 130px; height: 175px; border-radius: 31% 19% 31% 19%; z-index: 21; }
+        .rock:nth-child(31) { top: 48%; left: 0%; transform: translate(-50%, -50%); width: 100px; height: 140px; border-radius: 33% 17% 33% 17%; z-index: 21; }
+        .rock:nth-child(32) { top: 32%; left: 0%; transform: translate(-50%, -50%); width: 120px; height: 160px; border-radius: 29% 21% 29% 21%; z-index: 21; }
+        .rock:nth-child(33) { top: 18%; left: 0%; transform: translate(-50%, -50%); width: 105px; height: 140px; border-radius: 31% 19% 31% 19%; z-index: 21; }
         
-        /* ANGLE SUPÉRIEUR GAUCHE - empilés */
-        .rock:nth-child(29) { top: 10%; left: 1%; transform: translate(-50%, -50%); width: 150px; height: 70px; border-radius: 21% 29% 21% 29%; z-index: 21; } /* Moyen horizontal */
-        .rock:nth-child(30) { top: 4%; left: 1%; transform: translate(-50%, -50%); width: 90px; height: 135px; border-radius: 30% 20% 30% 20%; z-index: 21; } /* Petit vertical */
+        /* ANGLE SUPÉRIEUR GAUCHE - barrage en L */
+        .rock:nth-child(34) { top: 8%; left: 0%; transform: translate(-50%, -50%); width: 135px; height: 65px; border-radius: 21% 29% 21% 29%; z-index: 21; }
+        .rock:nth-child(35) { top: 3%; left: 0%; transform: translate(-50%, -50%); width: 85px; height: 120px; border-radius: 30% 20% 30% 20%; z-index: 21; }
         
-        /* POSITIONS INTERMÉDIAIRES pour combler - empilés sur les autres */
-        .rock:nth-child(31) { top: 0%; left: 50%; transform: translate(-50%, 0%); width: 120px; height: 60px; border-radius: 26% 24% 26% 24%; z-index: 22; } /* Petit au-dessus */
-        .rock:nth-child(32) { top: 0%; left: 78%; transform: translate(-50%, 0%); width: 100px; height: 55px; border-radius: 22% 28% 22% 28%; z-index: 22; } /* Petit au-dessus */
-        .rock:nth-child(33) { top: 100%; left: 50%; transform: translate(-50%, -100%); width: 135px; height: 65px; border-radius: 24% 26% 24% 26%; z-index: 22; } /* Moyen en-dessous */
-        .rock:nth-child(34) { top: 50%; right: 0%; transform: translate(0%, -50%); width: 110px; height: 70px; border-radius: 27% 23% 27% 23%; z-index: 22; } /* Moyen à droite */
-        .rock:nth-child(35) { top: 50%; left: 0%; transform: translate(0%, -50%); width: 100px; height: 65px; border-radius: 25% 25% 25% 25%; z-index: 22; } /* Petit à gauche */
-        .rock:nth-child(36) { top: 100%; left: 83%; transform: translate(-50%, -100%); width: 115px; height: 70px; border-radius: 28% 22% 28% 22%; z-index: 22; } /* Moyen en-dessous */
+        /* COUCHE SUPÉRIEURE - rochers empilés sur le barrage pour plus de hauteur */
+        .rock:nth-child(36) { top: -2%; left: 25%; transform: translate(-50%, -50%); width: 115px; height: 55px; border-radius: 26% 24% 26% 24%; z-index: 22; }
+        .rock:nth-child(37) { top: -2%; left: 55%; transform: translate(-50%, -50%); width: 145px; height: 60px; border-radius: 22% 28% 22% 28%; z-index: 22; }
+        .rock:nth-child(38) { top: 102%; left: 35%; transform: translate(-50%, -50%); width: 180px; height: 70px; border-radius: 24% 26% 24% 26%; z-index: 22; }
+        .rock:nth-child(39) { top: 50%; right: -2%; transform: translate(50%, -50%); width: 110px; height: 140px; border-radius: 27% 23% 27% 23%; z-index: 22; }
+        .rock:nth-child(40) { top: 50%; left: -2%; transform: translate(-50%, -50%); width: 95px; height: 130px; border-radius: 25% 25% 25% 25%; z-index: 22; }
 
         /* Têtards noirs style dessin simple (comme dans l'image) */
         .tadpole {
@@ -962,8 +966,13 @@
             <!-- Eau : Ruisseau circulaire autour de la plateforme ronde de terre -->
             <div class="water"></div>
             
-            <!-- Rochers permanents entourant le cercle d'eau (élément permanent unique au niveau 1) -->
-            <!-- Beaucoup de rochers de tailles variées (petites, moyennes, grandes) assemblés comme Tetris -->
+            <!-- Barrage de pierre qui entoure le cercle d'eau (élément permanent unique au niveau 1) -->
+            <!-- Rochers empilés compactement pour former une muraille continue autour du cercle -->
+            <div class="rock"></div>
+            <div class="rock"></div>
+            <div class="rock"></div>
+            <div class="rock"></div>
+            <div class="rock"></div>
             <div class="rock"></div>
             <div class="rock"></div>
             <div class="rock"></div>
