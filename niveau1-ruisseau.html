@@ -604,6 +604,20 @@
         .nugget-position:nth-of-type(5) { top: 50%; left: 20%; }
         .nugget-position:nth-of-type(6) { top: 50%; right: 20%; }
 
+        /* Zone tactile agrandie pour les pépites sur mobile */
+        @media (max-width: 768px) {
+            .gold-nugget {
+                width: 44px;
+                height: 44px;
+            }
+            
+            .nugget-position {
+                /* Zone tactile plus grande pour faciliter le toucher */
+                padding: 6px;
+                margin: -6px;
+            }
+        }
+
         .info-panel {
             background: rgba(15, 30, 25, 0.8);
             backdrop-filter: blur(10px);
