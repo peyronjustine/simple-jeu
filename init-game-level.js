@@ -25,6 +25,7 @@ function initGameLevel(config = {}) {
     const {
         containerId = 'island-container',
         characterId = 'character',
+        levelId = 'niveau-unknown', // ID du niveau pour la progression (ex: 'niveau1-ruisseau')
         totalNuggets = 6,
         depth = '15m',
         islandSelector = '.island',
@@ -36,6 +37,16 @@ function initGameLevel(config = {}) {
         moveSpeed = 2,
         healthConfig = {}
     } = config;
+    
+    // Initialiser le système de progression si disponible
+    if (typeof gameProgression === 'undefined' && typeof GameProgression !== 'undefined') {
+        window.gameProgression = new GameProgression();
+    }
+    
+    // Définir le niveau actuel dans la progression
+    if (gameProgression) {
+        gameProgression.setCurrentLevel(levelId);
+    }
 
     // Vérifier que les éléments nécessaires existent
     const container = document.querySelector(`.${containerId}`) || document.getElementById(containerId);
@@ -200,8 +211,28 @@ function initGameLevel(config = {}) {
             onNuggetCollect(nugget, collectedNuggets, totalNuggets);
         }
 
-        // Vérifier si toutes sont collectées
+        // Règle fondamentale : Pour passer au niveau suivant, le personnage doit récupérer
+        // TOUTES les pépites d'or du niveau actuel
         if (collectedNuggets === totalNuggets) {
+            // Marquer le niveau comme complété dans la progression
+            const levelId = config.levelId || 'niveau-unknown';
+            if (typeof gameProgression !== 'undefined' && gameProgression) {
+                gameProgression.completeLevel(levelId, totalNuggets);
+                
+                const totalGlobal = gameProgression.getTotalCollected();
+                const progressPercent = gameProgression.getProgressPercent();
+                
+                console.log(`Niveau ${levelId} complété ! Total global : ${totalGlobal}/30 pépites (${Math.round(progressPercent)}%)`);
+                
+                // Mettre à jour le message de victoire si disponible
+                if (victoryMessage) {
+                    const globalProgressText = victoryMessage.querySelector('#globalProgress, p:last-of-type');
+                    if (globalProgressText) {
+                        globalProgressText.textContent = `Progression globale : ${totalGlobal}/30 pépites collectées (${Math.round(progressPercent)}%)`;
+                    }
+                }
+            }
+            
             if (onAllCollected) {
                 onAllCollected();
             }

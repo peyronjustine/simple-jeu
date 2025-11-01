@@ -942,12 +942,12 @@
         <div class="game-hud">
             <h3>📊 Statut</h3>
             <div class="hud-stat">
-                <span>Pépites collectées :</span>
-                <strong id="collectedCount">0</strong>
+                <span>Pépites du niveau :</span>
+                <strong id="collectedCount">0</strong> / <strong id="totalNuggets">6</strong>
             </div>
-            <div class="hud-stat">
-                <span>Pépites totales :</span>
-                <strong id="totalNuggets">6</strong>
+            <div class="hud-stat" id="globalProgressHUD" style="display: none;">
+                <span>Total global :</span>
+                <strong id="globalCollected">0</strong> / 30
             </div>
             <div class="hud-stat">
                 <span>Profondeur :</span>
@@ -1079,6 +1079,7 @@
     </div>
 
     <script src="character-health-system.js"></script>
+    <script src="game-progression.js"></script>
     <script>
         // Ambiance sonore unique au Niveau 1 - L'île de départ
         // Vent, bruits naturels, poissons sautant hors de l'eau (pas de musique)
@@ -1186,6 +1187,23 @@
 
         // Attendre que le DOM soit complètement chargé
         document.addEventListener('DOMContentLoaded', () => {
+            // Initialiser le système de progression
+            if (typeof GameProgression !== 'undefined') {
+                if (!gameProgression) {
+                    gameProgression = new GameProgression();
+                }
+                gameProgression.setCurrentLevel('niveau1-ruisseau');
+                
+                // Afficher la progression globale dans le HUD
+                if (globalProgressHUD && globalCollectedEl) {
+                    const totalGlobal = gameProgression.getTotalCollected();
+                    if (totalGlobal > 0) {
+                        globalCollectedEl.textContent = totalGlobal;
+                        globalProgressHUD.style.display = 'flex';
+                    }
+                }
+            }
+            
             // Initialiser l'ambiance sonore unique du niveau 1
             initAmbientSounds();
             let collectedNuggets = 0;
@@ -1250,9 +1268,21 @@
                     
                     // Animation de collecte
                     collectedCountEl.textContent = collectedNuggets;
+                    if (totalNuggetsEl) {
+                        totalNuggetsEl.textContent = totalNuggets;
+                    }
                     const progress = (collectedNuggets / totalNuggets) * 100;
                     progressBar.style.width = progress + '%';
                     progressBar.textContent = Math.round(progress) + '%';
+                    
+                    // Mettre à jour la progression globale dans le HUD
+                    if (gameProgression && globalCollectedEl && globalProgressHUD) {
+                        const totalGlobal = gameProgression.getTotalCollected();
+                        globalCollectedEl.textContent = totalGlobal;
+                        if (totalGlobal > 0) {
+                            globalProgressHUD.style.display = 'flex';
+                        }
+                    }
 
                     // Effet visuel
                     nugget.style.transition = 'all 0.5s';
@@ -1265,8 +1295,26 @@
                         character.style.transform = 'scale(1)';
                     }, 300);
 
-                    // Vérifier si toutes les pépites sont collectées
+                    // Règle fondamentale : Pour passer au niveau suivant, le personnage doit récupérer
+                    // TOUTES les pépites d'or du niveau actuel
                     if (collectedNuggets === totalNuggets) {
+                        // Marquer le niveau comme complété dans la progression
+                        if (gameProgression) {
+                            gameProgression.completeLevel('niveau1-ruisseau', totalNuggets);
+                            
+                            // Afficher le total global dans le message de victoire
+                            const totalGlobal = gameProgression.getTotalCollected();
+                            const progressPercent = gameProgression.getProgressPercent();
+                            
+                            // Mettre à jour le message de victoire avec la progression globale
+                            const victoryText = victoryMessage.querySelector('p:last-of-type');
+                            if (victoryText) {
+                                victoryText.textContent = `Progression globale : ${totalGlobal}/30 pépites collectées (${Math.round(progressPercent)}%)`;
+                            }
+                            
+                            console.log(`Niveau complété ! Total global : ${totalGlobal}/30 pépites (${Math.round(progressPercent)}%)`);
+                        }
+                        
                         setTimeout(() => {
                             victoryMessage.classList.add('show');
                         }, 500);
