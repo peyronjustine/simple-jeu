@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Étape 8 : Antarctique - Changement</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Georgia', serif;
+            background: linear-gradient(135deg, #0d1a25 0%, #1a2d40 50%, #0d1a25 100%);
+            color: #e8e6e3;
+            padding: 20px;
+            min-height: 100vh;
+        }
+        .container { max-width: 1000px; margin: 0 auto; }
+        header { text-align: center; margin-bottom: 3rem; padding: 2rem 0; }
+        h1 { font-size: 3rem; color: #9ac8e8; text-shadow: 0 0 20px rgba(154, 200, 232, 0.5); margin-bottom: 0.5rem; }
+        .subtitle { font-size: 1.3rem; color: #b4d4f0; font-style: italic; }
+        .info-box {
+            background: rgba(10, 20, 30, 0.6);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+            border: 1px solid rgba(154, 200, 232, 0.3);
+        }
+        .info-box h2 { color: #9ac8e8; margin-bottom: 1rem; }
+        .info-box p { line-height: 1.8; color: #d4e8f8; margin: 0.5rem 0; }
+        .level { 
+            background: rgba(12, 25, 35, 0.5);
+            border-left: 4px solid #7aa8c8;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 10px;
+        }
+        .level h3 { color: #9ac8e8; margin-bottom: 1rem; }
+        .special {
+            background: rgba(200, 150, 50, 0.2);
+            border-left-color: #d4a050;
+        }
+        .creature { 
+            display: inline-block; 
+            background: rgba(154, 200, 232, 0.2);
+            padding: 0.5rem 1rem;
+            margin: 0.3rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+        .minigame {
+            background: rgba(200, 150, 50, 0.15);
+            padding: 1rem;
+            border-radius: 10px;
+            margin: 1rem 0;
+            border: 1px solid rgba(200, 150, 50, 0.3);
+        }
+        .message {
+            background: rgba(255, 200, 100, 0.2);
+            border: 2px solid rgba(255, 200, 100, 0.4);
+            padding: 2rem;
+            border-radius: 10px;
+            margin: 1.5rem 0;
+            font-style: italic;
+            line-height: 1.8;
+        }
+        .nav { text-align: center; margin: 3rem 0; }
+        .nav a {
+            display: inline-block;
+            padding: 12px 30px;
+            background: rgba(154, 200, 232, 0.2);
+            border: 2px solid rgba(154, 200, 232, 0.4);
+            border-radius: 50px;
+            color: #9ac8e8;
+            text-decoration: none;
+            margin: 0 10px;
+            transition: all 0.3s;
+        }
+        .nav a:hover {
+            background: rgba(154, 200, 232, 0.4);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(154, 200, 232, 0.3);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>❄️ ÉTAPE 8 : ANTARCTIQUE</h1>
+            <p class="subtitle">L'Âge de Glace 2</p>
+        </header>
+
+        <div class="info-box">
+            <h2>📋 Informations Générales</h2>
+            <p><strong>Profondeur :</strong> 10 000m ❄️</p>
+            <p><strong>Environnement :</strong> Glace omniprésente, icebergs flottants, eau glaciale, faune préhistorique de l'ère glaciaire</p>
+            <p>Le froid mordant. La glace partout. Des créatures préhistoriques surgissent des profondeurs glacées...</p>
+        </div>
+
+        <div class="info-box">
+            <h2>🌳 Évolution par Niveau</h2>
+            
+            <div class="level">
+                <h3>Niveau 1 - Surface (0-200m)</h3>
+                <p><strong>Arbre :</strong> Pin de Wollemi</p>
+                <p><strong>Créatures préhistoriques :</strong> 
+                    <span class="creature">🐟 Xiphactinus (4-6m) - dents acérées</span>
+                    <span class="creature">🦕 Liopleurodon jeunes (3-5m) - reptiles marins</span>
+                    <span class="creature">🐚 Ammonites géantes (50-100 cm)</span>
+                </p>
+            </div>
+
+            <div class="level">
+                <h3>Niveau 2 - Profondeur moyenne (200-1000m)</h3>
+                <p><strong>Arbre :</strong> Bouleau nain arctique</p>
+                <p><strong>Créatures préhistoriques :</strong> 
+                    <span class="creature">🐟 Dunkleosteus jeunes (2-3m) - cuirassés</span>
+                    <span class="creature">🐟 Hyneria (3-4m) - carnivore massif</span>
+                    <span class="creature">🦈 Helicoprion (2-3m) - mâchoire spirale</span>
+                </p>
+            </div>
+
+            <div class="level">
+                <h3>Niveau 3 - Profondeur (1000-4000m)</h3>
+                <p><strong>Arbre :</strong> Saule arctique</p>
+                <p><strong>Créatures préhistoriques :</strong> 
+                    <span class="creature">🦈 Megalodon jeunes (3-5m) - ancêtres géants</span>
+                    <span class="creature">🦕 Temnodontosaurus (6-9m) - yeux énormes</span>
+                    <span class="creature">🦂 Trilobites géants (40-60 cm)</span>
+                </p>
+            </div>
+
+            <div class="level">
+                <h3>Niveau 4 - Abysse (4000-7000m)</h3>
+                <p><strong>Arbre :</strong> Saule arctique</p>
+                <p><strong>Créatures préhistoriques :</strong> 
+                    <span class="creature">🐋 Basilosaurus (12-15m) - ancêtres des baleines</span>
+                    <span class="creature">🦕 Mosasaurus (10-15m) - prédateurs apex</span>
+                    <span class="creature">🐟 Cœlacanthes géants (2-3m) - fossiles vivants</span>
+                </p>
+            </div>
+
+            <div class="level special">
+                <h3>🎮 Niveau 5 - NIVEAU SPÉCIAL CACHÉ</h3>
+                <p><strong>Localisation :</strong> Zone cachée par des algues sous l'eau à plus de 8 000m de profondeur</p>
+                <p><strong>Arbre :</strong> Mélèze de Sibérie</p>
+                <p><strong>Mécanisme :</strong> Un cercle orange apparaît. 3 chiffres tirés : 14, 52, 11</p>
+                
+                <div class="minigame">
+                    <h4>🎮 Mini-jeu 14 : Tranchage de légumes</h4>
+                    <p>Tranchez au moins 50 légumes. À 40 légumes : une toupie en bois tombe. Choisissez de la couper ou de la prendre avec la compétence "MAIN".</p>
+                </div>
+                
+                <div class="minigame">
+                    <h4>🎮 Mini-jeu 52 : MESSAGE MYSTÉRIEUX</h4>
+                    <div class="message">
+                        <p>"J'ai enfin réussi à bloquer un instant ces jeux, le système de cette île maudite. Et toi qui es en train de lire, sache que tu n'es pas le seul à avoir vécu ce que tu as vécu. Retrouve-moi dans la huitième étape sous la plateforme en terre où tu trouveras un grand et gros cylindre en métal. Rentre dedans et bonne chance, tu en auras besoin..."</p>
+                    </div>
+                </div>
+                
+                <div class="minigame">
+                    <h4>🎮 Mini-jeu 11 : Traversée des glaces flottantes</h4>
+                    <p>15 blocs de glace à traverser. Certains sont fragiles et se fissurent. Si vous tombez dans l'eau glacée : 10 secondes pour remonter, sinon hypothermie. Des ombres de Mosasaurus passent parfois sous l'eau...</p>
+                </div>
+
+                <p><strong>Créatures préhistoriques (7000-9000m) :</strong> 
+                    <span class="creature">🦕 Kronosaurus (9-10m)</span>
+                    <span class="creature">🦕 Tanystropheus (6m)</span>
+                    <span class="creature">🦂 Euryptérides géants (2-3m)</span>
+                </p>
+            </div>
+
+            <div class="level">
+                <h3>Niveau 6 - Ultra-profondeur (9000-10 000m)</h3>
+                <p><strong>Arbre :</strong> Cyprès de Nootka</p>
+                <p><strong>Créatures préhistoriques :</strong> 
+                    <span class="creature">🐟 Dunkleosteus adultes (6-10m) - force de morsure colossale</span>
+                    <span class="creature">🦈 Megalodon adultes (15-18m) - terreur des océans</span>
+                    <span class="creature">🐋 Livyatan (13-17m) - dents de 36 cm</span>
+                </p>
+            </div>
+        </div>
+
+        <div class="nav">
+            <a href="etape7-ocean2.html">← Étape 7 : Océan 2</a>
+            <a href="index.html">Accueil</a>
+            <a href="etape9-bermudes.html">Étape 9 : Le Triangle des Bermudes →</a>
+        </div>
+    </div>
+</body>
+</html>
+

@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Étape 5 : L'Océan - Changement</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Georgia', serif;
+            background: linear-gradient(135deg, #0d1a2e 0%, #1a2d4a 50%, #0d1a2e 100%);
+            color: #e8e6e3;
+            padding: 20px;
+            min-height: 100vh;
+        }
+        .container { max-width: 1000px; margin: 0 auto; }
+        header { text-align: center; margin-bottom: 3rem; padding: 2rem 0; }
+        h1 { font-size: 3rem; color: #7ab8d4; text-shadow: 0 0 20px rgba(122, 184, 212, 0.5); margin-bottom: 0.5rem; }
+        .subtitle { font-size: 1.3rem; color: #95c4e0; font-style: italic; }
+        .info-box {
+            background: rgba(10, 20, 35, 0.6);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+            border: 1px solid rgba(122, 184, 212, 0.3);
+        }
+        .info-box h2 { color: #7ab8d4; margin-bottom: 1rem; }
+        .info-box p { line-height: 1.8; color: #d4e8f0; margin: 0.5rem 0; }
+        .warning {
+            background: rgba(200, 100, 50, 0.3);
+            border-left: 4px solid #d47a50;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin: 1.5rem 0;
+        }
+        .level { 
+            background: rgba(15, 25, 40, 0.5);
+            border-left: 4px solid #5a88b4;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 10px;
+        }
+        .level h3 { color: #7ab8d4; margin-bottom: 1rem; }
+        .creature { 
+            display: inline-block; 
+            background: rgba(122, 184, 212, 0.2);
+            padding: 0.5rem 1rem;
+            margin: 0.3rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+        .dialogue {
+            background: rgba(150, 200, 150, 0.2);
+            border-left: 4px solid #9acf9a;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 10px;
+            font-style: italic;
+        }
+        .nav { text-align: center; margin: 3rem 0; }
+        .nav a {
+            display: inline-block;
+            padding: 12px 30px;
+            background: rgba(122, 184, 212, 0.2);
+            border: 2px solid rgba(122, 184, 212, 0.4);
+            border-radius: 50px;
+            color: #7ab8d4;
+            text-decoration: none;
+            margin: 0 10px;
+            transition: all 0.3s;
+        }
+        .nav a:hover {
+            background: rgba(122, 184, 212, 0.4);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(122, 184, 212, 0.3);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🌊 ÉTAPE 5 : L'OCÉAN</h1>
+            <p class="subtitle">Changement radical !</p>
+        </header>
+
+        <div class="warning">
+            <h2>⚠️ Changement Radical</h2>
+            <p><strong>Profondeur :</strong> 5 669m</p>
+            <p>L'océan s'ouvre devant vous. Une profondeur abyssale, des créatures nouvelles... Et peut-être un allié inattendu ?</p>
+        </div>
+
+        <div class="info-box">
+            <h2>🎬 Événement d'Ouverture - Niveau 1</h2>
+            <p><strong>Minute 0-20 :</strong> Vous explorez normalement</p>
+            <p><strong>Minute 20 :</strong> Grand bruit de fracas - le bois qui bloquait le passage de 4m est détruit !</p>
+            <p><strong>Minute 22 :</strong> Un phoque saute hors de l'eau et vous fait un petit coucou avec sa nageoire pour vous saluer.</p>
+            <p>Le phoque chasse les poissons : réussit à en attraper toutes les 5 minutes.</p>
+        </div>
+
+        <div class="info-box">
+            <h2>🌳 Évolution par Niveau</h2>
+            
+            <div class="level">
+                <h3>Niveau 1</h3>
+                <p><strong>Arbre :</strong> Argousier</p>
+                <p><strong>Créatures :</strong> 
+                    <span class="creature">🦭 Phoque</span>
+                    <span class="creature">🐟 Maquereaux (30-50 cm) - rapides en bancs</span>
+                    <span class="creature">🐟 Rougets-barbets (20-30 cm) - poissons de fond colorés</span>
+                    <span class="creature">🐟 Lieus jaunes (40-60 cm) - prédateurs côtiers</span>
+                </p>
+            </div>
+
+            <div class="level">
+                <h3>Niveau 2 - Dialogue avec le Phoque</h3>
+                <p><strong>Arbre :</strong> Aronia à fruits rouges Brilliant</p>
+                
+                <div class="dialogue">
+                    <p><strong>🦭 Le phoque :</strong> "Bonjour l'ami, j'espère que je t'embête pas à rentrer dans ton île comme ça sans que je te demande la permission. J'étais curieux et j'ai entendu plein de poissons derrière ce gros bloc de bois. En dehors il n'y a plus rien, c'est la hess l'ami."</p>
+                    <p style="margin-top: 1rem;"><strong>🦭 Le phoque :</strong> "Tu permets que je m'endorme l'ami, je suis si fatigué après manger ?"</p>
+                </div>
+
+                <p><strong>Créatures :</strong> 
+                    <span class="creature">🦭 Phoque endormi</span>
+                    <span class="creature">🐟 Grondins (30-40 cm) - poissons marcheurs</span>
+                    <span class="creature">🐟 Bars communs (50-80 cm) - prédateurs élégants</span>
+                    <span class="creature">🐟 Soles (30-50 cm) - poissons plats</span>
+                </p>
+            </div>
+
+            <div class="level">
+                <h3>Niveau 3 - Le Phoque Reste</h3>
+                <p><strong>Arbre :</strong> Amélanchier Smokey</p>
+                
+                <div class="dialogue">
+                    <p><strong>🦭 Le phoque :</strong> "Finalement l'ami, je ne veux point partir. J'aimerais rester un peu. En dehors de l'île je ne trouve aucun poisson. Je te propose un marché : je reste sur ton île et en contrepartie je te dirai tout ce que je sais qui pourrait t'être utile !"</p>
+                </div>
+
+                <p><strong>Créatures :</strong> 
+                    <span class="creature">🦭 Phoque (compagnon permanent)</span>
+                    <span class="creature">🐟 Congres (1-2m) - anguilles de mer puissantes</span>
+                    <span class="creature">🐟 Dorades roses (30-50 cm) - reflets rosés</span>
+                    <span class="creature">🐟 Sabres noirs (80-100 cm) - dents acérées</span>
+                </p>
+            </div>
+        </div>
+
+        <div class="nav">
+            <a href="etape4-riviere2.html">← Étape 4 : Rivière 2</a>
+            <a href="index.html">Accueil</a>
+            <a href="etape6-marecageuse.html">Étape 6 : Eau Marécageuse →</a>
+        </div>
+    </div>
+</body>
+</html>
+

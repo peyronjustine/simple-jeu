@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Étape 9 : Le Triangle des Bermudes - Changement</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Georgia', serif;
+            background: linear-gradient(135deg, #0a0d15 0%, #1a1d2a 50%, #0a0d15 100%);
+            color: #e8e6e3;
+            padding: 20px;
+            min-height: 100vh;
+        }
+        .container { max-width: 1000px; margin: 0 auto; }
+        header { text-align: center; margin-bottom: 3rem; padding: 2rem 0; }
+        h1 { font-size: 3rem; color: #ffa050; text-shadow: 0 0 30px rgba(255, 160, 80, 0.7), 0 0 50px rgba(255, 200, 100, 0.3); margin-bottom: 0.5rem; }
+        .subtitle { font-size: 1.3rem; color: #ffb870; font-style: italic; }
+        .warning {
+            background: rgba(200, 0, 0, 0.4);
+            border-left: 4px solid #ff5050;
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+        }
+        .warning h2 { color: #ff6b6b; margin-bottom: 1rem; }
+        .info-box {
+            background: rgba(10, 12, 18, 0.6);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+            border: 1px solid rgba(255, 160, 80, 0.3);
+        }
+        .info-box h2 { color: #ffa050; margin-bottom: 1rem; }
+        .info-box p { line-height: 1.8; color: #f0e8d4; margin: 0.5rem 0; }
+        .level { 
+            background: rgba(15, 18, 25, 0.5);
+            border-left: 4px solid #d47a40;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 10px;
+        }
+        .level h3 { color: #ffa050; margin-bottom: 1rem; }
+        .final {
+            background: rgba(200, 0, 0, 0.3);
+            border-left-color: #ff5050;
+        }
+        .creature { 
+            display: inline-block; 
+            background: rgba(255, 160, 80, 0.2);
+            padding: 0.5rem 1rem;
+            margin: 0.3rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+        .cylinder {
+            background: rgba(150, 150, 150, 0.2);
+            border: 2px solid rgba(200, 200, 200, 0.4);
+            padding: 2rem;
+            border-radius: 10px;
+            margin: 1.5rem 0;
+        }
+        .minigame {
+            background: rgba(255, 200, 100, 0.15);
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin: 1.5rem 0;
+            border: 1px solid rgba(255, 200, 100, 0.3);
+        }
+        .combat {
+            background: rgba(200, 50, 50, 0.3);
+            border: 2px solid rgba(255, 100, 100, 0.5);
+        }
+        .dialogue {
+            background: rgba(100, 150, 100, 0.2);
+            border-left: 4px solid #9acf9a;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 10px;
+            font-style: italic;
+        }
+        .nav { text-align: center; margin: 3rem 0; }
+        .nav a {
+            display: inline-block;
+            padding: 12px 30px;
+            background: rgba(255, 160, 80, 0.2);
+            border: 2px solid rgba(255, 160, 80, 0.4);
+            border-radius: 50px;
+            color: #ffa050;
+            text-decoration: none;
+            margin: 0 10px;
+            transition: all 0.3s;
+        }
+        .nav a:hover {
+            background: rgba(255, 160, 80, 0.4);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 160, 80, 0.3);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>⚠️💀 ÉTAPE 9 : LE TRIANGLE DES BERMUDES</h1>
+            <p class="subtitle">Le combat final</p>
+        </header>
+
+        <div class="warning">
+            <h2>⚠️💀 DANGER EXTRÊME</h2>
+            <p><strong>Profondeur :</strong> 8 000m</p>
+            <p><strong>Environnement apocalyptique :</strong></p>
+            <ul style="margin-left: 2rem; margin-top: 1rem;">
+                <li>Grand triangle fin de couleur dorée-orange flotte au-dessus de l'île</li>
+                <li>Eau extrêmement agitée - vagues violentes</li>
+                <li>Pluie battante constante</li>
+                <li>Pressions d'eau soudaines : peuvent propulser à 4 000m instantanément</li>
+                <li>Poissons rares - très peu de créatures ordinaires</li>
+                <li>Atmosphère terrifiante et imprévisible</li>
+            </ul>
+        </div>
+
+        <div class="cylinder">
+            <h2>🔷 LE CYLINDRE EN MÉTAL - RENCONTRE AVEC LA TAUPE</h2>
+            <p><strong>Localisation :</strong> Sous la plateforme en terre (accessible depuis l'étape 7)</p>
+            <p><strong>Contenu :</strong> Grand espace ouvert, cabane en bois, une taupe avec une petite barbe</p>
+            
+            <div class="dialogue">
+                <p><strong>🐭 La taupe :</strong> "Il existe un dernier symbole, un rond avec un point au milieu orange, pour battre cette île maudite. Les deux premiers jeux ne sont pas le problème, mais c'est le dernier qui est fastidieux, où on aura besoin de nous deux."</p>
+            </div>
+
+            <p><strong>⚠️ DANGER - LE MONSTRE GARDIEN :</strong> Un monstre hybride Qalupalik + Mahaha, très bon nageur et extrêmement rapide. Peut noyer le personnage. Le lieu ressemble à la caverne d'Horcruxe de Harry Potter.</p>
+        </div>
+
+        <div class="info-box">
+            <h2>🎮 LE SYMBOLE FINAL - LES 3 DERNIERS MINI-JEUX</h2>
+            
+            <div class="minigame">
+                <h3>🎮 Mini-jeu 1 : Memory</h3>
+                <p>Jeu de mémoire avec tous les poissons, arbres et plantes rencontrés durant le voyage. Retourner les cartes pour former des paires.</p>
+            </div>
+            
+            <div class="minigame">
+                <h3>🎮 Mini-jeu 2 : Grand puzzle de 100 pièces</h3>
+                <p>Chaque pièce forme progressivement le Monstre de l'Île Maudite. Une fois terminé → Le monstre prend vie !</p>
+            </div>
+            
+            <div class="minigame combat">
+                <h3>⚔️ Mini-jeu 3 : Combat final - ACTION-RPG</h3>
+                <p>Le monstre sort du puzzle et attaque ! Style de jeu : Action-RPG comme Dark Souls. Design sombre et détaillé. Combat difficile nécessitant la collaboration du personnage + la taupe.</p>
+            </div>
+        </div>
+
+        <div class="info-box">
+            <h2>🌳 Les 6 Niveaux du Triangle des Bermudes</h2>
+            
+            <div class="level">
+                <h3>Niveau 1</h3>
+                <p><strong>Arbre :</strong> Arbre mort pétrifié (tronc noir, branches tordues)</p>
+                <p><strong>Créatures légendaires :</strong> 
+                    <span class="creature">🐙 Kraken jeune (10-15m)</span>
+                    <span class="creature">🐉 Serpents de mer (15-20m)</span>
+                    <span class="creature">🧜 Sirènes des profondeurs (1,5-2m)</span>
+                </p>
+            </div>
+
+            <div class="level">
+                <h3>Niveau 2</h3>
+                <p><strong>Arbre :</strong> Arbre fantôme (translucide, phosphorescent)</p>
+                <p><strong>Créatures légendaires :</strong> 
+                    <span class="creature">🐋 Cetus (20-25m)</span>
+                    <span class="creature">🐢 Aspidochelone (30m)</span>
+                    <span class="creature">🐉 Scylla (8-12m, 6 têtes)</span>
+                </p>
+            </div>
+
+            <div class="level">
+                <h3>Niveau 3</h3>
+                <p><strong>Arbre :</strong> Arbre de corail noir maudit</p>
+                <p><strong>Créatures légendaires :</strong> 
+                    <span class="creature">🐉 Léviathan (30-40m)</span>
+                    <span class="creature">🌪️ Charybde (20m)</span>
+                    <span class="creature">🐉 Hydre marine (15m, 7 têtes)</span>
+                </p>
+            </div>
+
+            <div class="level">
+                <h3>Niveau 4</h3>
+                <p><strong>Arbre :</strong> Arbre inversé (racines vers le ciel)</p>
+                <p><strong>Créatures légendaires :</strong> 
+                    <span class="creature">🦕 Nessie (15-20m)</span>
+                    <span class="creature">🐉 Jörmungandr (50m)</span>
+                    <span class="creature">👹 Umibōzu (10-15m)</span>
+                </p>
+            </div>
+
+            <div class="level">
+                <h3>Niveau 5</h3>
+                <p><strong>Arbre :</strong> Arbre de feu sous-marin (flammes bleues)</p>
+                <p><strong>Créatures légendaires :</strong> 
+                    <span class="creature">🐋 Hafgufa (40-50m)</span>
+                    <span class="creature">🐉 Tiamat (25-30m)</span>
+                    <span class="creature">🐉 Morgawr (15-20m)</span>
+                </p>
+            </div>
+
+            <div class="level final">
+                <h3>💀 Niveau 6 - NIVEAU FINAL</h3>
+                <p><strong>Arbre :</strong> Arbre de l'Apocalypse (tronc fendu, lumière rouge)</p>
+                <p><strong>Créatures légendaires ultimes :</strong> 
+                    <span class="creature">🐙 Kraken adulte (60-80m) - peut engloutir des navires</span>
+                    <span class="creature">🐋 Bloop (100m+) - son terrifiant</span>
+                    <span class="creature">🦈 Lusca (30-40m) - poulpe-requin légendaire</span>
+                </p>
+                <p style="margin-top: 1rem; font-size: 1.2rem; font-weight: bold; color: #ffa050;">
+                    C'est ici que votre destin se joue. Le combat final contre le Monstre de l'Île Maudite vous attend...
+                </p>
+            </div>
+        </div>
+
+        <div class="nav">
+            <a href="etape8-antarctique.html">← Étape 8 : Antarctique</a>
+            <a href="index.html">Accueil</a>
+        </div>
+    </div>
+</body>
+</html>
+

@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Étape 2 : La Mare - Changement</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Georgia', serif;
+            background: linear-gradient(135deg, #1a3328 0%, #2d5a40 50%, #1a3328 100%);
+            color: #e8e6e3;
+            padding: 20px;
+            min-height: 100vh;
+        }
+        .container { max-width: 1000px; margin: 0 auto; }
+        header { text-align: center; margin-bottom: 3rem; padding: 2rem 0; }
+        h1 { font-size: 3rem; color: #7ab89f; text-shadow: 0 0 20px rgba(122, 184, 159, 0.5); margin-bottom: 0.5rem; }
+        .subtitle { font-size: 1.3rem; color: #95c4a8; font-style: italic; }
+        .info-box {
+            background: rgba(15, 30, 22, 0.6);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+            border: 1px solid rgba(122, 184, 159, 0.3);
+        }
+        .info-box h2 { color: #7ab89f; margin-bottom: 1rem; }
+        .info-box p { line-height: 1.8; color: #d4e6dc; margin: 0.5rem 0; }
+        .level { 
+            background: rgba(20, 40, 30, 0.5);
+            border-left: 4px solid #5a9f7f;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 10px;
+        }
+        .level h3 { color: #7ab89f; margin-bottom: 1rem; }
+        .special { 
+            background: rgba(200, 150, 50, 0.2);
+            border-left-color: #d4a050;
+        }
+        .creature { 
+            display: inline-block; 
+            background: rgba(122, 184, 159, 0.2);
+            padding: 0.5rem 1rem;
+            margin: 0.3rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+        .difficulty { 
+            display: inline-block;
+            padding: 0.5rem 1.5rem;
+            background: rgba(200, 150, 50, 0.4);
+            border-radius: 25px;
+            margin: 1rem 0;
+            font-weight: bold;
+            color: #ffd89b;
+        }
+        .minigame {
+            background: rgba(200, 150, 50, 0.15);
+            padding: 1rem;
+            border-radius: 10px;
+            margin: 1rem 0;
+            border: 1px solid rgba(200, 150, 50, 0.3);
+        }
+        .nav { text-align: center; margin: 3rem 0; }
+        .nav a {
+            display: inline-block;
+            padding: 12px 30px;
+            background: rgba(122, 184, 159, 0.2);
+            border: 2px solid rgba(122, 184, 159, 0.4);
+            border-radius: 50px;
+            color: #7ab89f;
+            text-decoration: none;
+            margin: 0 10px;
+            transition: all 0.3s;
+        }
+        .nav a:hover {
+            background: rgba(122, 184, 159, 0.4);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(122, 184, 159, 0.3);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>💧 ÉTAPE 2 : LA MARE</h1>
+            <p class="subtitle">Les eaux troubles se révèlent</p>
+        </header>
+
+        <div class="info-box">
+            <h2>📋 Informations Générales</h2>
+            <p><strong>Difficulté :</strong> <span class="difficulty">Augmentée</span></p>
+            <p><strong>Profondeur :</strong> 20m</p>
+            <p><strong>Caractéristiques :</strong> Eau verte et trouble (micro-organismes), visibilité très réduite, présence d'algues et nénuphars</p>
+            <p><strong>Population maximum :</strong> 13 poissons / 5 grenouilles / 30 mollusques / 6 insectes</p>
+            <p>L'eau devient plus trouble, la visibilité diminue. Vous devez être plus prudent...</p>
+        </div>
+
+        <div class="info-box">
+            <h2>🌳 Évolution par Niveau</h2>
+            
+            <div class="level">
+                <h3>Niveau 1</h3>
+                <p><strong>Arbre :</strong> Passiflore (Passonaria)</p>
+                <p><strong>Créatures :</strong> <span class="creature">🐟 Carassins dorés (30 cm)</span></p>
+            </div>
+
+            <div class="level">
+                <h3>Niveau 2</h3>
+                <p><strong>Arbre :</strong> Palmier-bâche</p>
+                <p><strong>Créatures :</strong> <span class="creature">🐟 Carpes koï (15-30 cm)</span></p>
+            </div>
+
+            <div class="level">
+                <h3>Niveau 3</h3>
+                <p><strong>Arbre :</strong> Pied de cupuaçu</p>
+                <p><strong>Créatures :</strong> 
+                    <span class="creature">🐟 Carpes amour (20-30 cm)</span>
+                    <span class="creature">🐸 Grenouilles géantes (1-2 m !)</span>
+                </p>
+                <p>⚠️ Attention ! Les grenouilles géantes font leur apparition...</p>
+            </div>
+
+            <div class="level">
+                <h3>Niveau 4</h3>
+                <p><strong>Arbre :</strong> Palmier comou</p>
+                <p><strong>Créatures :</strong> 
+                    <span class="creature">🦪 Moules d'eau douce (25 cm)</span>
+                    <span class="creature">🐌 Limnées (50-60 mm)</span>
+                    <span class="creature">🦋 Libellules (7-8 cm) - volent et se posent sur les nénuphars</span>
+                </p>
+            </div>
+
+            <div class="level special">
+                <h3>🎮 Niveau 5 - NIVEAU SPÉCIAL AVEC MINI-JEUX</h3>
+                <p><strong>Arbre :</strong> Plante d'Inca Inchi (Sacha Inchi)</p>
+                <p><strong>Mécanisme :</strong> Un cercle orange apparaît sur un rocher. Quand vous le touchez, 3 mini-jeux sont tirés au hasard.</p>
+                
+                <div class="minigame">
+                    <h4>🎮 Mini-jeu 3 : Escape Room</h4>
+                    <p>Une seule salle, objectif : ouvrir la porte pour s'échapper.</p>
+                </div>
+                
+                <div class="minigame">
+                    <h4>🎮 Mini-jeu 6 : Jeu de tuiles (Match-3)</h4>
+                    <p>Casse-tête avec des fruits exotiques. Former des combinaisons d'au moins 3 éléments identiques.</p>
+                </div>
+                
+                <div class="minigame">
+                    <h4>🎮 Mini-jeu 2 : Sauvetage chronométré</h4>
+                    <p>Vous êtes emprisonné 6 fois de différentes manières. Libérez-vous avant qu'il ne soit trop tard ! En chemin, trouvez une clé qui ouvre un coffre contenant une BD humoristique.</p>
+                </div>
+
+                <p><strong>Créatures :</strong> <span class="creature">🐟 Loches baromètre (20-35 cm)</span> - remplacent tous les mollusques et libellules</p>
+            </div>
+        </div>
+
+        <div class="nav">
+            <a href="etape1-ruisseau.html">← Étape 1 : Le Ruisseau</a>
+            <a href="index.html">Accueil</a>
+            <a href="etape3-riviere.html">Étape 3 : La Rivière →</a>
+        </div>
+    </div>
+</body>
+</html>
+

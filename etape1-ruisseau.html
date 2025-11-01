@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Étape 1 : Le Ruisseau - Changement</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Georgia', serif;
+            background: linear-gradient(135deg, #1a3a2e 0%, #2d5a47 50%, #1a3a2e 100%);
+            color: #e8e6e3;
+            padding: 20px;
+            min-height: 100vh;
+        }
+        .container { max-width: 1000px; margin: 0 auto; }
+        header { text-align: center; margin-bottom: 3rem; padding: 2rem 0; }
+        h1 { font-size: 3rem; color: #9fc4b8; text-shadow: 0 0 20px rgba(159, 196, 184, 0.5); margin-bottom: 0.5rem; }
+        .subtitle { font-size: 1.3rem; color: #b8d4c8; font-style: italic; }
+        .info-box {
+            background: rgba(15, 30, 25, 0.6);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+            border: 1px solid rgba(100, 180, 150, 0.3);
+        }
+        .info-box h2 { color: #9fc4b8; margin-bottom: 1rem; }
+        .info-box p { line-height: 1.8; color: #d4e6dc; margin: 0.5rem 0; }
+        .level { 
+            background: rgba(20, 40, 35, 0.5);
+            border-left: 4px solid #7ab89f;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 10px;
+        }
+        .level h3 { color: #9fc4b8; margin-bottom: 1rem; }
+        .creature { 
+            display: inline-block; 
+            background: rgba(100, 180, 150, 0.2);
+            padding: 0.5rem 1rem;
+            margin: 0.3rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+        .difficulty { 
+            display: inline-block;
+            padding: 0.5rem 1.5rem;
+            background: rgba(159, 196, 184, 0.3);
+            border-radius: 25px;
+            margin: 1rem 0;
+            font-weight: bold;
+        }
+        .nav { text-align: center; margin: 3rem 0; }
+        .nav a {
+            display: inline-block;
+            padding: 12px 30px;
+            background: rgba(159, 196, 184, 0.2);
+            border: 2px solid rgba(159, 196, 184, 0.4);
+            border-radius: 50px;
+            color: #9fc4b8;
+            text-decoration: none;
+            margin: 0 10px;
+            transition: all 0.3s;
+        }
+        .nav a:hover {
+            background: rgba(159, 196, 184, 0.4);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(159, 196, 184, 0.3);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🌊 ÉTAPE 1 : LE RUISSEAU</h1>
+            <p class="subtitle">Le début de votre voyage aquatique</p>
+        </header>
+
+        <div class="info-box">
+            <h2>📋 Informations Générales</h2>
+            <p><strong>Difficulté :</strong> <span class="difficulty">Entre inoffensif et faire attention</span></p>
+            <p><strong>Règle générale :</strong> Maximum 10 poissons par niveau</p>
+            <p><strong>Profondeur initiale :</strong> 15m</p>
+            <p>L'aventure commence ici, dans les eaux douces et paisibles du ruisseau. Un endroit rassurant mais où il faut déjà commencer à collecter les pépites d'or...</p>
+        </div>
+
+        <div class="info-box">
+            <h2>🌳 Évolution par Niveau</h2>
+            
+            <div class="level">
+                <h3>Niveau 1 - Départ</h3>
+                <p><strong>Arbre :</strong> Cerisier japonais "Kansan"</p>
+                <p><strong>Créatures :</strong> <span class="creature">🐸 Têtards</span></p>
+                <p>Vous commencez votre périple sur cette île maudite. L'eau est claire, l'ambiance calme. Un bon point de départ pour vous familiariser avec l'environnement.</p>
+            </div>
+
+            <div class="level">
+                <h3>Niveau 2</h3>
+                <p><strong>Arbre :</strong> Poirier</p>
+                <p><strong>Créatures :</strong> <span class="creature">🐟 Ablettes de Heckel (5-6 cm, inoffensives)</span></p>
+                <p>L'environnement commence à évoluer. Les premiers poissons apparaissent, encore petits et inoffensifs.</p>
+            </div>
+
+            <div class="level">
+                <h3>Niveau 3</h3>
+                <p><strong>Arbre :</strong> Pêcher</p>
+                <p><strong>Créatures :</strong> <span class="creature">🐟 Bouvières (5-7 cm)</span></p>
+            </div>
+
+            <div class="level">
+                <h3>Niveau 4</h3>
+                <p><strong>Arbre :</strong> Oranger</p>
+                <p><strong>Créatures :</strong> <span class="creature">🐟 Épinoches (4-8 cm)</span></p>
+            </div>
+
+            <div class="level">
+                <h3>Niveau 5</h3>
+                <p><strong>Arbre :</strong> Pommier</p>
+                <p><strong>Créatures :</strong> <span class="creature">🐟 Perches-soleil (6 cm)</span></p>
+            </div>
+
+            <div class="level">
+                <h3>Niveau 6</h3>
+                <p><strong>Arbre :</strong> Citronnier</p>
+                <p><strong>Créatures :</strong> 
+                    <span class="creature">🐟 Ablettes de Heckel</span>
+                    <span class="creature">🐟 Bouvières</span>
+                    <span class="creature">🐟 Épinoches</span>
+                    <span class="creature">🐟 Perches-soleil</span>
+                    <span class="creature">🦞 Écrevisses (6 cm)</span>
+                </p>
+                <p>Le dernier niveau du Ruisseau rassemble toutes les créatures rencontrées jusqu'ici, plus les écrevisses. Une fois toutes les pépites collectées, vous pourrez accéder à l'Étape 2 : La Mare.</p>
+            </div>
+        </div>
+
+        <div class="nav">
+            <a href="index.html">← Retour à l'accueil</a>
+            <a href="etape2-mare.html">Étape 2 : La Mare →</a>
+        </div>
+    </div>
+</body>
+</html>
+

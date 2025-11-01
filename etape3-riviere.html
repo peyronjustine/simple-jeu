@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Étape 3 : La Rivière - Changement</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Georgia', serif;
+            background: linear-gradient(135deg, #1a2d3a 0%, #2d4a5a 50%, #1a2d3a 100%);
+            color: #e8e6e3;
+            padding: 20px;
+            min-height: 100vh;
+        }
+        .container { max-width: 1000px; margin: 0 auto; }
+        header { text-align: center; margin-bottom: 3rem; padding: 2rem 0; }
+        h1 { font-size: 3rem; color: #7a9fb8; text-shadow: 0 0 20px rgba(122, 159, 184, 0.5); margin-bottom: 0.5rem; }
+        .subtitle { font-size: 1.3rem; color: #95b4c8; font-style: italic; }
+        .info-box {
+            background: rgba(15, 25, 35, 0.6);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+            border: 1px solid rgba(122, 159, 184, 0.3);
+        }
+        .info-box h2 { color: #7a9fb8; margin-bottom: 1rem; }
+        .info-box p { line-height: 1.8; color: #d4e0dc; margin: 0.5rem 0; }
+        .level { 
+            background: rgba(20, 35, 45, 0.5);
+            border-left: 4px solid #5a7f9f;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 10px;
+        }
+        .level h3 { color: #7a9fb8; margin-bottom: 1rem; }
+        .special { 
+            background: rgba(200, 150, 50, 0.2);
+            border-left-color: #d4a050;
+        }
+        .creature { 
+            display: inline-block; 
+            background: rgba(122, 159, 184, 0.2);
+            padding: 0.5rem 1rem;
+            margin: 0.3rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+        .minigame {
+            background: rgba(200, 150, 50, 0.15);
+            padding: 1rem;
+            border-radius: 10px;
+            margin: 1rem 0;
+            border: 1px solid rgba(200, 150, 50, 0.3);
+        }
+        .nav { text-align: center; margin: 3rem 0; }
+        .nav a {
+            display: inline-block;
+            padding: 12px 30px;
+            background: rgba(122, 159, 184, 0.2);
+            border: 2px solid rgba(122, 159, 184, 0.4);
+            border-radius: 50px;
+            color: #7a9fb8;
+            text-decoration: none;
+            margin: 0 10px;
+            transition: all 0.3s;
+        }
+        .nav a:hover {
+            background: rgba(122, 159, 184, 0.4);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(122, 159, 184, 0.3);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🌊 ÉTAPE 3 : LA RIVIÈRE</h1>
+            <p class="subtitle">Les eaux s'approfondissent</p>
+        </header>
+
+        <div class="info-box">
+            <h2>📋 Informations Générales</h2>
+            <p><strong>Profondeur :</strong> 120m</p>
+            <p>La rivière s'élargit et s'approfondit. Le retour symbolique au cerisier marque un cycle, mais l'aventure continue bien au-delà...</p>
+        </div>
+
+        <div class="info-box">
+            <h2>🌳 Évolution par Niveau</h2>
+            
+            <div class="level special">
+                <h3>🎮 Niveau 1 - NIVEAU SPÉCIAL AVEC MÉCANISMES</h3>
+                <p><strong>Arbre :</strong> Cerisier (retour au début symbolique)</p>
+                
+                <p><strong>Mécanisme n°1 :</strong> Cercle orange sur un rocher - fait couler l'eau davantage quand touché.</p>
+                
+                <p><strong>Mécanisme n°2 :</strong> Système de mini-jeux (comme niveau 5 de la Mare) - 3 chiffres tirés : 1, 9, 4</p>
+                
+                <div class="minigame">
+                    <h4>🎮 Mini-jeu 1 : Puzzle</h4>
+                    <p>Puzzle de 40 pièces représentant l'île.</p>
+                </div>
+                
+                <div class="minigame">
+                    <h4>🎮 Mini-jeu 9 : Culture générale</h4>
+                    <p>Répondre à des questions de culture générale.</p>
+                </div>
+                
+                <div class="minigame">
+                    <h4>🎮 Mini-jeu 4 : Identification botanique</h4>
+                    <p>Attribuer les bons noms aux arbres fruitiers et plantes exotiques de la forêt amazonienne vus sur l'île.</p>
+                </div>
+
+                <p><strong>Créatures :</strong> 
+                    <span class="creature">🐟 Ablettes (10-15 cm)</span>
+                    <span class="creature">🐟 Black-bass (20-35 cm)</span>
+                    <span class="creature">🐟 Carassins (20 cm)</span>
+                </p>
+            </div>
+
+            <div class="level">
+                <h3>Niveau 2</h3>
+                <p><strong>Arbre :</strong> Prunier</p>
+                <p><strong>Créatures :</strong> 
+                    <span class="creature">🐟 Gardons (25-30 cm)</span>
+                    <span class="creature">🐟 Goujons (10-20 cm)</span>
+                    <span class="creature">🐟 Crémilles (10-12 cm)</span>
+                </p>
+            </div>
+
+            <div class="level">
+                <h3>Niveau 3</h3>
+                <p><strong>Arbre :</strong> Vigne (arbrisseau sarmenteux, grimpant, à fruits en grappes)</p>
+                <p><strong>Créatures :</strong> 
+                    <span class="creature">🐟 Perches communes (15-25 cm)</span>
+                    <span class="creature">🐟 Ombles chevaliers (30-35 cm)</span>
+                    <span class="creature">🐟 Perches (11-25 cm)</span>
+                </p>
+            </div>
+
+            <div class="level">
+                <h3>Niveau 4</h3>
+                <p><strong>Arbre :</strong> Myrtillier</p>
+                <p><strong>Créatures :</strong> 
+                    <span class="creature">🐟 Poissons-chats (18 cm)</span>
+                    <span class="creature">🐟 Rotengles (15-20 cm)</span>
+                    <span class="creature">🐟 Truites communes (18-20 cm)</span>
+                </p>
+            </div>
+
+            <div class="level">
+                <h3>Niveau 5</h3>
+                <p><strong>Arbre :</strong> Cassissier</p>
+                <p><strong>Créatures :</strong> 
+                    <span class="creature">🐟 Vairons (5-10 cm)</span>
+                    <span class="creature">🐟 Vandoises (15-20 cm)</span>
+                </p>
+            </div>
+        </div>
+
+        <div class="nav">
+            <a href="etape2-mare.html">← Étape 2 : La Mare</a>
+            <a href="index.html">Accueil</a>
+            <a href="etape4-riviere2.html">Étape 4 : Rivière 2 →</a>
+        </div>
+    </div>
+</body>
+</html>
+

@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Étape 7 : Océan 2 - Changement</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Georgia', serif;
+            background: linear-gradient(135deg, #0a1520 0%, #1a2d4a 50%, #0a1520 100%);
+            color: #e8e6e3;
+            padding: 20px;
+            min-height: 100vh;
+        }
+        .container { max-width: 1000px; margin: 0 auto; }
+        header { text-align: center; margin-bottom: 3rem; padding: 2rem 0; }
+        h1 { font-size: 3rem; color: #6a9fd4; text-shadow: 0 0 20px rgba(106, 159, 212, 0.5); margin-bottom: 0.5rem; }
+        .subtitle { font-size: 1.3rem; color: #85b4e8; font-style: italic; }
+        .info-box {
+            background: rgba(8, 15, 25, 0.6);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+            border: 1px solid rgba(106, 159, 212, 0.3);
+        }
+        .info-box h2 { color: #6a9fd4; margin-bottom: 1rem; }
+        .info-box p { line-height: 1.8; color: #d4e8f0; margin: 0.5rem 0; }
+        .level { 
+            background: rgba(12, 20, 35, 0.5);
+            border-left: 4px solid #4a7fa4;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 10px;
+        }
+        .level h3 { color: #6a9fd4; margin-bottom: 1rem; }
+        .glacial {
+            background: rgba(150, 200, 255, 0.2);
+            border-left-color: #9ac8ff;
+        }
+        .creature { 
+            display: inline-block; 
+            background: rgba(106, 159, 212, 0.2);
+            padding: 0.5rem 1rem;
+            margin: 0.3rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+        .nav { text-align: center; margin: 3rem 0; }
+        .nav a {
+            display: inline-block;
+            padding: 12px 30px;
+            background: rgba(106, 159, 212, 0.2);
+            border: 2px solid rgba(106, 159, 212, 0.4);
+            border-radius: 50px;
+            color: #6a9fd4;
+            text-decoration: none;
+            margin: 0 10px;
+            transition: all 0.3s;
+        }
+        .nav a:hover {
+            background: rgba(106, 159, 212, 0.4);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(106, 159, 212, 0.3);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🌊 ÉTAPE 7 : OCÉAN 2</h1>
+            <p class="subtitle">Océan profond</p>
+        </header>
+
+        <div class="info-box">
+            <h2>📋 Informations Générales</h2>
+            <p><strong>Profondeur :</strong> 8 335m 🌊</p>
+            <p>Les profondeurs abyssales révèlent leurs secrets. Les créatures deviennent de plus en plus étranges et parfois préhistoriques...</p>
+        </div>
+
+        <div class="info-box">
+            <h2>🌳 Évolution par Niveau</h2>
+            
+            <div class="level">
+                <h3>Niveau 1 - Zone Pélagique (0-200m)</h3>
+                <p><strong>Arbre :</strong> Olivier Verdale de l'Hérault</p>
+                <p><strong>Créatures :</strong> 
+                    <span class="creature">🐟 Thons rouges (1,5-2m) - nageurs ultra-rapides</span>
+                    <span class="creature">🐟 Espadons (2-3m) - rostre acéré</span>
+                    <span class="creature">🐟 Daurades coryphènes (1-1,5m) - couleurs éblouissantes</span>
+                </p>
+            </div>
+
+            <div class="level">
+                <h3>Niveau 2 - Zone Mésopélagique (200-1000m)</h3>
+                <p><strong>Arbre :</strong> Prunier Mirabelle Belle de Nancy</p>
+                <p><strong>Créatures :</strong> 
+                    <span class="creature">🐟 Poissons-lanternes (10-30 cm) - bioluminescents</span>
+                    <span class="creature">🐙 Calmars de Humboldt (1-1,5m) - agressifs</span>
+                    <span class="creature">🐟 Marlins bleus (2-4m) - chasseurs élégants</span>
+                </p>
+            </div>
+
+            <div class="level">
+                <h3>Niveau 3 - Zone Bathypélagique (1000-4000m)</h3>
+                <p><strong>Arbre :</strong> TRIO de Kiwaïs</p>
+                <p><strong>Créatures :</strong> 
+                    <span class="creature">🐟 Poissons-hachettes (5-10 cm) - photophores ventraux</span>
+                    <span class="creature">🦈 Requins-lézards (1,5-2m) - aspect préhistorique</span>
+                    <span class="creature">🐟 Poissons-vipères (30-60 cm) - dents énormes, bioluminescence</span>
+                </p>
+            </div>
+
+            <div class="level">
+                <h3>Niveau 4 - Zone Abyssopélagique (4000-6000m)</h3>
+                <p><strong>Arbre :</strong> Olivier Lucques</p>
+                <p><strong>Créatures :</strong> 
+                    <span class="creature">🐟 Poissons-dragons (15-50 cm) - barbillon lumineux</span>
+                    <span class="creature">🐙 Calmars vampires (30 cm) - cape membraneuse</span>
+                    <span class="creature">🦈 Requins-lutin (3-4m) - mâchoires protractiles</span>
+                </p>
+            </div>
+
+            <div class="level">
+                <h3>Niveau 5 - Zone Hadale (6000-8000m)</h3>
+                <p><strong>Arbre :</strong> Feijoa gros fruits Triumph</p>
+                <p><strong>Créatures :</strong> 
+                    <span class="creature">🐟 Baudroies abyssales (20-100 cm) - leurre bioluminescent</span>
+                    <span class="creature">🐟 Poissons-ogres (15-20 cm) - estomac extensible</span>
+                    <span class="creature">🐟 Liparidés des abysses (20-30 cm) - corps gélatineux</span>
+                </p>
+            </div>
+
+            <div class="level glacial">
+                <h3>🧊 Niveau 6 - Transformation Glaciaire</h3>
+                <p><strong>Arbre :</strong> Noyer Ronde de Montignac</p>
+                <p><strong>Événement :</strong> L'air devient froid, le vent glacial. De gros blocs de glace apparaissent et flottent autour de l'île. Entre les blocs, on peut voir des poissons préhistoriques piégés dedans.</p>
+                <p><strong>Créatures :</strong> 
+                    <span class="creature">🐟 Chimères des abysses (1-1,5m) - aspect fantomatique</span>
+                    <span class="creature">🐟 Poissons-rats (30-40 cm) - yeux réduits</span>
+                    <span class="creature">🐟 Anguilles-pélican (60-100 cm) - bouche immense</span>
+                </p>
+                <p><strong>Dans les blocs de glace :</strong> Dunkleosteus, Cœlacanthes, Xiphactinus</p>
+            </div>
+        </div>
+
+        <div class="nav">
+            <a href="etape6-marecageuse.html">← Étape 6 : Eau Marécageuse</a>
+            <a href="index.html">Accueil</a>
+            <a href="etape8-antarctique.html">Étape 8 : Antarctique →</a>
+        </div>
+    </div>
+</body>
+</html>
+
