@@ -2004,7 +2004,16 @@
             }
 
             function moveCharacterToTouch(x, y) {
-                if (isResting || healthSystem.isDead) return;
+                // Vérifier les conditions qui bloquent le mouvement
+                if (isResting) {
+                    return;
+                }
+                if (healthSystem && healthSystem.isDead) {
+                    return;
+                }
+                if (!character) {
+                    return;
+                }
                 
                 // Limiter les coordonnées au cercle d'eau
                 const constrained = constrainToCircle(x, y);
@@ -2113,7 +2122,19 @@
             let keyIntervals = {}; // Stocker les intervalles pour pouvoir les nettoyer
 
             function moveCharacterWithKeys(direction) {
-                if (isResting || healthSystem.isDead) return;
+                // Vérifier les conditions qui bloquent le mouvement
+                if (isResting) {
+                    console.log('Mouvement bloqué: le personnage est au repos');
+                    return;
+                }
+                if (healthSystem && healthSystem.isDead) {
+                    console.log('Mouvement bloqué: le personnage est mort');
+                    return;
+                }
+                if (!character) {
+                    console.log('Mouvement bloqué: personnage non trouvé');
+                    return;
+                }
                 
                 let newX = characterX;
                 let newY = characterY;
@@ -2131,6 +2152,8 @@
                     case 'ArrowRight':
                         newX = characterX + moveSpeed;
                         break;
+                    default:
+                        return; // Touche non reconnue
                 }
 
                 // Limiter au cercle d'eau avant de vérifier l'île
@@ -2171,13 +2194,16 @@
                     e.preventDefault(); // Empêcher le scroll de la page
                     e.stopPropagation(); // Empêcher la propagation de l'événement
                     
+                    // Debug: vérifier l'état
+                    console.log('Touche pressée:', e.key, 'isResting:', isResting, 'isDead:', healthSystem?.isDead);
+                    
                     if (!keysPressed[e.key]) {
                         keysPressed[e.key] = true;
                         moveCharacterWithKeys(e.key);
                         
                         // Répéter le mouvement si la touche reste enfoncée
                         keyIntervals[e.key] = setInterval(() => {
-                            if (keysPressed[e.key]) {
+                            if (keysPressed[e.key] && !isResting && (!healthSystem || !healthSystem.isDead)) {
                                 moveCharacterWithKeys(e.key);
                             } else {
                                 clearInterval(keyIntervals[e.key]);
