@@ -28,11 +28,14 @@
 
         body {
             font-family: 'Georgia', 'Times New Roman', serif;
-            background: #1a2332;
-            background-image: 
-                radial-gradient(circle at 20% 50%, rgba(100, 150, 200, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 80% 80%, rgba(150, 100, 200, 0.1) 0%, transparent 50%),
-                linear-gradient(135deg, #0f1621 0%, #1a2332 50%, #0d1a2e 100%);
+            /* Arrière-plan : image IMG_E4190.png */
+            background-image: url('IMG_E4190.png');
+            background-size: cover;
+            background-position: center center;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            /* Couleur de fallback si l'image ne charge pas */
+            background-color: #1a2332;
             min-height: 100vh;
             display: flex;
             flex-direction: column;

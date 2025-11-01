@@ -23,13 +23,14 @@
 
         body {
             font-family: 'Georgia', serif;
-            background: linear-gradient(180deg, 
-                #0a4d6a 0%, 
-                #0d6b8f 20%,
-                #0f7aa0 40%,
-                #1a4a5f 60%,
-                #0f2a35 80%,
-                #0a1a25 100%);
+            /* Arrière-plan : image IMG_E4190.png */
+            background-image: url('IMG_E4190.png');
+            background-size: cover;
+            background-position: center center;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            /* Couleur de fallback si l'image ne charge pas */
+            background-color: #0a1a25;
             min-height: 100vh;
             overflow-x: hidden;
             color: #e8e6e3;
