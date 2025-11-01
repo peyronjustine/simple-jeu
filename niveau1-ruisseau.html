@@ -1792,12 +1792,19 @@
                         }
                     }
 
-                    // Effet visuel
-                    nugget.style.transition = 'all 0.5s';
+                    // Effet visuel : la pépite disparaît avec une animation
+                    nugget.style.transition = 'all 0.5s ease-out';
                     nugget.style.transform = 'scale(2)';
                     nugget.style.opacity = '0';
+                    
+                    // Après l'animation, cacher complètement la pépite
+                    setTimeout(() => {
+                        nugget.style.display = 'none';
+                        nugget.style.pointerEvents = 'none';
+                    }, 500);
 
                     // Animation du personnage (saut de joie)
+                    character.style.transition = 'transform 0.3s ease-out';
                     character.style.transform = 'scale(1.3)';
                     setTimeout(() => {
                         character.style.transform = 'scale(1)';
@@ -1865,13 +1872,15 @@
                     }
                 }
                 
-                // Réinitialiser toutes les pépites
+                // Réinitialiser toutes les pépites (les faire réapparaître)
                 nuggets.forEach(nugget => {
                     nugget.classList.remove('collected');
                     const nuggetEl = nugget;
                     nuggetEl.style.transition = '';
                     nuggetEl.style.transform = '';
                     nuggetEl.style.opacity = '1';
+                    nuggetEl.style.display = ''; // Réafficher la pépite
+                    nuggetEl.style.pointerEvents = ''; // Réactiver les interactions
                 });
                 
                 // Réinitialiser la position du personnage
