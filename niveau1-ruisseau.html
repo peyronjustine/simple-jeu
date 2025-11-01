@@ -1471,10 +1471,19 @@
                 progressBar.textContent = '0%';
                 
                 // Réinitialiser le système de progression (ne pas perdre la progression globale)
-                if (gameProgression) {
+                if (gameProgression && gameProgression.progression) {
                     // On garde la progression globale, on ne fait que réinitialiser ce niveau
-                    gameProgression.levelsCompleted.delete('niveau1-ruisseau');
-                    gameProgression.save();
+                    // Retirer les pépites de ce niveau du total global
+                    const levelId = 'niveau1-ruisseau';
+                    if (gameProgression.progression.levelsCompleted[levelId]) {
+                        // Si le niveau était complété, soustraire ses pépites du total
+                        gameProgression.progression.totalCollected = Math.max(0, 
+                            gameProgression.progression.totalCollected - totalNuggets
+                        );
+                        // Marquer le niveau comme non complété
+                        delete gameProgression.progression.levelsCompleted[levelId];
+                        gameProgression.saveProgression();
+                    }
                     
                     // Mettre à jour l'affichage
                     const totalGlobal = gameProgression.getTotalCollected();
@@ -1482,6 +1491,8 @@
                         globalCollectedEl.textContent = totalGlobal;
                         if (totalGlobal > 0) {
                             globalProgressHUD.style.display = 'flex';
+                        } else {
+                            globalProgressHUD.style.display = 'none';
                         }
                     }
                 }
