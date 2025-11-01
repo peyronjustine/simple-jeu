@@ -1493,12 +1493,32 @@
                 return { x, y };
             }
 
+            // Fonction pour limiter une position au cercle d'eau (zone circulaire)
+            function constrainToCircle(x, y) {
+                const centerX = 50;
+                const centerY = 50;
+                const maxRadius = 48; // Rayon maximum du cercle (légèrement en dessous de 50% pour éviter les bords)
+                
+                // Calculer la distance du centre
+                const distance = Math.sqrt(Math.pow(x - centerX, 2) + Math.pow(y - centerY, 2));
+                
+                // Si la position est en dehors du cercle, la ramener au bord du cercle
+                if (distance > maxRadius) {
+                    const angle = Math.atan2(y - centerY, x - centerX);
+                    x = centerX + Math.cos(angle) * maxRadius;
+                    y = centerY + Math.sin(angle) * maxRadius;
+                }
+                
+                return { x, y };
+            }
+
             function moveCharacterToTouch(x, y) {
                 if (isResting || healthSystem.isDead) return;
                 
-                // Limiter les coordonnées
-                x = Math.max(5, Math.min(95, x));
-                y = Math.max(5, Math.min(95, y));
+                // Limiter les coordonnées au cercle d'eau
+                const constrained = constrainToCircle(x, y);
+                x = constrained.x;
+                y = constrained.y;
 
                 // Vérifier que la position est dans l'eau (pas sur l'île)
                 const centerX = 50;
@@ -1609,18 +1629,23 @@
 
                 switch(direction) {
                     case 'ArrowUp':
-                        newY = Math.max(5, characterY - moveSpeed);
+                        newY = characterY - moveSpeed;
                         break;
                     case 'ArrowDown':
-                        newY = Math.min(95, characterY + moveSpeed);
+                        newY = characterY + moveSpeed;
                         break;
                     case 'ArrowLeft':
-                        newX = Math.max(5, characterX - moveSpeed);
+                        newX = characterX - moveSpeed;
                         break;
                     case 'ArrowRight':
-                        newX = Math.min(95, characterX + moveSpeed);
+                        newX = characterX + moveSpeed;
                         break;
                 }
+
+                // Limiter au cercle d'eau avant de vérifier l'île
+                const constrained = constrainToCircle(newX, newY);
+                newX = constrained.x;
+                newY = constrained.y;
 
                 // Vérifier que la nouvelle position est dans l'eau (pas sur l'île)
                 const centerX = 50;
