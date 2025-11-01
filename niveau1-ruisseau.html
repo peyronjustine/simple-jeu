@@ -35,33 +35,9 @@
             filter: none;
         }
 
-        /* Overlay pour effet crayonné/texturé */
+        /* Pas d'overlay complexe - style dessin simple */
         body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: 
-                repeating-linear-gradient(
-                    0deg,
-                    transparent,
-                    transparent 2px,
-                    rgba(0, 0, 0, 0.03) 2px,
-                    rgba(0, 0, 0, 0.03) 4px
-                ),
-                repeating-linear-gradient(
-                    90deg,
-                    transparent,
-                    transparent 2px,
-                    rgba(0, 0, 0, 0.03) 2px,
-                    rgba(0, 0, 0, 0.03) 4px
-                );
-            pointer-events: none;
-            z-index: 1000;
-            mix-blend-mode: multiply;
-            opacity: 0.4;
+            display: none;
         }
 
         .container {
@@ -313,6 +289,9 @@
             max-width: 1200px;
             margin: 2rem auto;
             aspect-ratio: 1;
+            overflow: hidden;
+            transition: transform 0.5s ease, scale 0.5s ease;
+            transform-origin: center center;
         }
 
         .island {
@@ -986,23 +965,25 @@
             <div class="tadpole" style="top: 80%; left: 80%; animation-delay: 0.5s; z-index: 15;" title="Têtard"></div>
             <!-- Distance: sqrt(30² + 30²) = sqrt(1800) ≈ 42.4% → OK -->
 
-            <!-- Pépites d'or -->
-            <div class="nugget-position" style="top: 20%; left: 30%;">
+            <!-- Pépites d'or dans l'eau (positionnées au hasard dans la couronne d'eau) -->
+            <!-- La couronne d'eau : entre 30% (bord île) et 48% (bord eau) du centre -->
+            <!-- Positions générées aléatoirement dans cette zone -->
+            <div class="nugget-position nugget-1">
                 <div class="gold-nugget" data-nugget="1"></div>
             </div>
-            <div class="nugget-position" style="top: 30%; right: 25%;">
+            <div class="nugget-position nugget-2">
                 <div class="gold-nugget" data-nugget="2"></div>
             </div>
-            <div class="nugget-position" style="bottom: 25%; left: 35%;">
+            <div class="nugget-position nugget-3">
                 <div class="gold-nugget" data-nugget="3"></div>
             </div>
-            <div class="nugget-position" style="bottom: 35%; right: 30%;">
+            <div class="nugget-position nugget-4">
                 <div class="gold-nugget" data-nugget="4"></div>
             </div>
-            <div class="nugget-position" style="top: 50%; left: 20%;">
+            <div class="nugget-position nugget-5">
                 <div class="gold-nugget" data-nugget="5"></div>
             </div>
-            <div class="nugget-position" style="top: 50%; right: 20%;">
+            <div class="nugget-position nugget-6">
                 <div class="gold-nugget" data-nugget="6"></div>
             </div>
 
@@ -1294,6 +1275,95 @@
             character.style.left = '50%';
             character.style.top = '50%';
             
+            // Générer des positions aléatoires pour les pépites dans l'eau
+            // Zone d'eau : entre 32% (bord de l'île) et 48% (bord de l'eau) du centre
+            function generateRandomNuggetPosition() {
+                const minRadius = 32; // Bord de l'île (30% + marge)
+                const maxRadius = 48; // Bord de l'eau
+                const angle = Math.random() * 2 * Math.PI; // Angle aléatoire
+                const radius = minRadius + Math.random() * (maxRadius - minRadius); // Rayon aléatoire dans la zone
+                
+                // Convertir en pourcentage de position
+                const x = 50 + (radius * Math.cos(angle));
+                const y = 50 + (radius * Math.sin(angle));
+                
+                return { x, y };
+            }
+            
+            // Positionner toutes les pépites aléatoirement dans l'eau
+            const nuggetPositions = document.querySelectorAll('.nugget-position');
+            nuggetPositions.forEach((nuggetPos) => {
+                const pos = generateRandomNuggetPosition();
+                nuggetPos.style.position = 'absolute';
+                nuggetPos.style.left = pos.x + '%';
+                nuggetPos.style.top = pos.y + '%';
+                nuggetPos.style.transform = 'translate(-50%, -50%)';
+                nuggetPos.style.zIndex = '50';
+            });
+            
+            // Système de caméra qui suit le personnage
+            // Initialiser la caméra au chargement
+            updateCamera();
+            let cameraZoom = 1;
+            let cameraOffsetX = 0;
+            let cameraOffsetY = 0;
+            
+            function updateCamera() {
+                if (!islandContainer || !character) return;
+                
+                // Calculer la distance du personnage au centre
+                const centerX = 50;
+                const centerY = 50;
+                const distanceFromCenter = Math.sqrt(
+                    Math.pow(characterX - centerX, 2) + 
+                    Math.pow(characterY - centerY, 2)
+                );
+                
+                // Distance à l'arbre (au centre de l'île)
+                const distanceToTree = distanceFromCenter;
+                
+                // Distance au bord de l'eau (distance au bord extérieur)
+                const distanceToWaterEdge = 50 - distanceFromCenter; // Distance jusqu'au bord (50% est le bord)
+                
+                let zoom = 1;
+                let offsetX = 0;
+                let offsetY = 0;
+                
+                // Zoom si proche de l'arbre (distance < 18% du centre = proche de l'arbre)
+                if (distanceToTree < 18) {
+                    zoom = 1.5; // Zoom important pour voir l'arbre
+                    // Centrer la caméra sur l'arbre (centre)
+                    const charPercentX = (characterX - 50) / 50; // Normaliser entre -1 et 1
+                    const charPercentY = (characterY - 50) / 50;
+                    offsetX = -charPercentX * 15; // Décalage pour centrer sur l'arbre
+                    offsetY = -charPercentY * 15;
+                }
+                // Zoom si proche du bord de l'eau (pour voir les têtards)
+                else if (distanceToWaterEdge < 5) {
+                    zoom = 1.3; // Zoom modéré pour voir les têtards
+                    // Centrer sur le personnage quand il est près de l'eau
+                    const charPercentX = (characterX - 50) / 50;
+                    const charPercentY = (characterY - 50) / 50;
+                    offsetX = -charPercentX * 10;
+                    offsetY = -charPercentY * 10;
+                }
+                // Sinon, suivre légèrement le personnage
+                else {
+                    zoom = 1;
+                    const charPercentX = (characterX - 50) / 50;
+                    const charPercentY = (characterY - 50) / 50;
+                    offsetX = -charPercentX * 5; // Suivi doux
+                    offsetY = -charPercentY * 5;
+                }
+                
+                cameraZoom = zoom;
+                cameraOffsetX = offsetX;
+                cameraOffsetY = offsetY;
+                
+                // Appliquer la transformation à la caméra
+                islandContainer.style.transform = `translate(${cameraOffsetX}%, ${cameraOffsetY}%) scale(${cameraZoom})`;
+            }
+            
             // Fonction pour mettre à jour le statut sous-marin
             function updateUnderwaterStatus() {
                 if (!healthSystem) return;
@@ -1551,6 +1621,9 @@
                     character.style.top = y + '%';
                     character.classList.add('swimming');
                     
+                    // Mettre à jour la caméra
+                    updateCamera();
+                    
                     // Vérifier la collecte après le mouvement
                     setTimeout(() => {
                         updateUnderwaterStatus();
@@ -1563,6 +1636,8 @@
                     character.style.left = x + '%';
                     character.style.top = y + '%';
                     updateUnderwaterStatus();
+                    // Mettre à jour la caméra
+                    updateCamera();
                 }
             }
 
@@ -1679,6 +1754,9 @@
                     character.style.left = characterX + '%';
                     character.style.top = characterY + '%';
                     
+                    // Mettre à jour la caméra
+                    updateCamera();
+                    
                     // Mettre à jour immédiatement le statut et vérifier la collecte
                     updateUnderwaterStatus();
                     checkNuggetCollection(); // Vérifier immédiatement après le mouvement
@@ -1689,6 +1767,8 @@
                     character.style.left = characterX + '%';
                     character.style.top = characterY + '%';
                     updateUnderwaterStatus();
+                    // Mettre à jour la caméra
+                    updateCamera();
                 }
             }
 
