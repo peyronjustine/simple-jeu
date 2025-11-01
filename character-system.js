@@ -261,6 +261,106 @@ function initCharacterSystem(config = {}) {
         }
     });
 
+    // Gestion du contrôle tactile (mobile)
+    let touchStartX = null;
+    let touchStartY = null;
+    let touchStartTime = null;
+    let isTouching = false;
+    let touchMoveInterval = null;
+
+    function getTouchPosition(e) {
+        const touch = e.touches[0] || e.changedTouches[0];
+        const containerRect = container.getBoundingClientRect();
+        const containerWidth = containerRect.width;
+        const containerHeight = containerRect.height;
+        
+        const x = ((touch.clientX - containerRect.left) / containerWidth) * 100;
+        const y = ((touch.clientY - containerRect.top) / containerHeight) * 100;
+        
+        return { x, y };
+    }
+
+    function moveCharacterToTouch(x, y) {
+        // Limiter les coordonnées
+        x = Math.max(5, Math.min(95, x));
+        y = Math.max(5, Math.min(95, y));
+
+        // Vérifier que la position est dans l'eau (pas sur l'île)
+        const centerX = 50;
+        const centerY = 50;
+        const distance = Math.sqrt(Math.pow(x - centerX, 2) + Math.pow(y - centerY, 2));
+        
+        // Ne se déplace que dans l'eau (au-delà de 25% du centre)
+        if (distance > 25) {
+            if (moveCharacter(x, y, config.inWaterOnly !== false)) {
+                currentCharacterX = x;
+                currentCharacterY = y;
+            }
+        }
+    }
+
+    // Détection du début du toucher
+    container.addEventListener('touchstart', (e) => {
+        e.preventDefault();
+        const touchPos = getTouchPosition(e);
+        touchStartX = touchPos.x;
+        touchStartY = touchPos.y;
+        touchStartTime = Date.now();
+        isTouching = true;
+
+        // Vérifier si on touche directement une pépite
+        const touch = e.touches[0];
+        const elementUnderTouch = document.elementFromPoint(touch.clientX, touch.clientY);
+        const nugget = elementUnderTouch?.closest('.gold-nugget');
+        
+        if (nugget && !nugget.classList.contains('collected')) {
+            // Collecte tactile directe de la pépite
+            collectNugget(nugget);
+            return;
+        }
+
+        // Déplacer le personnage vers le point touché
+        moveCharacterToTouch(touchPos.x, touchPos.y);
+
+        // Continuer à suivre le doigt si l'utilisateur glisse
+        touchMoveInterval = setInterval(() => {
+            if (isTouching && e.touches.length > 0) {
+                const currentPos = getTouchPosition(e);
+                moveCharacterToTouch(currentPos.x, currentPos.y);
+            }
+        }, 100);
+    }, { passive: false });
+
+    // Suivre le mouvement du doigt
+    container.addEventListener('touchmove', (e) => {
+        e.preventDefault();
+        if (isTouching && e.touches.length > 0) {
+            const touchPos = getTouchPosition(e);
+            moveCharacterToTouch(touchPos.x, touchPos.y);
+        }
+    }, { passive: false });
+
+    // Fin du toucher
+    container.addEventListener('touchend', (e) => {
+        e.preventDefault();
+        isTouching = false;
+        if (touchMoveInterval) {
+            clearInterval(touchMoveInterval);
+            touchMoveInterval = null;
+        }
+        character.classList.remove('swimming');
+    }, { passive: false });
+
+    container.addEventListener('touchcancel', (e) => {
+        e.preventDefault();
+        isTouching = false;
+        if (touchMoveInterval) {
+            clearInterval(touchMoveInterval);
+            touchMoveInterval = null;
+        }
+        character.classList.remove('swimming');
+    }, { passive: false });
+
     // Vérifier la collecte en continu
     setInterval(checkNuggetCollection, 200);
 

@@ -547,6 +547,8 @@
             transition: all 0.3s;
             z-index: 50;
             pointer-events: all;
+            touch-action: manipulation; /* Optimisation tactile */
+            -webkit-tap-highlight-color: rgba(255, 215, 0, 0.3); /* Feedback visuel sur mobile */
             /* Éclat réaliste mais crayonné */
             filter: contrast(1.3) brightness(1.1);
         }
@@ -941,6 +943,136 @@
                     }
                 });
             }
+
+            // Gestion de la collecte tactile directe des pépites
+            nuggets.forEach((nugget) => {
+                // Permettre la collecte tactile directe
+                nugget.addEventListener('touchstart', (e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    if (!nugget.classList.contains('collected')) {
+                        collectNugget(nugget);
+                    }
+                }, { passive: false });
+
+                // Permettre aussi la collecte au clic (pour compatibilité)
+                nugget.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    if (!nugget.classList.contains('collected')) {
+                        collectNugget(nugget);
+                    }
+                });
+            });
+
+            // Contrôle tactile du personnage (mobile)
+            let touchStartX = null;
+            let touchStartY = null;
+            let isTouching = false;
+            let touchMoveInterval = null;
+
+            function getTouchPosition(e) {
+                const touch = e.touches[0] || e.changedTouches[0];
+                const containerRect = islandContainer.getBoundingClientRect();
+                const containerWidth = containerRect.width;
+                const containerHeight = containerRect.height;
+                
+                const x = ((touch.clientX - containerRect.left) / containerWidth) * 100;
+                const y = ((touch.clientY - containerRect.top) / containerHeight) * 100;
+                
+                return { x, y };
+            }
+
+            function moveCharacterToTouch(x, y) {
+                // Limiter les coordonnées
+                x = Math.max(5, Math.min(95, x));
+                y = Math.max(5, Math.min(95, y));
+
+                // Vérifier que la position est dans l'eau (pas sur l'île)
+                const centerX = 50;
+                const centerY = 50;
+                const distance = Math.sqrt(Math.pow(x - centerX, 2) + Math.pow(y - centerY, 2));
+                
+                // Ne se déplace que dans l'eau (au-delà de 25% du centre)
+                if (distance > 25) {
+                    characterX = x;
+                    characterY = y;
+                    character.style.left = x + '%';
+                    character.style.top = y + '%';
+                    character.classList.add('swimming');
+                    
+                    // Vérifier la collecte après le mouvement
+                    setTimeout(() => {
+                        checkNuggetCollection();
+                    }, 100);
+                }
+            }
+
+            // Gestion du toucher sur le conteneur pour déplacer le personnage
+            islandContainer.addEventListener('touchstart', (e) => {
+                // Vérifier d'abord si on touche une pépite
+                const touch = e.touches[0];
+                const elementUnderTouch = document.elementFromPoint(touch.clientX, touch.clientY);
+                const nugget = elementUnderTouch?.closest('.gold-nugget');
+                
+                // Si on touche une pépite, la collecter (géré par l'event listener de la pépite)
+                if (nugget) {
+                    return;
+                }
+
+                // Sinon, déplacer le personnage
+                e.preventDefault();
+                const touchPos = getTouchPosition(e);
+                touchStartX = touchPos.x;
+                touchStartY = touchPos.y;
+                isTouching = true;
+
+                moveCharacterToTouch(touchPos.x, touchPos.y);
+
+                // Continuer à suivre le doigt si l'utilisateur glisse
+                touchMoveInterval = setInterval(() => {
+                    if (isTouching && e.touches.length > 0) {
+                        const currentPos = getTouchPosition(e);
+                        moveCharacterToTouch(currentPos.x, currentPos.y);
+                    }
+                }, 100);
+            }, { passive: false });
+
+            islandContainer.addEventListener('touchmove', (e) => {
+                // Vérifier d'abord si on touche une pépite
+                const touch = e.touches[0];
+                const elementUnderTouch = document.elementFromPoint(touch.clientX, touch.clientY);
+                const nugget = elementUnderTouch?.closest('.gold-nugget');
+                
+                // Si on touche une pépite, ne pas déplacer le personnage
+                if (nugget) {
+                    return;
+                }
+
+                if (isTouching && e.touches.length > 0) {
+                    e.preventDefault();
+                    const touchPos = getTouchPosition(e);
+                    moveCharacterToTouch(touchPos.x, touchPos.y);
+                }
+            }, { passive: false });
+
+            islandContainer.addEventListener('touchend', (e) => {
+                isTouching = false;
+                if (touchMoveInterval) {
+                    clearInterval(touchMoveInterval);
+                    touchMoveInterval = null;
+                }
+                character.classList.remove('swimming');
+            }, { passive: false });
+
+            islandContainer.addEventListener('touchcancel', (e) => {
+                isTouching = false;
+                if (touchMoveInterval) {
+                    clearInterval(touchMoveInterval);
+                    touchMoveInterval = null;
+                }
+                character.classList.remove('swimming');
+            }, { passive: false });
 
             // Contrôle du personnage avec les flèches du clavier
             const moveSpeed = 2; // Pourcentage de déplacement par appui
