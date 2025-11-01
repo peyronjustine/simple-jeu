@@ -1210,8 +1210,11 @@
             const totalNuggets = 6;
             const nuggets = document.querySelectorAll('.gold-nugget');
             const collectedCountEl = document.getElementById('collectedCount');
+            const totalNuggetsEl = document.getElementById('totalNuggets');
             const progressBar = document.getElementById('progressBar');
             const victoryMessage = document.getElementById('victoryMessage');
+            const globalProgressHUD = document.getElementById('globalProgressHUD');
+            const globalCollectedEl = document.getElementById('globalCollected');
 
             // Vérifier que les éléments existent
             if (!nuggets.length) {
