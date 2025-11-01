@@ -33,6 +33,7 @@
             background-color: #0a1a25;
             min-height: 100vh;
             overflow-x: hidden;
+            overflow-y: hidden; /* Empêcher le défilement vertical avec les flèches */
             color: #e8e6e3;
             position: relative;
             /* Filtre crayonné pour l'esthétique */
@@ -1564,10 +1565,11 @@
                 }
             }
 
-            // Gestion des touches du clavier
+            // Gestion des touches du clavier - Empêcher le défilement de la page
             document.addEventListener('keydown', (e) => {
                 if (['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'].includes(e.key)) {
                     e.preventDefault(); // Empêcher le scroll de la page
+                    e.stopPropagation(); // Empêcher la propagation de l'événement
                     
                     if (!keysPressed[e.key]) {
                         keysPressed[e.key] = true;
@@ -1583,11 +1585,16 @@
                             }
                         }, 100); // Répétition plus rapide pour une meilleure réactivité
                     }
+                    
+                    return false; // Empêcher tout comportement par défaut
                 }
-            });
+            }, { passive: false }); // Important: passive: false pour permettre preventDefault
 
             document.addEventListener('keyup', (e) => {
                 if (['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'].includes(e.key)) {
+                    e.preventDefault(); // Empêcher aussi sur keyup
+                    e.stopPropagation();
+                    
                     keysPressed[e.key] = false;
                     // Nettoyer l'intervalle de répétition
                     if (keyIntervals[e.key]) {
@@ -1595,8 +1602,10 @@
                         delete keyIntervals[e.key];
                     }
                     character.classList.remove('swimming', 'moving'); // Arrêter l'animation de nage
+                    
+                    return false;
                 }
-            });
+            }, { passive: false });
 
             // Vérifier la collecte en continu toutes les 100ms pour une meilleure réactivité
             setInterval(checkNuggetCollection, 100);
