@@ -681,7 +681,9 @@
                 const message = messages[Math.floor(Math.random() * messages.length)];
                 
                 setTimeout(() => {
-                    alert('🌊 ' + message + '\n\n🚀 Le jeu sera bientôt disponible !\n\nPour l\'instant, explorez les différentes étapes depuis le menu.');
+                    if (confirm('🌊 ' + message + '\n\n🎮 Souhaitez-vous commencer le Niveau 1 du Ruisseau maintenant ?')) {
+                        window.location.href = 'niveau1-ruisseau.html';
+                    }
                 }, 300);
             } else {
                 errorDiv.classList.add('show');
