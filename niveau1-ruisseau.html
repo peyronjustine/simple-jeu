@@ -474,67 +474,95 @@
     </div>
 
     <script>
-        let collectedNuggets = 0;
-        const totalNuggets = 6;
-        const nuggets = document.querySelectorAll('.gold-nugget');
-        const collectedCountEl = document.getElementById('collectedCount');
-        const progressBar = document.getElementById('progressBar');
-        const victoryMessage = document.getElementById('victoryMessage');
+        // Attendre que le DOM soit complètement chargé
+        document.addEventListener('DOMContentLoaded', () => {
+            let collectedNuggets = 0;
+            const totalNuggets = 6;
+            const nuggets = document.querySelectorAll('.gold-nugget');
+            const collectedCountEl = document.getElementById('collectedCount');
+            const progressBar = document.getElementById('progressBar');
+            const victoryMessage = document.getElementById('victoryMessage');
 
-        // Ajouter les effets de vague
-        function createRipple() {
-            const water = document.querySelector('.water');
-            const ripple = document.createElement('div');
-            ripple.className = 'water-ripple';
-            const x = Math.random() * 100;
-            const y = Math.random() * 100;
-            ripple.style.left = x + '%';
-            ripple.style.top = y + '%';
-            water.appendChild(ripple);
-            
-            setTimeout(() => {
-                ripple.remove();
-            }, 2000);
-        }
+            // Vérifier que les éléments existent
+            if (!nuggets.length) {
+                console.error('Aucune pépite d\'or trouvée');
+                return;
+            }
+            if (!collectedCountEl || !progressBar || !victoryMessage) {
+                console.error('Éléments UI manquants');
+                return;
+            }
 
-        setInterval(createRipple, 3000);
+            // Initialiser la barre de progression
+            progressBar.style.width = '0%';
+            progressBar.textContent = '0%';
 
-        // Système de collecte
-        nuggets.forEach(nugget => {
-            nugget.addEventListener('click', () => {
-                if (!nugget.classList.contains('collected')) {
-                    nugget.classList.add('collected');
-                    collectedNuggets++;
-                    
-                    // Animation de collecte
-                    collectedCountEl.textContent = collectedNuggets;
-                    const progress = (collectedNuggets / totalNuggets) * 100;
-                    progressBar.style.width = progress + '%';
-                    progressBar.textContent = Math.round(progress) + '%';
+            // Ajouter les effets de vague
+            function createRipple() {
+                const water = document.querySelector('.water');
+                if (!water) return;
+                
+                const ripple = document.createElement('div');
+                ripple.className = 'water-ripple';
+                const x = Math.random() * 100;
+                const y = Math.random() * 100;
+                ripple.style.left = x + '%';
+                ripple.style.top = y + '%';
+                water.appendChild(ripple);
+                
+                setTimeout(() => {
+                    ripple.remove();
+                }, 2000);
+            }
 
-                    // Son visuel (créer un effet)
-                    nugget.style.transition = 'all 0.5s';
-                    nugget.style.transform = 'scale(2)';
-                    nugget.style.opacity = '0';
+            // Démarrer les effets de vague
+            createRipple(); // Première vague immédiate
+            setInterval(createRipple, 3000);
 
-                    // Vérifier si toutes les pépites sont collectées
-                    if (collectedNuggets === totalNuggets) {
-                        setTimeout(() => {
-                            victoryMessage.classList.add('show');
-                        }, 500);
+            // Système de collecte
+            nuggets.forEach((nugget, index) => {
+                nugget.addEventListener('click', () => {
+                    if (!nugget.classList.contains('collected')) {
+                        nugget.classList.add('collected');
+                        collectedNuggets++;
+                        
+                        // Animation de collecte
+                        collectedCountEl.textContent = collectedNuggets;
+                        const progress = (collectedNuggets / totalNuggets) * 100;
+                        progressBar.style.width = progress + '%';
+                        progressBar.textContent = Math.round(progress) + '%';
+
+                        // Effet visuel
+                        nugget.style.transition = 'all 0.5s';
+                        nugget.style.transform = 'scale(2)';
+                        nugget.style.opacity = '0';
+
+                        // Vérifier si toutes les pépites sont collectées
+                        if (collectedNuggets === totalNuggets) {
+                            setTimeout(() => {
+                                victoryMessage.classList.add('show');
+                            }, 500);
+                        }
                     }
-                }
-            });
-        });
+                });
 
-        // Animations pour les têtards au survol
-        document.querySelectorAll('.tadpole').forEach(tadpole => {
-            tadpole.addEventListener('mouseenter', () => {
-                tadpole.style.transform = 'scale(1.5)';
+                // S'assurer que les pépites sont cliquables
+                nugget.style.cursor = 'pointer';
+                nugget.style.userSelect = 'none';
             });
-            tadpole.addEventListener('mouseleave', () => {
-                tadpole.style.transform = 'scale(1)';
+
+            // Animations pour les têtards au survol
+            document.querySelectorAll('.tadpole').forEach(tadpole => {
+                tadpole.addEventListener('mouseenter', () => {
+                    tadpole.style.transform = 'scale(1.5)';
+                    tadpole.style.transition = 'transform 0.3s';
+                });
+                tadpole.addEventListener('mouseleave', () => {
+                    tadpole.style.transform = 'scale(1)';
+                });
             });
+
+            console.log('Niveau 1 initialisé avec', nuggets.length, 'pépites d\'or');
         });
     </script>
 </body>
