@@ -9,88 +9,192 @@ Ce guide explique comment intégrer le personnage amphibien anthropomorphe à pe
 - **Capacité** : Peut rester sous l'eau 7 minutes
 - **Fonction** : Collecte automatiquement les pépites d'or lorsqu'il s'en approche
 
-## 🚀 Utilisation Rapide
+## 🚀 Utilisation Rapide (Méthode Recommandée)
 
-### 1. Dans le HTML, ajoutez le CSS du personnage
+### Méthode 1 : Initialisation Complète Automatique (RECOMMANDÉ)
+
+Cette méthode initialise automatiquement **tout** : personnage, santé, apnée, repos, collecte.
+
+#### 1. Ajoutez les scripts dans le HTML
 
 ```html
-<style>
-    /* ... vos styles existants ... */
-    
-    /* Ajoutez le CSS du personnage */
-    .character {
-        position: absolute;
-        width: 50px;
-        height: 60px;
-        z-index: 45;
-        cursor: pointer;
-        transition: all 0.3s ease;
-    }
-    
-    /* ... voir CHARACTER_CSS complet dans character-system.js ... */
-</style>
+<head>
+    <!-- ... autres liens ... -->
+    <link rel="stylesheet" href="game-style.css">
+    <script src="character-system.js"></script>
+    <script src="character-health-system.js"></script>
+    <script src="init-game-level.js"></script>
+</head>
 ```
 
-### 2. Ajoutez le conteneur du personnage dans le HTML
+#### 2. Ajoutez la structure HTML de base
 
 ```html
-<div class="island-container" id="gameContainer">
-    <!-- ... autres éléments ... -->
+<!-- HUD avec santé et apnée -->
+<div class="game-hud">
+    <h3>📊 Statut</h3>
+    <div class="hud-stat">
+        <span>Pépites collectées :</span>
+        <strong id="collectedCount">0</strong>
+    </div>
+    <div class="hud-stat">
+        <span>Profondeur :</span>
+        <strong>15m</strong>
+    </div>
     
-    <!-- Le personnage sera ajouté ici par JavaScript -->
+    <!-- Barre de santé -->
+    <div class="hud-stat">
+        <span>❤️ Vie :</span>
+        <strong id="healthValue">100%</strong>
+    </div>
+    <div class="health-bar">
+        <div class="health-fill" id="healthBar" style="width: 100%;">100%</div>
+    </div>
+
+    <!-- Barre d'apnée -->
+    <div class="hud-stat">
+        <span>🌊 Apnée :</span>
+        <strong id="apneaValue">7:00</strong>
+    </div>
+    <div class="apnea-bar">
+        <div class="apnea-fill" id="apneaBar" style="width: 100%;">7:00</div>
+    </div>
+
+    <!-- Statut d'empoisonnement -->
+    <div class="hud-stat poisoned" id="poisonStatus" style="display: none;">
+        <span>⚠️ Empoisonné</span>
+    </div>
+</div>
+
+<!-- Conteneur de jeu -->
+<div class="island-container">
+    <!-- Créez le personnage avec createCharacter() d'abord -->
+    <!-- ... autres éléments (île, pépites, etc.) ... -->
+    
+    <!-- Indicateur pour se reposer -->
+    <div class="rest-prompt" id="restPrompt">
+        Appuyez sur [Espace] pour vous reposer et observer le ciel
+    </div>
+</div>
+
+<!-- Modal de pensées nostalgiques -->
+<div class="nostalgia-modal" id="nostalgiaModal">
+    <div class="nostalgia-content">
+        <h2>✨ Étoiles Filantes ✨</h2>
+        <div class="stars">⭐ 🌟 ⭐ 🌟 ⭐</div>
+        <p id="nostalgiaText">...</p>
+        <p style="margin-top: 2rem; font-size: 0.9rem;">
+            Appuyez sur [Espace] pour continuer
+        </p>
+    </div>
+</div>
+
+<!-- Modal de mort (permadeath) -->
+<div class="death-modal" id="deathModal">
+    <div class="death-content">
+        <h2>💀 Mort</h2>
+        <p>Votre personnage est mort. Permadeath : recommencez depuis le début.</p>
+        <button onclick="resetGame()">Recommencer depuis le début</button>
+    </div>
 </div>
 ```
 
-### 3. Dans le JavaScript du niveau
+#### 3. Dans le JavaScript du niveau
 
 ```javascript
-// Option 1 : Import direct (si vous utilisez des modules)
-// import { createCharacter, initCharacterSystem } from './character-system.js';
-
-// Option 2 : Copier-colle le code de character-system.js dans votre script
-
-// Créer le personnage
-const character = createCharacter('gameContainer', { x: 50, y: 50 });
-
-// Initialiser le système avec callbacks personnalisés
-const characterSystem = initCharacterSystem({
-    collectDistance: 60,  // Distance de collecte
-    speed: 500,           // Vitesse de mouvement (ms)
-    inWaterOnly: true,     // Seulement dans l'eau
-    onNuggetCollect: (nugget, count, total) => {
-        // Mettre à jour l'UI
-        document.getElementById('collectedCount').textContent = count;
-        const progress = (count / total) * 100;
-        document.getElementById('progressBar').style.width = progress + '%';
-    },
-    onAllCollected: () => {
-        // Afficher le message de victoire
-        document.getElementById('victoryMessage').classList.add('show');
-    }
+document.addEventListener('DOMContentLoaded', () => {
+    // 1. Créer le personnage
+    createCharacter('island-container', { x: 20, y: 20 });
+    
+    // 2. Initialiser tout le système
+    const gameSystem = initGameLevel({
+        containerId: 'island-container',
+        characterId: 'character',
+        totalNuggets: 6,
+        depth: '15m',
+        islandSelector: '.island',
+        onVictory: () => {
+            console.log('Niveau terminé !');
+        }
+    });
+    
+    // Le système gère automatiquement :
+    // - Collecte de pépites
+    // - Santé et apnée
+    // - Repos sur la plateforme
+    // - Pensées nostalgiques
+    // - Permadeath
 });
+```
+
+### Méthode 2 : Initialisation Manuelle (Avancé)
+
+Si vous voulez plus de contrôle, vous pouvez utiliser les systèmes séparés :
+
+```javascript
+// 1. Créer le personnage
+createCharacter('gameContainer', { x: 50, y: 50 });
+
+// 2. Initialiser le système de santé
+const healthSystem = new CharacterHealthSystem({
+    onHealthChange: (health, maxHealth) => { /* ... */ },
+    onApneaChange: (apnea, maxApnea) => { /* ... */ },
+    onDeath: () => { /* ... */ }
+});
+
+// 3. Initialiser le système de mouvement (optionnel)
+// Voir character-system.js pour les détails
 ```
 
 ## 📝 Structure Requise pour Chaque Niveau
 
 Chaque niveau doit avoir :
 
-1. **Un conteneur** avec la classe `island-container` (ou utiliser l'ID spécifié)
-2. **Des pépites d'or** avec la classe `gold-nugget`
-3. **Un élément pour afficher le compteur** (ex: `collectedCount`)
-4. **Un élément pour la barre de progression** (ex: `progressBar`)
-5. **Un message de victoire** (ex: `victoryMessage`)
+1. **Scripts requis** :
+   - `character-system.js`
+   - `character-health-system.js`
+   - `init-game-level.js` (méthode recommandée)
+   - `game-style.css` (styles visuels)
+
+2. **Éléments HTML** :
+   - Un conteneur avec la classe `island-container`
+   - Une île avec la classe `.island` (plateforme ronde)
+   - Des pépites d'or avec la classe `gold-nugget`
+   - HUD avec `collectedCount`, `healthBar`, `apneaBar`, etc.
+   - Modals : `nostalgiaModal`, `deathModal`
+
+3. **CSS** :
+   - Styles du personnage (depuis `CHARACTER_CSS` dans `character-system.js`)
+   - Styles du HUD (barres de santé, apnée)
+   - Styles des modals (repos, mort)
 
 ## 🎮 Fonctionnalités
 
 ### Déplacement
-- **Clic dans l'eau** : Déplace le personnage vers la position cliquée
+- **Flèches du clavier** : ↑ ↓ ← → pour déplacer le personnage
+- **Tactile (mobile)** : Glisser le doigt pour déplacer, toucher une pépite pour la collecter
 - **Animation de nage** : Le personnage nage automatiquement pendant le déplacement
-- **Restriction** : Ne peut pas aller sur l'île (seulement dans l'eau)
+- **Restriction** : Ne peut pas aller sur l'île (seulement dans l'eau), sauf pour se reposer
 
-### Collecte
+### Collecte de Pépites
 - **Automatique** : Collecte les pépites lorsqu'il s'en approche (< 60px par défaut)
+- **Tactile directe** : Toucher une pépite sur mobile pour la collecter immédiatement
 - **Animation** : Animation de joie lors de la collecte
 - **Feedback visuel** : La pépite disparaît avec un effet de scale
+
+### Système de Santé
+- **Barre de vie** : Affiche la santé actuelle (100% au départ)
+- **Apnée** : 7 minutes maximum sous l'eau, se restaure progressivement hors de l'eau
+- **Permadeath** : Une seule vie - si mort, recommencer depuis le début du jeu
+- **Restauration** : 
+  - Repos sur la plateforme : restaure 1 point/seconde
+  - Antidote : restaure 50 points et guérit l'empoisonnement
+
+### Repos sur la Plateforme
+- **Observation du ciel** : S'allonger sur la plateforme ronde pour observer les étoiles
+- **Activation** : Cliquer sur l'île ou appuyer sur [Espace] quand proche
+- **Pensées nostalgiques** : Affiche des pensées aléatoires sur le passé
+- **Restauration** : Restaure la santé et l'apnée plus rapidement
 
 ## 🔧 Configuration Personnalisée
 
@@ -112,16 +216,38 @@ initCharacterSystem({
 
 ## 📂 Fichiers
 
-- `character-system.js` : Système réutilisable du personnage
+- `character-system.js` : Système réutilisable du personnage (mouvement, collecte)
+- `character-health-system.js` : Système de santé (vie, apnée, permadeath, repos)
+- `init-game-level.js` : **Initialisation complète automatique (RECOMMANDÉ)**
+- `game-style.css` : Styles visuels Subnautica/crayonnés
 - `CHARACTER_README.md` : Ce guide
 
 ## 🎯 Prochaines Étapes
 
 Pour chaque nouveau niveau :
-1. Copiez la structure HTML de base
-2. Intégrez le CSS du personnage
-3. Appelez `createCharacter()` et `initCharacterSystem()`
-4. Adaptez les callbacks selon les besoins du niveau
 
-Le personnage sera identique dans tous les niveaux, garantissant une expérience cohérente !
+### Méthode Simple (Recommandée)
+1. Copiez la structure HTML de `niveau1-ruisseau.html`
+2. Adaptez le nombre de pépites et la profondeur
+3. Appelez `createCharacter()` puis `initGameLevel()`
+4. Tout est automatique ! 🎉
+
+### Exemple Minimal
+```javascript
+document.addEventListener('DOMContentLoaded', () => {
+    // Créer le personnage
+    createCharacter('island-container', { x: 20, y: 20 });
+    
+    // Initialiser tout
+    initGameLevel({
+        totalNuggets: 6,
+        depth: '15m',
+        onVictory: () => {
+            // Votre logique de fin de niveau
+        }
+    });
+});
+```
+
+Le personnage et tous ses systèmes seront identiques dans tous les niveaux, garantissant une expérience cohérente ! 🐸✨
 
