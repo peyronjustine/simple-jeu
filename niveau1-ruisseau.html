@@ -1307,12 +1307,52 @@
             const character = document.getElementById('character');
             const islandContainer = document.querySelector('.island-container');
             let isMoving = false;
+            let isResting = false; // État de repos du personnage
             let characterX = 50; // Pourcentage
             let characterY = 50; // Pourcentage
+            
+            // Initialiser le système de santé si disponible
+            let healthSystem = null;
+            if (typeof CharacterHealthSystem !== 'undefined') {
+                try {
+                    healthSystem = new CharacterHealthSystem({
+                        maxHealth: 100,
+                        maxApnea: 7 * 60 * 1000, // 7 minutes
+                        permadeath: true
+                    });
+                    healthSystem.init();
+                } catch (e) {
+                    console.log('Système de santé non disponible:', e);
+                    // Créer un objet de fallback pour éviter les erreurs
+                    healthSystem = {
+                        isDead: false,
+                        setUnderwater: () => {},
+                        reset: () => {}
+                    };
+                }
+            } else {
+                // Créer un objet de fallback si le système n'est pas disponible
+                healthSystem = {
+                    isDead: false,
+                    setUnderwater: () => {},
+                    reset: () => {}
+                };
+            }
 
             // Position initiale du personnage (sur l'île, au centre)
             character.style.left = '50%';
             character.style.top = '50%';
+            
+            // Fonction pour mettre à jour le statut sous-marin
+            function updateUnderwaterStatus() {
+                if (!healthSystem) return;
+                // Déterminer si le personnage est sous l'eau (pas sur l'île)
+                const centerX = 50;
+                const centerY = 50;
+                const distance = Math.sqrt(Math.pow(characterX - centerX, 2) + Math.pow(characterY - centerY, 2));
+                const isUnderwater = distance > 25; // Au-delà de 25% du centre = dans l'eau
+                healthSystem.setUnderwater(isUnderwater);
+            }
 
             // Fonction pour collecter une pépite
             function collectNugget(nugget) {
