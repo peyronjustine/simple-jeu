@@ -54,6 +54,46 @@
             margin: 1rem 0;
             border: 1px solid rgba(200, 150, 50, 0.3);
         }
+        .nav-menu {
+            background: rgba(15, 30, 25, 0.9);
+            backdrop-filter: blur(10px);
+            padding: 1rem;
+            margin-bottom: 2rem;
+            border-radius: 15px;
+            border: 1px solid rgba(100, 180, 150, 0.3);
+            position: sticky;
+            top: 20px;
+            z-index: 100;
+        }
+        .nav-menu-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+        .nav-menu a {
+            display: inline-block;
+            padding: 8px 15px;
+            background: rgba(100, 180, 150, 0.2);
+            border: 1px solid rgba(159, 196, 184, 0.3);
+            border-radius: 20px;
+            color: #9fc4b8;
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: all 0.3s;
+        }
+        .nav-menu a:hover, .nav-menu a.active {
+            background: rgba(159, 196, 184, 0.4);
+            border-color: rgba(159, 196, 184, 0.6);
+            transform: translateY(-2px);
+        }
+        .nav-menu .home-link {
+            background: rgba(255, 200, 100, 0.3);
+            border-color: rgba(255, 220, 150, 0.5);
+            color: #ffd89b;
+            font-weight: bold;
+        }
+
         .nav { text-align: center; margin: 3rem 0; }
         .nav a {
             display: inline-block;
@@ -75,6 +115,20 @@
 </head>
 <body>
     <div class="container">
+        <div class="nav-menu">
+            <div class="nav-menu-content">
+                <a href="index.html" class="home-link">🏠 Accueil</a>
+                <a href="etape1-ruisseau.html">1. Ruisseau</a>
+                <a href="etape2-mare.html">2. Mare</a>
+                <a href="etape3-riviere.html" class="active">3. Rivière</a>
+                <a href="etape4-riviere2.html">4. Rivière 2</a>
+                <a href="etape5-ocean.html">5. Océan</a>
+                <a href="etape6-marecageuse.html">6. Marécage</a>
+                <a href="etape7-ocean2.html">7. Océan 2</a>
+                <a href="etape8-antarctique.html">8. Antarctique</a>
+                <a href="etape9-bermudes.html">9. Bermudes</a>
+            </div>
+        </div>
         <header>
             <h1>🌊 ÉTAPE 3 : LA RIVIÈRE</h1>
             <p class="subtitle">Les eaux s'approfondissent</p>
