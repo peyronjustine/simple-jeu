@@ -1116,35 +1116,50 @@
         function initAmbientSounds() {
             // Note: Pour une vraie implémentation, créer des fichiers audio
             // Ici on simule avec l'API Web Audio pour générer des sons d'ambiance
+            // AudioContext nécessite une interaction utilisateur avant de pouvoir démarrer
             
             try {
-                const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                // Ne pas créer l'audioContext immédiatement - attendre une interaction utilisateur
+                let audioContext = null;
+                
+                // Fonction pour créer l'audioContext après interaction utilisateur
+                function getAudioContext() {
+                    if (!audioContext) {
+                        audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                    }
+                    // Reprendre l'audioContext s'il est suspendu
+                    if (audioContext.state === 'suspended') {
+                        audioContext.resume();
+                    }
+                    return audioContext;
+                }
                 
                 // Vent (bruit blanc filtré pour ressembler au vent)
                 function createWindSound() {
-                    const bufferSize = audioContext.sampleRate * 2;
-                    const buffer = audioContext.createBuffer(1, bufferSize, audioContext.sampleRate);
+                    const ctx = getAudioContext();
+                    const bufferSize = ctx.sampleRate * 2;
+                    const buffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
                     const data = buffer.getChannelData(0);
                     
                     for (let i = 0; i < bufferSize; i++) {
                         data[i] = Math.random() * 2 - 1;
                     }
                     
-                    const source = audioContext.createBufferSource();
+                    const source = ctx.createBufferSource();
                     source.buffer = buffer;
                     source.loop = true;
                     
-                    const filter = audioContext.createBiquadFilter();
+                    const filter = ctx.createBiquadFilter();
                     filter.type = 'lowpass';
-                    filter.frequency.setValueAtTime(500, audioContext.currentTime);
-                    filter.Q.setValueAtTime(1, audioContext.currentTime);
+                    filter.frequency.setValueAtTime(500, ctx.currentTime);
+                    filter.Q.setValueAtTime(1, ctx.currentTime);
                     
-                    const gainNode = audioContext.createGain();
-                    gainNode.gain.setValueAtTime(0.1, audioContext.currentTime);
+                    const gainNode = ctx.createGain();
+                    gainNode.gain.setValueAtTime(0.1, ctx.currentTime);
                     
                     source.connect(filter);
                     filter.connect(gainNode);
-                    gainNode.connect(audioContext.destination);
+                    gainNode.connect(ctx.destination);
                     
                     return { source, gainNode };
                 }
@@ -1152,54 +1167,61 @@
                 // Sons de poissons sautant (périodiques)
                 function createFishSplash() {
                     return setInterval(() => {
-                        const oscillator = audioContext.createOscillator();
-                        const gainNode = audioContext.createGain();
+                        const ctx = getAudioContext();
+                        const oscillator = ctx.createOscillator();
+                        const gainNode = ctx.createGain();
                         
                         oscillator.type = 'sine';
-                        oscillator.frequency.setValueAtTime(200 + Math.random() * 100, audioContext.currentTime);
+                        oscillator.frequency.setValueAtTime(200 + Math.random() * 100, ctx.currentTime);
                         
-                        gainNode.gain.setValueAtTime(0.2, audioContext.currentTime);
-                        gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.3);
+                        gainNode.gain.setValueAtTime(0.2, ctx.currentTime);
+                        gainNode.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.3);
                         
                         oscillator.connect(gainNode);
-                        gainNode.connect(audioContext.destination);
+                        gainNode.connect(ctx.destination);
                         
                         oscillator.start();
-                        oscillator.stop(audioContext.currentTime + 0.3);
+                        oscillator.stop(ctx.currentTime + 0.3);
                     }, 3000 + Math.random() * 4000); // Toutes les 3-7 secondes
                 }
                 
                 // Bruits naturels (créatures, eau, etc.)
                 function createNatureSounds() {
                     return setInterval(() => {
-                        const oscillator = audioContext.createOscillator();
-                        const gainNode = audioContext.createGain();
+                        const ctx = getAudioContext();
+                        const oscillator = ctx.createOscillator();
+                        const gainNode = ctx.createGain();
                         
                         // Sons de créatures aquatiques
                         oscillator.type = 'triangle';
-                        oscillator.frequency.setValueAtTime(150 + Math.random() * 50, audioContext.currentTime);
+                        oscillator.frequency.setValueAtTime(150 + Math.random() * 50, ctx.currentTime);
                         
-                        gainNode.gain.setValueAtTime(0.1, audioContext.currentTime);
-                        gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.5);
+                        gainNode.gain.setValueAtTime(0.1, ctx.currentTime);
+                        gainNode.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.5);
                         
                         oscillator.connect(gainNode);
-                        gainNode.connect(audioContext.destination);
+                        gainNode.connect(ctx.destination);
                         
                         oscillator.start();
-                        oscillator.stop(audioContext.currentTime + 0.5);
+                        oscillator.stop(ctx.currentTime + 0.5);
                     }, 5000 + Math.random() * 5000); // Toutes les 5-10 secondes
                 }
                 
-                // Démarrer les sons (optionnel - nécessite interaction utilisateur)
+                // Démarrer les sons après interaction utilisateur
                 // Les sons ne démarrent que si l'utilisateur a interagi avec la page
                 document.addEventListener('click', () => {
-                    if (!ambientSounds.isPlaying && audioContext.state !== 'suspended') {
-                        const wind = createWindSound();
-                        wind.source.start(0);
-                        ambientSounds.wind = wind;
-                        ambientSounds.fishSplash = createFishSplash();
-                        ambientSounds.nature = createNatureSounds();
-                        ambientSounds.isPlaying = true;
+                    if (!ambientSounds.isPlaying) {
+                        try {
+                            const ctx = getAudioContext();
+                            const wind = createWindSound();
+                            wind.source.start(0);
+                            ambientSounds.wind = wind;
+                            ambientSounds.fishSplash = createFishSplash();
+                            ambientSounds.nature = createNatureSounds();
+                            ambientSounds.isPlaying = true;
+                        } catch (e) {
+                            console.log('Impossible de démarrer l\'audio:', e);
+                        }
                     }
                 }, { once: true });
                 
@@ -1220,6 +1242,10 @@
             const victoryMessage = document.getElementById('victoryMessage');
             const globalProgressHUD = document.getElementById('globalProgressHUD');
             const globalCollectedEl = document.getElementById('globalCollected');
+            
+            // Détecter si on est sur mobile
+            const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || 
+                            (window.matchMedia && window.matchMedia("(max-width: 768px)").matches);
             
             // Initialiser le système de progression
             if (typeof GameProgression !== 'undefined') {
