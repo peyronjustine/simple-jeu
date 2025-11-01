@@ -171,6 +171,119 @@
             z-index: 15;
         }
 
+        .character {
+            position: absolute;
+            width: 50px;
+            height: 60px;
+            z-index: 45;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .character-body {
+            position: relative;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #4682B4 0%, #5F9EA0 50%, #6B8E23 100%);
+            border-radius: 50% 50% 45% 45%;
+            box-shadow: 
+                0 2px 10px rgba(0, 0, 0, 0.3),
+                inset 0 -5px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .character-head {
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 35px;
+            height: 35px;
+            background: linear-gradient(135deg, #4682B4 0%, #5F9EA0 100%);
+            border-radius: 50%;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .character-eyes {
+            position: absolute;
+            top: 8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 20px;
+            display: flex;
+            justify-content: space-between;
+            gap: 8px;
+        }
+
+        .character-eye {
+            width: 6px;
+            height: 6px;
+            background: #000;
+            border-radius: 50%;
+        }
+
+        .character-arms {
+            position: absolute;
+            top: 15px;
+            width: 100%;
+            height: 20px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .character-arm {
+            width: 12px;
+            height: 25px;
+            background: linear-gradient(135deg, #4682B4 0%, #5F9EA0 100%);
+            border-radius: 20px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+        }
+
+        .character-arm.left {
+            left: -5px;
+            transform: rotate(-25deg);
+        }
+
+        .character-arm.right {
+            right: -5px;
+            transform: rotate(25deg);
+        }
+
+        .character-legs {
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            height: 15px;
+            display: flex;
+            justify-content: center;
+            gap: 5px;
+        }
+
+        .character-leg {
+            width: 10px;
+            height: 15px;
+            background: linear-gradient(135deg, #4682B4 0%, #5F9EA0 100%);
+            border-radius: 0 0 10px 10px;
+        }
+
+        .character.swimming {
+            animation: swimAnimation 1s ease-in-out infinite;
+        }
+
+        @keyframes swimAnimation {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .character.moving {
+            transition: all 0.5s ease;
+        }
+
         .water-ripple {
             position: absolute;
             border-radius: 50%;
@@ -451,6 +564,26 @@
             <!-- Île -->
             <div class="island">
                 <div class="tree"></div>
+            </div>
+
+            <!-- Personnage joueur -->
+            <div class="character" id="character" style="top: 50%; left: 50%;">
+                <div class="character-body">
+                    <div class="character-head">
+                        <div class="character-eyes">
+                            <div class="character-eye"></div>
+                            <div class="character-eye"></div>
+                        </div>
+                    </div>
+                    <div class="character-arms">
+                        <div class="character-arm left"></div>
+                        <div class="character-arm right"></div>
+                    </div>
+                    <div class="character-legs">
+                        <div class="character-leg"></div>
+                        <div class="character-leg"></div>
+                    </div>
+                </div>
             </div>
 
             <!-- Têtards -->
